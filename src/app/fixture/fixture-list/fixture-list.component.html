@@ -1,0 +1,26 @@
+<div *ngIf="matchyears | async as my">
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+           <li *ngFor="let y of my"><a (click)="getFixturelistData(tmid, y)"> {{y}}</a></li>
+    </ul>
+</nav>    
+</div>
+
+<div *ngFor="let t of fixturelistdata">
+<p class='panel_widget_heading light_green_gradient'>{{t.MonthName}}</p>
+<ul class='widget_ul'>
+<li *ngFor="let f of t.listoffixtures.fixtures" >
+    <a [routerLink]="['/fixturedetail', f.matchId]" (click)="selectedfixture(f)">
+    <p class='game_listDate'><b>{{f.matchDate | date:'d MMM yy'}}</b>{{f.matchStartTime}} ({{f.matchType}})</p>
+    <div *ngIf="f.idWinningTeam == -1;then noResult else mtchStatus"></div>
+        <ng-template #noResult><p class='game_listTeams'><b>{{f.oppositionTeamName}}</b> at {{f.groundName}}, {{f.groundAddressTown}}, {{f.groundPostCode}}, ({{f.homeOrAway}})</p></ng-template>
+        <ng-template #mtchStatus><p class='game_listTeams'>{{f.fixtureStatus}}</p></ng-template>
+    
+    
+    
+
+
+   
+    </a>
+</li>
+</ul>

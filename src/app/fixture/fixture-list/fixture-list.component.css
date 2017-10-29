@@ -1,0 +1,56 @@
+a:link, a:visited{
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #0B0C0B;
+    font-weight: bolder;
+}
+
+.game_listDate{
+	
+	color: #000000;
+	margin: 0.5em;
+}
+
+.game_listTeams{
+/*	height: 1em; */
+	margin: 0.5em;
+	color: #000000;
+	font-size: 1em;
+	line-height: 1em;
+	padding-left: 2em;
+	
+	border-bottom-style: dotted;
+    border-width: 1px;
+    border-color: #F0F0F0;
+    margin-bottom: 0.2em;
+}
+
+.widget_ul{
+   /*
+  	Position <ul> on page
+  	*/
+	position: relative;
+	margin: 0em;
+	display: block;
+    list-style: none
+}
+
+.panel_widget_heading{
+	border-radius: 3px;
+	height: 1.5em;
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+	color: #FFFFFF;
+	font-weight: bold;
+	vertical-align: middle;
+	line-height: 1.5em;
+	text-indent: 1em;
+}
+
+.light_green_gradient{
+	background-color: #6CA82F;
+}

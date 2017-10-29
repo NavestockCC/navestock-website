@@ -1,0 +1,16 @@
+<div class='right_panel_widgets green'>
+	<div class='panel_widget_menu green'>
+		<p class='panel_widget_menu_item_select green'>Fixtures</p>
+	</div>
+    <div *ngFor="let t of fixturewidgetdata">
+    <p class='panel_widget_heading green'>{{t.teamname}}</p>
+    <ul class='widget_ul'>
+        <li *ngFor="let f of t.listoffixtures.fixtures">
+            <a [routerLink]="['/fixturedetail', f.matchId]" (click)="selectedfixture(f)">
+                <p class='game_l1'>{{f.oppositionTeamName}}</p>
+                <p class='game_l2'>{{f.matchDate | date:'d MMM yy'}} {{f.matchStartTime}}</p>
+            </a>
+        </li>
+    </ul>
+    </div>
+</div>

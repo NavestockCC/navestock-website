@@ -1,0 +1,50 @@
+.address_ul{
+   /*
+  	Position <ul> on page
+  	*/
+
+    list-style: none
+}
+
+.players_wanted_img{
+	width: 100%;
+	border-radius: 10px;
+}
+
+.sebm-google-map-container {
+  height: 300px;
+}
+
+/*******************
+	ScoreCard Styles 
+********************/
+.scoreCardTable{
+	border-collapse:collapse;
+	}
+
+.scoreCardHeading{
+	background-color: #6CA82F;
+	color: #FFFFFF;
+	font-size: 1em;
+	padding-left: 1em;
+	}
+	
+.scoreCardHeadingCells{
+	padding-left: 1em;
+}
+
+.scoreCardPlayer{
+	text-align: left;
+	padding-right: 1em;	
+	}
+	
+.scoreCardOut{
+	text-align: right;
+	padding-left: 1em;
+	font-size: 0.8em;
+	}
+	
+.scoreCardNumbers{
+	text-align: right;
+	padding-left: 1em;
+}

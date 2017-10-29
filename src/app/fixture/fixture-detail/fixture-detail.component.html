@@ -1,0 +1,73 @@
+<div class="col-md-6 col-sm-6 col-xs-12">
+  <div *ngIf="fixturedetail | async as f;">
+        <p><b>{{f.navestockTeamName}} vs {{f.oppositionTeamName}}</b></p>
+        <p>{{f.matchDate| date:'d MMMM yyyy'}} : {{f.matchStartTime}}</p>
+        <p>{{f.matchType}}</p>
+        <br><p><b>Played at:</b></p>
+        <ul class="address_ul">
+            <li>{{f.groundName}}</li>
+            <li>{{f.groundAddress1}}</li>
+            <li>{{f.groundAddress2}}</li>
+            <li>{{f.groundAddressTown}}</li>
+            <li>{{f.groundAddressCounty}}</li>
+            <li>{{f.groundPostCode}}</li>
+        </ul>
+
+        <br><p><b>Match status:</b></p>
+        <p>{{f.fixtureStatus}}</p>        
+  </div>
+  <br><br>       
+  <div *ngIf="scorecarddetail | async as sc;">
+        <table class='scoreCardTable'>
+          <tr class='scoreCardHeading'>
+              <td colspan='3' class='scoreCardHeadingCells'>Batting Stats</td>
+              <td class='scoreCardHeadingCells'>Runs</td>
+          </tr>
+            <tr *ngFor="let sci of sc">
+               <td class='scoreCardPlayer'>{{sci.batingOrder}}</td>
+              <td class='scoreCardPlayer'>{{sci.player}}</td>
+              <td class='scoreCardOut'>{{sci.howOutDescription}}</td>
+              <td class='scoreCardNumbers'>{{sci.runsScored}}</td>
+            </tr>
+        </table>        
+
+          <br><br>
+          <table class='scoreCardTable'>
+            <tr>
+              <td class='scoreCardHeading'>Bowler</td>
+              <td class='scoreCardHeading'>Overs</td>
+              <td class='scoreCardHeading'>Wickets</td>
+              <td class='scoreCardHeading'>Runs</td>
+            </tr>
+            <tr *ngFor="let sci of sc | HasBowled" >
+              <td class='scoreCardPlayer'>{{sci.player}}</td>
+              <td class='scoreCardNumbers'>{{sci.oversBowled}}</td>
+              <td class='scoreCardNumbers'>{{sci.wickets}}</td>
+              <td class='scoreCardNumbers'>{{sci.runsConseded}}</td>
+            </tr>
+        </table>
+  </div>
+  <br><br>
+</div>
+     
+<div class="col-md-6 col-sm-6 col-xs-12">
+  <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [draggable] ="draggable" [fitBounds]="latlngBounds">
+  	<sebm-google-map-marker *ngFor='let m of markers; let i = index' 
+        [latitude]='m.lat'
+        [longitude]='m.lng'
+        [label]='m.label'
+        [markerDraggable]='m.draggable'
+				[iconUrl]='m.iconUrl'>
+			  <sebm-google-map-info-window [disableAutoPan]="true">
+          <ul style="list-style-type:none">
+				    <li *ngFor='let adrs of m.infowintxt'>{{adrs.address}}</li>
+				  </ul>
+        </sebm-google-map-info-window>
+			</sebm-google-map-marker>
+		</sebm-google-map>
+</div>
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+  <br><br>
+  <fixture-img-list [fixtureId]="fid"></fixture-img-list>
+</div>

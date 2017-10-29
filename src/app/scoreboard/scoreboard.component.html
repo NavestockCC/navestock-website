@@ -1,0 +1,9 @@
+
+	<b>Scoreboard</b>
+	<div *ngIf="navestockScoreboard | async as sb;">
+		<p>Batsman 1: {{sb.Batsman1}}</p>
+		<p>Batsman 2: {{sb.Batsman2}}</p>
+		<p>Overs: {{sb.Overs}}</p>
+		<p>Total: {{sb.TeamScore}}</p>
+		<p>Display: {{sb.Display}}</p>
+	</div>

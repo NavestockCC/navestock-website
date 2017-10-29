@@ -1,0 +1,155 @@
+/*
+	Widget styles 
+*/
+.right_panel_widgets{
+	background: #FFFFFF;
+	border-radius: 10px;
+	width: 99%;
+	margin-top: 5px;
+	border-style: solid;
+    border-width: 2px;
+	display: inline-block;	
+}
+
+.right_panel_widgets.green{
+	border-color: #336600;
+}
+
+.right_panel_widgets.blue{
+	border-color: #0000FF;
+}
+
+.panel_widget_menu{
+	width: 100%;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;	
+}
+
+.panel_widget_menu.green{
+		background: linear-gradient(#336600, #5C8533, #70944D, #85A366, #85A366);
+}
+
+.panel_widget_menu.blue{
+		background: linear-gradient(#0000E6, #0000FF,#1919FF, #4D4DFF, #8080FF);
+}
+
+.panel_widget_menu_item_select{
+	display: inline-block;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 3px;
+	width: 35%;
+	height: 25px;
+	vertical-align: middle;
+	line-height: 20px;
+	text-indent: 1.2em;
+	color: #336600;
+	font-weight: bold;
+	margin: 0;
+}
+
+.panel_widget_menu_item_select.green{
+	background: linear-gradient(#85A366, #FFFFFF);
+}
+
+.panel_widget_menu_item_select.blue{
+	background: linear-gradient(#0000E6, #8080FF);	
+}
+
+.panel_widget_menu_item_notselected{
+	display: inline-block;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 0px;
+	width: 35%;
+	height: 25px;
+	vertical-align: middle;
+	line-height: 20px;
+	text-indent: 1.2em;
+	color: #FFFFFF;
+	font-weight: bold;
+	margin: 0;
+}
+
+
+.panel_widget_heading{
+	height: 1.5em;	
+	color: #FFFFFF;
+	font-weight: bold;
+	vertical-align: middle;
+	line-height: 1.5em;
+	text-indent: 1em;
+}
+
+.panel_widget_heading.green{
+	background: linear-gradient(#85A366, #70944D, #5C8533, #477519, #336600);
+}
+
+.panel_widget_heading.blue{
+	background: linear-gradient(#8080FF, #4D4DFF,  #1919FF, #0000FF, #0000E6);
+}
+
+.light_green_gradient{
+	background-color: #6CA82F;
+}
+
+ul.widget_ul{
+   /*
+  	Position <ul> on page
+  	*/
+	position: relative;
+	margin: 0em;
+	display: block;
+}
+
+ul.widget_ul li{
+	display: block;
+}
+
+.game_l1{
+	
+	margin: 0em;
+	color: #000000;
+	font-weight: bold;
+}
+
+.game_l2{
+	height: 1em;
+	margin: 0em;
+	color: #000000;
+	font-size: 0.8em;
+	line-height: 0.85em;
+	text-indent: 1em;
+	
+	border-bottom-style: dotted;
+    border-width: 1px;
+    border-color: #F0F0F0;
+    margin-bottom: 0.2em;
+}
+
+.game_listDate{
+	height: 1em;
+	margin: 1em;
+	color: #000000;
+	line-height: 2em;
+}
+
+.game_listTeams{
+/*	height: 1em; */
+	margin: 0.5em;
+	color: #000000;
+	font-size: 1em;
+	line-height: 1em;
+	padding-left: 2em;
+	
+	border-bottom-style: dotted;
+    border-width: 1px;
+    border-color: #F0F0F0;
+    margin-bottom: 0.2em;
+}
+
+.news_txt{
+	margin-left: 0.8em;
+	margin-right: 0.8em;
+	line-height: 1em;
+	white-space: pre-wrap;
+	width: auto;
+}
