@@ -24,7 +24,7 @@ import { FixtureModule }  from '../fixture/fixture.module'
 
 // Must export the config
 const firebaseConfig = {
-    apiKey: 'AIzaSyCZoGqv8DGcrtw1byi4XG_cNP50dTVohd8',
+    apiKey: 'xxx-xxxxx-xxxxx-xxxx',
     authDomain: 'navestock-website.firebaseapp.com',
     databaseURL: 'https://navestock-website.firebaseio.com',
     projectId: 'navestock-website',
