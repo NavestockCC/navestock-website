@@ -51,20 +51,20 @@
 </div>
      
 <div class="col-md-6 col-sm-6 col-xs-12">
-  <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [draggable] ="draggable" [fitBounds]="latlngBounds">
-  	<sebm-google-map-marker *ngFor='let m of markers; let i = index' 
+  <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [draggable] ="draggable" [fitBounds]="latlngBounds">
+  	<agm-marker *ngFor='let m of markers; let i = index' 
         [latitude]='m.lat'
         [longitude]='m.lng'
         [label]='m.label'
         [markerDraggable]='m.draggable'
 				[iconUrl]='m.iconUrl'>
-			  <sebm-google-map-info-window [disableAutoPan]="true">
+			  <agm-info-window [disableAutoPan]="true">
           <ul style="list-style-type:none">
 				    <li *ngFor='let adrs of m.infowintxt'>{{adrs.address}}</li>
 				  </ul>
-        </sebm-google-map-info-window>
-			</sebm-google-map-marker>
-		</sebm-google-map>
+        </agm-info-window>
+			</agm-marker>
+		</agm-map>
 </div>
 
 <div class="col-md-12 col-sm-12 col-xs-12">

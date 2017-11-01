@@ -20,6 +20,6 @@
 	width: 100%;
 	border-radius: 10px;
 }
-.sebm-google-map-container {
+agm-map {
   height: 300px;
 }

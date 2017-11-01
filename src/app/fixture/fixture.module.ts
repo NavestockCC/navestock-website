@@ -9,7 +9,7 @@ import {FixtureImgagesComponent} from "./fixture-images/fixture-images.component
 import {RouterRoutingModule} from '../router/router-routing.module';
 import {FixtureDataService} from './fixture-data.service';
 import {FixtureFirebaseDBServices} from ".././services/navestock.firebase.db.service";
-import { AgmCoreModule, MapsAPILoader } from 'angular2-google-maps/core';
+import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import {HasBowled} from './has-bowled.pipe';
 
 

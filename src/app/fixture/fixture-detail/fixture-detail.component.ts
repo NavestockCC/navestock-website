@@ -9,8 +9,8 @@ import {fixture} from '../fixture.object';
 import {scorecard} from '../scorecard.object';
 
 
-import { GoogleMapsAPIWrapper } from 'angular2-google-maps/core';
-import { MapsAPILoader } from 'angular2-google-maps/core';
+import { GoogleMapsAPIWrapper } from '@agm/core';
+import { MapsAPILoader } from '@agm/core';
 
 
 
