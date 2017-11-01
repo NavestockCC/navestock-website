@@ -6,7 +6,8 @@
 /out-tsc
 
 # environment variables
-/src/environments/*.ts
+environment.ts
+environment.prod.ts
 
 # dependencies
 /node_modules

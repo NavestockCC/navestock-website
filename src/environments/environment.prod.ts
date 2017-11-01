@@ -7,7 +7,7 @@ export const environment = {
   production: true,
   //Firebase config
   firebaseConfig: {
-    apiKey: 'AIzaSyCZoGqv8DGcrtw1byi4XG_cNP50dTVohd8',
+    apiKey: 'AIzaSyCjTxPdXxpim1thcyBJKb0VDUkBlKmvKhM',
     authDomain: 'navestock-website.firebaseapp.com',
     databaseURL: 'https://navestock-website.firebaseio.com',
     projectId: 'navestock-website',
@@ -16,7 +16,7 @@ export const environment = {
   },
   //Google map key
   googleMapKey:{
-    apiKey: 'AIzaSyDpCG7lMcZ2RTOvm-ZzN5zeH6SQjj95bc0'
+    apiKey: 'AIzaSyDSQ5UknBhgP6FwyHPlBd76tIJNuPXlOow'
   }
 };
 
