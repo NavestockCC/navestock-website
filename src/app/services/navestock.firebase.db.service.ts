@@ -4,16 +4,16 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 //Firebase imports
-import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @Injectable()
 export class FixtureFirebaseDBServices {
 // declare variables and referances
-   private navestockImages: FirebaseListObservable<any[]>;
-   private navestockScoreboardService: FirebaseObjectObservable<any[]>;
+   private navestockImages: Observable<any[]>;
+   private navestockScoreboardService: Observable<any[]>;
 
 
-constructor(private af: AngularFire) {
+constructor(private afDb: AngularFireDatabase) {
     }
 
 
@@ -25,7 +25,7 @@ constructor(private af: AngularFire) {
  */
 
 public getNavestockFixtureImages(fixtureId: string) {
-  return this.navestockImages = this.af.database.list('/fixtureImages/' + fixtureId);  
+  return this.navestockImages = this.afDb.list('/fixtureImages/' + fixtureId).valueChanges();  
     }
 
 /**
@@ -43,7 +43,7 @@ public setRestorationImg(ImgStocknr: string, imgData: restorationImage):void{
  */
 
 public getNavestockScoreboard() {
-  return this.navestockScoreboardService = this.af.database.object('/Scoreboard/')
+  return this.navestockScoreboardService = this.afDb.object('/Scoreboard/').valueChanges();
     }
 
 }

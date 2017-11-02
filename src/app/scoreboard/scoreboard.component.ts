@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FixtureFirebaseDBServices } from '../services/navestock.firebase.db.service';
-import { FirebaseObjectObservable } from 'angularfire2';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-scoreboard',
@@ -11,7 +11,7 @@ import { FirebaseObjectObservable } from 'angularfire2';
 export class ScoreboardComponent implements OnInit {
 
 
-  public navestockScoreboard: FirebaseObjectObservable<any[]>;
+  public navestockScoreboard: Observable<any[]>;
 
   constructor(private scoreboardService: FixtureFirebaseDBServices) { }
 

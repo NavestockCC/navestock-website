@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {FixtureFirebaseDBServices} from '../../services/navestock.firebase.db.service';
-import {FirebaseListObservable } from 'angularfire2';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
     selector: 'fixture-img-list',
@@ -11,7 +11,7 @@ export class FixtureImgagesComponent implements OnInit {
 
    @Input() fixtureId:string;
     
-    fixtureImgList: FirebaseListObservable<any[]>;
+    fixtureImgList: Observable<any[]>;
 
     constructor(private fixtureService: FixtureFirebaseDBServices) { }
 

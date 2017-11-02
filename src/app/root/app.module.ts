@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 /* Component Imports */
 import { AppComponent } from './app.component';
@@ -43,6 +44,7 @@ import { environment } from '../../environments/environment';
     RouterRoutingModule,
     FixtureModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
     AgmCoreModule.forRoot(environment.googleMapKey)
   ],
   bootstrap: [AppComponent],
