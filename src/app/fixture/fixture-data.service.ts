@@ -9,7 +9,7 @@ import {fixturelist} from './fixturelist.object';
 import {scorecard} from './scorecard.object';
 
 
-const baseUrl:string = 'https://navestockcc-002.appspot.com/_ah/api/navestockccapi/v1';
+const baseUrl:string = 'https://navestockccendpoints.appspot.com/_ah/api/navestockccapi/v1';
 
 
 @Injectable()
