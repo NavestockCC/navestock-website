@@ -30,4 +30,6 @@ export const environment = {
 1. If you have an existing Firebase project you'd like to deploy, cd to the project's root directory and run: `firebase init`
 2. To deploy your site, simply run the following command from your project directory: `firebase deploy`
 
-
+##GIT
+1. pload changes to GIT
+`git push origin master https://github.com/NavestockCC/navestock-website.git`
