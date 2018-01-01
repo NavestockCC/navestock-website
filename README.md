@@ -29,3 +29,5 @@ export const environment = {
 ##Deploy
 1. If you have an existing Firebase project you'd like to deploy, cd to the project's root directory and run: `firebase init`
 2. To deploy your site, simply run the following command from your project directory: `firebase deploy`
+
+
