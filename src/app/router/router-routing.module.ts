@@ -10,6 +10,8 @@ import {TeamsComponent} from '../teams/teams.component';
 import {FixtureDetailComponent} from '../fixture/fixture-detail/fixture-detail.component';
 import {PlayersWanted} from '../players-wanted/players-wanted.component';
 import {ScoreboardComponent} from '../scoreboard/scoreboard.component';
+import {MatchListComponent} from '../matches/matchlist/matchlist.component';
+import { MatchDetailComponent } from '../matches/match-detail/match-detail.component';
 
 
 
@@ -24,6 +26,8 @@ const appRoutes: Routes = [
   { path: 'fixturedetail/:fid', component: FixtureDetailComponent},
   { path: 'playerswanted', component: PlayersWanted},
   { path: 'scoreboard', component: ScoreboardComponent},
+  { path: 'matchlist/:tid', component: MatchListComponent},
+  { path: 'matchdetails/:mid', component: MatchDetailComponent},
 
   { path: '**', redirectTo: '/home', pathMatch: 'full'}
 ];

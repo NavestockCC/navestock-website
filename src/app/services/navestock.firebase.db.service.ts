@@ -10,7 +10,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 export class FixtureFirebaseDBServices {
 // declare variables and referances
    private navestockImages: Observable<any[]>;
-   private navestockScoreboardService: Observable<any[]>;
+   private navestockScoreboardService:Observable<any[]>;
 
 
 constructor(private afDb: AngularFireDatabase) {
@@ -24,7 +24,7 @@ constructor(private afDb: AngularFireDatabase) {
  * Retrieve restoration project img storage URLs
  */
 
-public getNavestockFixtureImages(fixtureId: string) {
+public getNavestockFixtureImages(fixtureId: string): Observable<any[]>{
   return this.navestockImages = this.afDb.list('/fixtureImages/' + fixtureId).valueChanges();  
     }
 
@@ -42,8 +42,8 @@ public setRestorationImg(ImgStocknr: string, imgData: restorationImage):void{
  * Retrieve restoration project img storage URLs
  */
 
-public getNavestockScoreboard() {
-  return this.navestockScoreboardService = this.afDb.object('/Scoreboard/').valueChanges();
+public getNavestockScoreboard():Observable<any[]> {
+  return this.navestockScoreboardService = this.afDb.object('/Scoreboard/').valueChanges() as Observable <any[]>;
     }
 
 }
