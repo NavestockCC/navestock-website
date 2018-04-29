@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 /* Component Imports */
 import { AppComponent } from './app.component';
@@ -22,6 +23,7 @@ import { FindUsComponent } from '../find-us/find-us.component';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import { FixtureModule }  from '../fixture/fixture.module';
 import { environment } from '../../environments/environment';
+import { MatchModule } from '../matches/match.module';
 
 
 
@@ -43,8 +45,10 @@ import { environment } from '../../environments/environment';
     HttpModule,
     RouterRoutingModule,
     FixtureModule,
+    MatchModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
+    AngularFirestoreModule,
     AgmCoreModule.forRoot(environment.googleMapKey)
   ],
   bootstrap: [AppComponent],
