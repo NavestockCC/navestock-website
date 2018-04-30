@@ -13,6 +13,10 @@
     }
     [cardMatch]{
       max-width: 80%;
+      cursor: pointer;
+    }
+    [cardMatchList]{
+      max-width: 80%;
     }
     [monthHeader]{
       background-color: mat-color($primary, 400);

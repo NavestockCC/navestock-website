@@ -34,7 +34,7 @@ export class MatchWidgetComponent implements OnInit{
        this.NaveStockTeams = this.teamsDataServiec.getNavestockTeams(false, true);
     }
 
-    ngOnInit(): void { 
+    ngOnInit(): void {
       this.matchWidgetData = this.matchWidgetDataService.getmatchWidgetData(this.NaveStockTeams, 3);
     }
 }                     

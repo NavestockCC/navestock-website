@@ -3,9 +3,9 @@ import {FixtureWidgetComponent} from'../fixture/fixture-widget/fixture-widget.co
 import {MatchWidgetComponent} from '../matches/match-widget/match-widget.component';
 
 @Component({
-  selector: 'homecomponent',
+  selector: 'home-component',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements AfterViewInit{
   ngAfterViewInit() {
