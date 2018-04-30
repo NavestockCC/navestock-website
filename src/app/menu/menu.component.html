@@ -14,12 +14,8 @@
     <div class="collapse navbar-collapse" id="navestock-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
           <li><a [routerLink]="['/home']">Home</a></li>
-		      <li><a [routerLink]="['/clubhistory']">Club History</a></li>
-	      	<li><a [routerLink]="['/matchlist', '204935']">1st Team</a></li>
-          <li><a [routerLink]="['/matchlist', '204936']">2nd Team</a></li>
-	      	<li><a [routerLink]="['/teams', 55]">Colts u'13</a></li>
-      		<li><a [routerLink]="['/teams', 7]">Colts u'15</a></li>
-      		<li><a [routerLink]="['/matchlist', '50485']">Sunday Team</a></li>
+          <li><a [routerLink]="['/clubhistory']">Club History</a></li>
+          <li *ngFor="let t of menuTeams | async"><a [routerLink]="['/matchlist', t.team_id]">{{t.team_name}}</a></li>
       		<li><a [routerLink]="['/contactus']">Contact Us</a></li>
           <li><a [routerLink]="['/findus']">Find Us</a></li>
       </ul>

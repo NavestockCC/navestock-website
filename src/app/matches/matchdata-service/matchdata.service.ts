@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { Injectable } from '@angular/core';
+import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 
@@ -7,6 +8,7 @@ import {matchspermonth} from '../matchpermonth.object';
 import { innings } from '../objects/innings.object';
 import { batting } from '../objects/batting.object';
 import { bowling } from '../objects/bowling.object';
+import {navestockTeam} from '../../objects/navestock-teams.objects';
 
 
 @Injectable()
@@ -76,4 +78,27 @@ export class MatchDataService {
         this.bowlingCollection = this.afs.collection<bowling>('Fixtures/' + matchId + '/innings/' + teamId + '/bowling');
         return this.bowlingCollection.valueChanges();
     }
+
+/* **** Match Widget data service. **** */
+
+//Get fixture widget data from navestock webservice
+private getMatchWidgetData_FB(teamId:string, nRecordstoreturn:number):Observable<match[]>{
+    let  matchesCollection: AngularFirestoreCollection<match>;
+    matchesCollection = this.afs.collection('Fixtures', ref => (ref.where('navestock_team_id', '==', teamId).where( 'match_date', ">=", new Date(Date.now()))).orderBy('match_date', 'asc').limit(nRecordstoreturn));
+    return matchesCollection.valueChanges();
+}
+
+//Read data received from getfixturewidgetData_Http and parse into fixturewidgetdata object.
+// NaveStockTeams: {tmName:string; tmId:number;}[]
+getmatchWidgetData(NaveStockTeams:Observable<navestockTeam[]>, nRecordstoreturn:number):{teamName:string, teamId:string, matchList:Observable<match[]>}[]{
+    let matchWidgetData: {teamName:string, teamId:string, matchList:Observable<match[]>}[] = []
+    NaveStockTeams.subscribe(res => { res.forEach(tm => {
+       matchWidgetData.push({teamName:tm.team_name, teamId:tm.team_id, matchList:this.getMatchWidgetData_FB(tm.team_id, nRecordstoreturn)});
+    });
+})
+    return matchWidgetData;
+}
+
+
+
 }

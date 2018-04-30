@@ -20,13 +20,16 @@ import {MatchDetailComponent} from './match-detail/match-detail.component';
 import {BattingComponent} from './batting/batting.component';
 import {BowlingComponent} from './bowling/bowling.component';
 import {GroundComponent} from '../matches/ground/ground.component';
+import {MatchWidgetComponent} from './match-widget/match-widget.component';
+
 @NgModule({
     declarations: [
         MatchListComponent,
         MatchDetailComponent,
         BattingComponent,
         BowlingComponent,
-        GroundComponent
+        GroundComponent,
+        MatchWidgetComponent
     ],
     imports: [ 
         CommonModule,
@@ -38,7 +41,14 @@ import {GroundComponent} from '../matches/ground/ground.component';
             apiKey: 'AIzaSyDpCG7lMcZ2RTOvm-ZzN5zeH6SQjj95bc0'
           })
          ],
-    exports: [],
+    exports: [
+        MatchListComponent,
+        MatchDetailComponent,
+        BattingComponent,
+        BowlingComponent,
+        GroundComponent,
+        MatchWidgetComponent
+    ],
     providers: [
         MatchDataService
     ],

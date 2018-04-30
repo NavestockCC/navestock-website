@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
-
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 //Firebase imports
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database'; //Realtime DB
+import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore'; // Firestore
+
+/** Navestock Objects */
+import {navestockTeam} from '../objects/navestock-teams.objects';
 
 @Injectable()
 export class FixtureFirebaseDBServices {
@@ -13,8 +16,10 @@ export class FixtureFirebaseDBServices {
    private navestockScoreboardService:Observable<any[]>;
 
 
-constructor(private afDb: AngularFireDatabase) {
-    }
+constructor(
+  private afDb: AngularFireDatabase,
+  private afs: AngularFirestore) 
+  {  }
 
 
 
@@ -28,23 +33,27 @@ public getNavestockFixtureImages(fixtureId: string): Observable<any[]>{
   return this.navestockImages = this.afDb.list('/fixtureImages/' + fixtureId).valueChanges();  
     }
 
-/**
- * Set  project img storage URLs
-
-public setRestorationImg(ImgStocknr: string, imgData: restorationImage):void{
-  let restImgRef = this.getRestorationImages(ImgStocknr);
-  restImgRef.push(imgData);
- 
-}
- */
-
- /**
- * Retrieve restoration project img storage URLs
- */
 
 public getNavestockScoreboard():Observable<any[]> {
   return this.navestockScoreboardService = this.afDb.object('/Scoreboard/').valueChanges() as Observable <any[]>;
     }
+
+public getNavestockTeams(menuVisible: boolean, matchWidgetVisible: boolean):Observable<navestockTeam[]>{
+  let menuObservable: AngularFirestoreCollection<navestockTeam>;
+
+  if(menuVisible === true && matchWidgetVisible != true){
+      menuObservable = this.afs.collection<navestockTeam>('NavestockTeams', ref => (ref.where('visible_Menu', '==', true)));
+    } 
+    else if(menuVisible != true && matchWidgetVisible === true){
+      menuObservable = this.afs.collection<navestockTeam>('NavestockTeams', ref => (ref.where('visible_MatchWidget', '==', true)));
+    }
+    else if(menuVisible === true && matchWidgetVisible === true){
+      menuObservable = this.afs.collection<navestockTeam>('NavestockTeams', ref => (ref.where('visible_Menu', '==', true).where('visible_MatchWidget', '==', true)));
+    }
+
+
+  return menuObservable.valueChanges()
+}    
 
 }
 

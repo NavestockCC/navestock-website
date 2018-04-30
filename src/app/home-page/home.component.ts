@@ -1,5 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import {FixtureWidgetComponent} from'../fixture/fixture-widget/fixture-widget.component'
+import {MatchWidgetComponent} from '../matches/match-widget/match-widget.component';
 
 @Component({
   selector: 'homecomponent',
