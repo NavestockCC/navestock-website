@@ -1,0 +1,35 @@
+
+<div *ngIf="showHorizontalMenu" fxLayout="row" fxHide.xs="True">
+<!-- Horisontal menu  -->
+  <mat-toolbar  color="transparent">
+    <mat-toolbar-row>
+      <span class="example-spacer"></span>
+      <span><a [routerLink]="['/home']">Home</a></span>
+      <span><a [routerLink]="['/clubhistory']">Club History</a></span>
+      <span><a [routerLink]="['/homecomponent250']">250th Anniversary</a></span>
+      <span *ngFor="let t of menuTeams | async">
+        <a [routerLink]="['/matchlist', t.team_id]">{{t.team_name}}</a>
+      </span>
+      <span><a [routerLink]="['/contactus']">Contact Us</a></span>
+      <span><a [routerLink]="['/findus']">Find Us</a></span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+ </div>
+
+<!-- Small menu with button to active a menu pop-up -->
+  <div *ngIf="showPopupMenu"  fxLayout.xs="column" fxShow="false" fxShow.xs="True">
+    <button mat-icon-button [matMenuTriggerFor]="navestockMenu">
+      <mat-icon svgIcon="menu" color="accent"></mat-icon>
+    </button>
+    <mat-menu #navestockMenu="matMenu">
+      <ul>
+        <li><a [routerLink]="['/home']">Home</a></li>
+        <li><a [routerLink]="['/clubhistory']">Club History</a></li>
+        <li><a [routerLink]="['/homecomponent250']">250th Anniversary</a></li>
+        <li *ngFor="let t of menuTeams | async"><a [routerLink]="['/matchlist', t.team_id]">{{t.team_name}}</a></li>
+        <li><a [routerLink]="['/contactus']">Contact Us</a></li>
+        <li><a [routerLink]="['/findus']">Find Us</a></li>
+    </ul>
+    </mat-menu>
+</div>

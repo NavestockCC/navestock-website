@@ -24,9 +24,12 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/app/img",
+              "src/app/icons"
             ],
             "styles": [
+              "src/navestock_theme/navestockapptheme.scss",
               "src/styles.scss"
             ],
             "scripts": []
@@ -83,12 +86,15 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
+              "src/navestock_theme/navestockapptheme.scss",
               "src/styles.scss"
             ],
             "scripts": [],
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/app/img",
+              "src/app/icons"
             ]
           }
         },

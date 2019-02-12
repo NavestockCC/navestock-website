@@ -1,0 +1,45 @@
+ mat-toolbar{
+    background-color: transparent;
+    border-color: transparent;
+    height: 14px;
+    min-height:32px !important;
+   
+    }
+
+a {
+    line-height: 1em;
+    font-size: 13px;
+    font-family: Tahoma;
+    color: #383B35;
+    text-decoration: none;
+    }
+    
+li{
+    background-color: transparent;
+    border-color: transparent;
+    list-style-type: none;
+	padding-top:5px !important;
+	padding-bottom:5px !important;
+}
+span > a {
+    padding-right:10px !important;
+    padding-left:10px !important;
+	padding-top:5px !important;
+	padding-bottom:5px !important;
+	border-left-style: solid;
+    border-width: 1px;
+    border-color: #DEDED5;
+	background-color: white;
+	}
+
+
+
+a:hover {
+    color: #85A366;
+    font-weight: bold;
+}
+
+
+.example-spacer {
+    flex: 1 1 auto;
+  }

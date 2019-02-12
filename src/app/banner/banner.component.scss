@@ -1,0 +1,68 @@
+
+.banner{
+    /*
+     <div> formatting
+     */
+     background: #336600;   
+     border-radius: 10px;
+ 
+    /*
+       Position <div> on page
+       */
+     position: relative;  
+     margin-right: auto;
+       margin-left: auto;
+     height: 80px;
+ 
+     vertical-align: text-middle;
+     text-align: center;	
+ }
+
+ .logo_img{
+	position: relative;
+	height: 76px;
+	border-radius: 10px;
+}
+
+.logo_img_xs{
+	position: relative;
+	height: 47px;
+	border-radius: 10px;
+}
+
+.logo_h1{
+	font-family: 'Copperplate Gothic', 'Copperplate Gothic Light';
+	color: #DCC43E;
+	margin-right: 0px;
+  	margin-left: 0px;
+	margin-top: 12px;
+	margin-bottom: 0px;
+}
+
+.logo_h1_xs{
+	font-family: 'Copperplate Gothic', 'Copperplate Gothic Light';
+	color: #DCC43E;
+	margin-right: 0px;
+  	margin-left: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.logo_h2{
+	font-family: sans-serif;
+	color: #DCC43E;
+	margin-right: 0px;
+  	margin-left: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+
+  mat-grid-list{
+    background: #336600;   
+    border-radius: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 3px;
+    margin-bottom: 2px;
+  }
