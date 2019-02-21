@@ -1,0 +1,10 @@
+.left_panel_text{
+    text-align: justify;
+    text-justify: inter-word;
+    margin: 20px;
+}
+
+.players_wanted_img{
+	width: 100%;
+	border-radius: 10px;
+}

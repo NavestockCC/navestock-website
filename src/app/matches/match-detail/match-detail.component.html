@@ -51,11 +51,9 @@
             </mat-tab>
             <mat-tab >
                 <ng-template mat-tab-label><span matBadge="{{numberofPhotos}}" color="primary" matBadgePosition="after"  matBadgeOverlap="false" >Photo's</span></ng-template>
-                <!-- FIXME: Fix appimage viewer -->
-                <!-- <app-img-viewer photosToDisplay='fixture' [identifier]='MD.id' (photoCounter)='handlePhotoCounter($event)'></app-img-viewer> -->
+                <app-img-viewer photosToDisplay='fixture' [identifier]='MD.id' (photoCounter)='handlePhotoCounter($event)'></app-img-viewer>
                 <br>
-                <!-- FIXME: Fix app-img-upload -->
-                <!-- <app-img-upload photosToDisplay='fixture' [identifier]='MD.id'></app-img-upload> -->
+                <app-img-upload photosToDisplay='fixture' [identifier]='MD.id'></app-img-upload>
             </mat-tab>
             
     </mat-tab-group>

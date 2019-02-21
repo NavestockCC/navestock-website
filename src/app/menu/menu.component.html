@@ -1,5 +1,5 @@
 
-<div *ngIf="showHorizontalMenu" fxLayout="row" fxHide.xs="True">
+<div *ngIf="showHorizontalMenu" fxLayout="row" fxLayoutAlign="center center" fxHide.xs="True">
 <!-- Horisontal menu  -->
   <mat-toolbar  color="transparent">
     <mat-toolbar-row>
@@ -12,6 +12,7 @@
       </span>
       <span><a [routerLink]="['/contactus']">Contact Us</a></span>
       <span><a [routerLink]="['/findus']">Find Us</a></span>
+      <span><user-authentication></user-authentication></span>
     </mat-toolbar-row>
   </mat-toolbar>
 
@@ -30,6 +31,7 @@
         <li *ngFor="let t of menuTeams | async"><a [routerLink]="['/matchlist', t.team_id]">{{t.team_name}}</a></li>
         <li><a [routerLink]="['/contactus']">Contact Us</a></li>
         <li><a [routerLink]="['/findus']">Find Us</a></li>
+        <li><user-authentication></user-authentication></li>
     </ul>
     </mat-menu>
 </div>

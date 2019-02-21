@@ -1,11 +1,11 @@
-import * as firebase from 'firebase/firestore';
+import { Timestamp } from '@firebase/firestore-types';
 
 
 export class match{
     id:string;
     status: string;
     published: string;
-    last_updated: firebase.firestore.Timestamp;
+    last_updated: Timestamp;
     league_name: string;
     league_id: string;
     competition_name: string;
@@ -14,7 +14,7 @@ export class match{
     match_type: string;
     game_type: string;
     season: number;
-    match_date: firebase.firestore.Timestamp;
+    match_date: Timestamp;
     match_time: string;
     ground_name: string;
     ground_id: string;
@@ -227,13 +227,13 @@ export class match{
     /*
         Takes a string dd/mm/yyy and converts it to an ISO date
     */
-    private  toDate(dateStr:string, timeStr?:string):firebase.firestore.Timestamp {
+    private  toDate(dateStr:string, timeStr?:string):Timestamp {
         let tmpDate:string[] = dateStr.split("/");
         if(timeStr==null || timeStr ==''){
             timeStr = '12:00'
         }
         const ND:number = new Date(tmpDate[2] + '-' + tmpDate[1]  + '-' + tmpDate[0] + 'T' + timeStr + ':00+01:00').getUTCSeconds(); 
-        return new firebase.firestore.Timestamp(ND,0)
+        return new Timestamp(ND,0)
         
     }
 

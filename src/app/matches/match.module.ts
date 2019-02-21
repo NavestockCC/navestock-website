@@ -10,7 +10,7 @@ import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 
 /* Navestock Modules*/
 import {NavestockMaterialModule} from '../root/match.material.module';
-//import {ImgModule} from '../imgModule/imgModule';
+import {ImgModule} from '../imgModule/imgModule';
 
 /* Navetock Services */
 import {MatchDataService} from './matchdata-service/matchdata.service'
@@ -39,7 +39,7 @@ import {MatchWidgetComponent} from './match-widget/match-widget.component';
         FlexLayoutModule,
         FormsModule,
         RouterModule,
-       // ImgModule,
+        ImgModule,
        AgmCoreModule.forRoot(environment.googleMapKey)
          ],
     exports: [

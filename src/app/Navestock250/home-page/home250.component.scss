@@ -1,0 +1,61 @@
+
+.splash_img{
+	display: block;
+    margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 30px;
+	margin-top: 10px;
+	width: 250px;
+	height: auto;
+	border: 0;	
+}
+
+.left_panel_heading{
+	text-align: center;    
+    font-size: 1.5em;
+	font-weight: bold;
+  	color: #b28d19;
+}
+.left_panel_heading2{
+	text-align: center;    
+    font-size: 1.1em;
+	font-weight: bold;
+	  color: #305d10;
+}
+
+.left_panel_text{
+    text-align: justify;
+    text-justify: inter-word;
+    margin: 20px;
+}
+
+.right_panel_heading2{
+	padding-top: 0.5em;
+	text-align: left;    
+    font-size: 1em;
+	font-weight: bold;
+	  color: #305d10;
+}
+.players_wanted_img{
+	width: 100%;
+	border-radius: 10px;
+}
+
+.NIG_img{
+	width: 45%;
+}
+.BlackBull_img{
+	width: 30%;
+}
+
+.event_table{
+	width: 100%;
+	margin-bottom: 30px;
+}
+
+.event_col, a{
+	width: 50%;
+	text-align: center;
+	padding: 8px;
+	color: black;
+}

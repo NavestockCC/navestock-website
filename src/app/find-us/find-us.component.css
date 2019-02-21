@@ -1,0 +1,25 @@
+.splash_img{
+	position: relative;
+	width: 100%;
+	border-radius: 10px;	
+}
+
+.left_panel_heading{
+	text-align: center;    
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.left_panel_text{
+    text-align: justify;
+    text-justify: inter-word;
+    margin: 20px;
+}
+
+.players_wanted_img{
+	width: 100%;
+	border-radius: 10px;
+}
+agm-map {
+  height: 300px;
+}

@@ -2,10 +2,13 @@
  * -- BASE STYLES --
  * Most of these are inherited from Base, but I want to change a few.
  */
+
+ @import url('https://fonts.googleapis.com/css?family=Roboto');
  
 body {
     line-height: 1em;
-    font-size: 13px;
+	font-size: 13px;
+	font-family: 'Roboto', monospace;
  
     background-image: url('./app/img/grass.jpg');
     background-size: cover;

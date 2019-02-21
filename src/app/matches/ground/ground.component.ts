@@ -29,7 +29,7 @@ export class GroundComponent implements OnInit {
       /* Google Map Parameters */
       zoom : number = 15;
       draggable : boolean = true;
-      latlngBounds;
+      latlngBounds: any;
       addressLong: string[] = [];
     
     
