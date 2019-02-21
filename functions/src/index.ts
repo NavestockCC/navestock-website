@@ -1,8 +1,14 @@
+// src/index.ts
 import * as functions from 'firebase-functions';
+import * as admin from 'firebase-admin';
+import * as AddMessage from './add-message';
+import * as PlaycricketMatchDetailImport from './playcricket-MatchDetailImport';
+import * as OnImageUploadResize from './resize-image-upload';
+import * as emailSend from './send-results';
 
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-// export const helloWorld = functions.https.onRequest((request, response) => {
-//  response.send("Hello from Firebase!");
-// });
+admin.initializeApp(functions.config().firebase)
+
+export const addMessage = AddMessage.listener;
+export const playcricketMatchDetailImport = PlaycricketMatchDetailImport.listener;
+export const resizeimageupload = OnImageUploadResize.onFileChange;
+export const emailSendResults = emailSend.listener;

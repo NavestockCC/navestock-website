@@ -5,7 +5,7 @@ Website for navestock cricket club https://navestockcc.org
 
 ## Build
 
-Run `ng build --prod env=prod` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Run `ng build --prod --aot` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
 ##Environment Setup
 1. Create /src/environments/environment.ts and /src/environments/environment.prod.ts add your Firebase and Google maps key configuration:
