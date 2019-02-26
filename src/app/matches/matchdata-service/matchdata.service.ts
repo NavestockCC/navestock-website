@@ -30,6 +30,7 @@ export class MatchDataService {
 
     public getMatchlist(seasonYear:number, navTeamId:string): Observable<match[]> {
         this.matchesCollection = this.afs.collection('Fixtures', ref => ref.where('season', '==', seasonYear).where('navestock_team_id', '==', navTeamId).orderBy('match_date', 'asc'));
+        
         return this.matchesCollection.valueChanges();
     }
 

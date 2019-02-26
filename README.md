@@ -30,6 +30,12 @@ export const environment = {
 1. If you have an existing Firebase project you'd like to deploy, cd to the project's root directory and run: `firebase init`
 2. To deploy your site, simply run the following command from your project directory: `firebase deploy --except functions`
 
+3. Deploying functions `firebase deploy --only functions`
+
 ##GIT
 1. Upload changes to GIT
 `git push origin master https://github.com/NavestockCC/navestock-website.git`
+
+##Test Functions Locally
+1. run in navestock-website : `sudo functions start`
+2. Then run in navestock-website : `sudo firbase serve --only functions`

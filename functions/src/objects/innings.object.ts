@@ -18,6 +18,27 @@ export class innings{
     revised_target_runs: number;
     revised_target_overs: number;
 
+    constructor(){
+        this.team_batting_name = "";
+        this.team_batting_id = "";
+        this.team_bowling_name = "";
+        this.team_bowling_id = "";
+        this.innings_number = 0;
+        this.extra_byes = 0;
+        this.extra_leg_byes = 0;
+        this.extra_wides = 0;
+        this.extra_no_balls = 0;
+        this.extra_penalty_runs = 0;
+        this.penalties_runs_awarded_in_other_innings = 0;
+        this.total_extras = 0;
+        this.runs = 0;
+        this.wickets = 0;
+        this.overs = 0;
+        this.declared = false;
+        this.revised_target_runs = 0;
+        this. revised_target_overs = 0;
+    }
+
    public setInnings(
     team_batting_name: string,
     team_batting_id: string,

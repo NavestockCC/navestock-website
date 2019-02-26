@@ -1,6 +1,5 @@
 import { Timestamp } from '@firebase/firestore-types';
 
-
 export class match{
     id:string;
     status: string;
@@ -234,7 +233,6 @@ export class match{
         }
         const ND:number = new Date(tmpDate[2] + '-' + tmpDate[1]  + '-' + tmpDate[0] + 'T' + timeStr + ':00+01:00').getUTCSeconds(); 
         return new Timestamp(ND,0)
-        
     }
 
     /*

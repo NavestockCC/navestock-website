@@ -10,6 +10,17 @@ export class bowling{
     wickets: number;
     no_balls: number;
 
+    constructor(){
+        this.bowler_name = "";
+        this.bowler_id = "";
+        this.overs = 0;
+        this.maidens = 0;
+        this.runs = 0;
+        this.wides = 0;
+        this.wickets = 0;
+        this.no_balls = 0;
+    }
+
     setBowling(
         bowler_name: string,
         bowler_id: string,

@@ -7,7 +7,7 @@ export class batting{
     batsman_id: string;
     how_out: string;
     fielder_name: string;
-    fielder_id: string;
+    fielder_id: string;                                             
     bowler_name: string;
     bowler_id: string;
     runs: number;
@@ -15,6 +15,21 @@ export class batting{
     sixes: number;
     balls: number;
     
+    constructor(){
+        this.position = 0;
+        this.batsman_name = "";
+        this.batsman_id = "";
+        this.how_out = "";
+        this.fielder_name = "";
+        this.fielder_id = "";
+        this.bowler_name = "";
+        this.bowler_id = "";
+        this.runs = 0;
+        this.fours = 0;
+        this.sixes = 0;
+        this.balls = 0;
+    }
+
     setbatting(
         position: string,
         batsman_name: string,
