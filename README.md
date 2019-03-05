@@ -37,5 +37,6 @@ export const environment = {
 `git push origin master https://github.com/NavestockCC/navestock-website.git`
 
 ##Test Functions Locally
-1. run in navestock-website : `sudo functions start`
+1. run in navestock-website: `sudo npm --prefix functions run build`
+
 2. Then run in navestock-website : `sudo firbase serve --only functions`
