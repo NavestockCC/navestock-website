@@ -7,7 +7,7 @@ import * as PlaycricketMatchListImport from './playcricket-MatchListImport';
 //import * as OnImageUploadResize from './resize-image-upload';
 //import * as emailSend from './send-results';
 
-admin.initializeApp(functions.config().firebase)
+admin.initializeApp(functions.config().firebase);
 
 export const addMessage = AddMessage.helloNavestock;
 export const playcricketMatchDetailImport = PlaycricketMatchDetailImport.listener;

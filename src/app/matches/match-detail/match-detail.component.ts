@@ -2,16 +2,13 @@
     import { Component, OnInit } from '@angular/core';
     import { Observable } from 'rxjs';
     import { ActivatedRoute } from '@angular/router';
-    import { Location } from '@angular/common';
 
 
 /* Navestock Cmoponents, Modules & Service */
     import {match} from '../objects/match.object';
     import {innings} from '../objects/innings.object';
-    import {batting} from '../objects/batting.object';
-    import {bowling} from '../objects/bowling.object';
     import {MatchDataService} from '../matchdata-service/matchdata.service'
-    import{BattingComponent} from '../batting/batting.component';
+
 
 @Component({
     selector: 'match-detail',
@@ -29,8 +26,6 @@ export class MatchDetailComponent implements OnInit {
     constructor(
         private matchdataService: MatchDataService,
         private route: ActivatedRoute,
-        private location: Location
-        
     ) { }
 
     ngOnInit(): void {

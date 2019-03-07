@@ -1,158 +1,112 @@
-import * as admin from 'firebase-admin';
-
-/* Navestcock Objects */
-import {match} from '../objects/match.object';
-
+import * as admin from 'firebase-admin'
 
 export class MatchListImport {
+    // private dbFixtureList: admin.firestore.CollectionReference;
 
-constructor(private afs = admin.firestore()) {
-}
+    constructor(private afs = admin.firestore()) {
+        // this.dbFixtureList = this.afs.collection('Fixtures');
+    }
 
-/* Update the match list, season is kept in the Firestore at "FixtureImport/MatchList" */
-public updateMatchList(mList:match[]){
-    const PromisesAll = [];
+    /* Update the match list, season is kept in the Firestore at "FixtureImport/MatchList" */
+    public updateMatchList(matchListData: any) {
 
-    /**
-     * 1. For each match list item lookup to see if the match exsists in the Firestore at "Fixture"
-     * 1.1. If it exsists, check if the record "last_updated" is not equal to the fixture list.
-     * 1.1.1 if the "last_updated" is not equal then update Firestore at "Fixture" with new data
-     * 1.2. If the match does not exsist in the Firestore at "Fixture" add the new match 
-     */
-    mList.forEach(matchElement => {
-        const PA = this.afs.doc('Fixtures/' + matchElement.id).get().then(
-           async mtch => {
-                /** Check to see if match exsists in database If YES then perform update, If NO the create new record  */
-                if(mtch.exists === true){
-                    const matchDoc = mtch.data();
-                    /** Check if 'last_updated' value in the DB is equal to 'last_updated' value from PlayCricket . If Yes no update required. If No update the record in the database  */
-                    if(matchElement.last_updated.isEqual(matchDoc.last_updated)===false){
-                        /**Update record in the DB with new values from PlayCricket */
-                       await this.afs.doc('Fixtures/' + matchElement.id).update({
-                        id: matchElement.id,
-                        status: matchElement.status,
-                        published: matchElement.published,
-                        last_updated: matchElement.last_updated,
-                        league_name: matchElement.league_name,
-                        league_id: matchElement.league_id,
-                        competition_name: matchElement.competition_name,
-                        competition_id: matchElement.competition_id,
-                        competition_type: matchElement.competition_type,
-                        match_type: matchElement.match_type,
-                        game_type: matchElement.game_type,
-                        season: matchElement.season,
-                        match_date: matchElement.match_date,
-                        match_time: matchElement.match_time,
-                        ground_name: matchElement.ground_name,
-                        ground_id: matchElement.ground_id,
-                        ground_latitude: matchElement.ground_latitude,
-                        ground_longitude: matchElement.ground_longitude,
-                        home_club_name: matchElement.home_club_name,
-                        home_team_name: matchElement.home_team_name,
-                        home_team_id: matchElement.home_team_id,
-                        home_club_id: matchElement.home_club_id,
-                        home_team_isNavestock: matchElement.home_team_isNavestock,
-                        navestock_club_name: matchElement.navestock_club_name,
-                        navestock_team_name: matchElement.navestock_team_name,
-                        navestock_team_id: matchElement.navestock_team_id,
-                        navestock_club_id: matchElement.navestock_club_id,
-                        opposition_club_name: matchElement.opposition_club_name,
-                        opposition_team_name: matchElement.opposition_team_name,
-                        opposition_team_id: matchElement.opposition_team_id,
-                        opposition_club_id: matchElement.opposition_club_id,
-                        away_club_name: matchElement.away_club_name,
-                        away_team_name: matchElement.away_team_name,
-                        away_team_id: matchElement.away_team_id,
-                        away_club_id: matchElement.away_club_id,
-                        lastwrite: admin.firestore.Timestamp.now()
-                       });
-                    }
-                } else {
-                    /**Create new record in the DB with values from PlayCricket */
-                   await this.afs.doc('Fixtures/' + matchElement.id).set(
-                    {
-                        id: matchElement.id,
-                        status: matchElement.status,
-                        published: matchElement.published,
-                        last_updated: matchElement.last_updated,
-                        league_name: matchElement.league_name,
-                        league_id: matchElement.league_id,
-                        competition_name: matchElement.competition_name,
-                        competition_id: matchElement.competition_id,
-                        competition_type: matchElement.competition_type,
-                        match_type: matchElement.match_type,
-                        game_type: matchElement.game_type,
-                        season: matchElement.season,
-                        match_date: matchElement.match_date,
-                        match_time: matchElement.match_time,
-                        ground_name: matchElement.ground_name,
-                        ground_id: matchElement.ground_id,
-                        ground_latitude: matchElement.ground_latitude,
-                        ground_longitude: matchElement.ground_longitude,
-                        home_club_name: matchElement.home_club_name,
-                        home_team_name: matchElement.home_team_name,
-                        home_team_id: matchElement.home_team_id,
-                        home_club_id: matchElement.home_club_id,
-                        home_team_isNavestock: matchElement.home_team_isNavestock,
-                        navestock_club_name: matchElement.navestock_club_name,
-                        navestock_team_name: matchElement.navestock_team_name,
-                        navestock_team_id: matchElement.navestock_team_id,
-                        navestock_club_id: matchElement.navestock_club_id,
-                        opposition_club_name: matchElement.opposition_club_name,
-                        opposition_team_name: matchElement.opposition_team_name,
-                        opposition_team_id: matchElement.opposition_team_id,
-                        opposition_club_id: matchElement.opposition_club_id,
-                        away_club_name: matchElement.away_club_name,
-                        away_team_name: matchElement.away_team_name,
-                        away_team_id: matchElement.away_team_id,
-                        away_club_id: matchElement.away_club_id,
-                        lastwrite: admin.firestore.Timestamp.now()
-                       });
-                }
+        matchListData.matches.forEach(element => {
+            this.afs.doc('Fixtures/' + element.id).update(element).then(() => {
+                this.afs.doc('Fixtures/' + element.id).update(this.updateDbFields(element)).then().catch( err => {console.error(err);});
             }
-        )
-        PromisesAll.push(PA);
-    });
+            ).catch( // If Firestore Update returns error because document does not exsist. Create new Docuemtn with Set.
+                () => {
+                    this.afs.doc('Fixtures/' + element.id).set(element).then(() => {
+                        this.afs.doc('Fixtures/' + element.id).update(this.updateDbFields(element)).then().catch( err => {console.error(err);});
+                    }
+                    ).catch( err => {console.error(err);});
+                }
+            );
+        });
 
-    return PromisesAll;
+    } // class end
+
+    /** Takes a string dd/mm/yyy and converts it to an ISO date */
+    private toDate(dateStr: string, timeStr?: string): admin.firestore.Timestamp {
+        const tmpDate: string[] = dateStr.split("/");
+        let matchTime: string;
+
+        if (timeStr) {
+            matchTime = timeStr;
+        } else {
+            matchTime = '12:00';
+        }
+
+        return admin.firestore.Timestamp.fromDate(
+            new Date(tmpDate[2] + '-' + tmpDate[1] + '-' + tmpDate[0] + 'T' + matchTime + ':00+01:00')
+        );
+    }
+
+    private updateDbFields(element: any): object {
+        // set the oposition and navestock team info
+        let navestock_club_id: string = ""
+        let navestock_club_name: string = ""
+        let navestock_team_id: string = ""
+        let navestock_team_name: string = ""
+        let opposition_club_id: string = ""
+        let opposition_club_name: string = ""
+        let opposition_team_id: string = ""
+        let opposition_team_name: string = ""
+        const home_team_isNavestock: boolean = this.isNavestockHomeTeam(element.home_club_id)
+
+
+        if (home_team_isNavestock === true) {
+            navestock_club_id = element.home_club_id;
+            navestock_club_name = element.home_club_name;
+            navestock_team_id = element.home_team_id;
+            navestock_team_name = element.home_team_name;
+
+            opposition_club_id = element.away_club_id;
+            opposition_club_name = element.away_club_name;
+            opposition_team_id = element.away_team_id;
+            opposition_team_name = element.away_team_name;
+        } else {
+            navestock_club_id = element.away_club_id;
+            navestock_club_name = element.away_club_name;
+            navestock_team_id = element.away_team_id;
+            navestock_team_name = element.away_team_name;
+
+            opposition_club_id = element.home_club_id;
+            opposition_club_name = element.home_club_name;
+            opposition_team_id = element.home_team_id;
+            opposition_team_name = element.home_team_name;
+        }
+
+
+        const updateFields: object = {
+            'last_updated': this.toDate(element.last_updated),
+            'match_date': this.toDate(element.match_date, element.match_time),
+            'season': +element.season,
+            'id': element.id.toString(),
+            'navestock_club_id': navestock_club_id,
+            'navestock_club_name': navestock_club_name,
+            'navestock_team_id': navestock_team_id,
+            'navestock_team_name': navestock_team_name,
+            'opposition_club_id': opposition_club_id,
+            'opposition_club_name': opposition_club_name,
+            'opposition_team_id': opposition_team_id,
+            'opposition_team_name': opposition_team_name,
+        }
+
+
+        return updateFields;
+    }
+
+
+
+    private isNavestockHomeTeam(home_club_id: string): boolean {
+        let returnVal: boolean;
+        if (home_club_id === '4513') {
+            returnVal = true;
+        } else {
+            returnVal = false;
+        }
+        return returnVal;
+    }
+
 }
-
-
-
-/* Parse data into match object  */
-public  getMatchDetails(importDataObject): match{
-    const matchResult = new match();
-
-    matchResult.setMatch(
-       importDataObject.id,
-       importDataObject.status,
-       importDataObject.published,
-       importDataObject.last_updated,
-       importDataObject.league_name,
-       importDataObject.league_id,
-       importDataObject.competition_name,
-       importDataObject.competition_id,
-       importDataObject.competition_type,
-       importDataObject.match_type,
-       importDataObject.game_type,
-       importDataObject.season,
-       importDataObject.match_date,
-       importDataObject.match_time,
-       importDataObject.ground_name,
-       importDataObject.ground_id,
-       importDataObject.ground_latitude,
-       importDataObject.ground_longitude,
-       importDataObject.home_club_name,
-       importDataObject.home_team_name,
-       importDataObject.home_team_id,
-       importDataObject.home_club_id,
-       importDataObject.away_club_name,
-       importDataObject.away_team_name,
-       importDataObject.away_team_id,
-       importDataObject.away_club_id,
-    )
-    
-    return matchResult;
-} // getMatchDetails ends
-
-} // class end

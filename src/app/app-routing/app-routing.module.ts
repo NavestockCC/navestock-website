@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {MatchListComponent} from '../matches/matchlist/matchlist.component'
+import {MatchListComponent} from '../matches/matchlist/matchlist/matchlist.component'
 import {MatchDetailComponent} from '../matches/match-detail/match-detail.component'
 import {ContactUsComponent} from '../contact-us/contact-us/contact-us.component';
-import {ContactUsAdminComponent} from '../contact-us/contact-us-admin/contact-us-admin.component';
 import {UserAuthenticationComponent} from '../user-authentication/user-authentication.component';
 import {GalaDinnerComponent} from '../Navestock250/gala-dinner/gala-dinner.component';
 import {Veterans7asideComponent} from '../Navestock250/veterans7aside/veterans7aside.component';
@@ -14,13 +13,18 @@ import {HomeComponent} from '../home-page/home.component';
 import {PlayersWanted} from '../players-wanted/players-wanted.component';
 import {ClubHistoryComponent} from '../club-history/club-history.component';
 
+/** Navestock Admin Components */
+import {ContactUsAdminComponent} from '../contact-us/contact-us-admin/contact-us-admin.component';
+import {MatchListComponentAdmin} from "../matches/matchlist/matchlist-admin/matchlist-admin.component";
+
 const routes: Routes = [
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'matchlist/:tid', component: MatchListComponent},
+  { path: 'matchlist-admin/:tid', component: MatchListComponentAdmin}, // matchlist Admin
   { path: 'matchdetails/:mid', component: MatchDetailComponent},
   { path: 'contactus', component: ContactUsComponent},
-  { path: 'contactus-admin', component: ContactUsAdminComponent},
+  { path: 'contactus-admin', component: ContactUsAdminComponent}, // constactus Admin
   { path: 'auth', component: UserAuthenticationComponent},
   { path: 'galadinner', component: GalaDinnerComponent},
   { path: 'veterans7aside', component: Veterans7asideComponent},

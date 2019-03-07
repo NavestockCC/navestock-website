@@ -1,0 +1,38 @@
+<div fxLayout="row" fxLayoutAlign="center start">
+    <div fxFlex='70' fxFlex.lt-sm="100">
+        <button *ngFor="let s of (seasonList | async )?.seasons" mat-button color="primary" (click)="setMatchList(s, tID)">
+            {{s}}</button>
+
+        <mat-card *ngFor="let mM of matchListSeason  | async" ngClass="cardMatchList">
+            <mat-card-header ngClass="monthHeader">
+                {{mM.monthName}} {{mM.year}}
+            </mat-card-header>
+    
+    
+            <mat-card *ngFor="let m of mM.matchArray" [routerLink]="['/matchdetails/' + m.id]" ngClass="cardMatch">
+            <mat-card-header ngClass="matchHeader">
+                {{m.match_date.seconds * 1000 | date}} - {{m.match_time}}
+            </mat-card-header>            
+            <mat-card-content>
+                <div fxLayout="row" fxLayout.xs="column" fxFlex="100%" fxFlex.xs="100%" ngClass='cardContent' ngClass.xs='cardContentXS'>
+                    <div fxLayout="column" fxLayoutAlign="center start" fxFlex="70%" fxFlex.xs="100%" >
+                        <div fxLayout="row" fxFlex  fxLayoutAlign="start end" ngClass='cardTeams' ngClass.xs='cardTeamsXS' >{{m.opposition_club_name}} {{m.opposition_team_name}}</div>
+                        <div fxLayout="row" fxFlex fxLayoutAlign="start start" ngClass='cardTeams' ngClass.xs='cardTeamsXS'>{{m.navestock_club_name}} {{m.navestock_team_name}}</div>
+                    </div>
+                    <div fxLayout="column" fxFlex="30%" fxFlex.xs="100%">
+                        <div *ngIf="!m.result_description" fxFlex ngClass='cardInfo' ngClass.xs='cardInfoXS'><b>{{m.competition_type}} match</b><br>{{m.ground_name}}</div>
+                        <div *ngIf="m.result_description" fxFlex ngClass='cardInfo' ngClass.xs='cardInfoXS'><b>{{m.result_description}} match</b></div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+        </mat-card>
+
+    </div>
+    <div fxFlex='30' fxHide.lt-sm fxLayoutAlign="start" ƒ>
+        <a [routerLink]="['/playerswanted']"><img ngClass="players_wanted_img" src='../../../app/img/PlayersWantedRedv1.png'></a>
+    </div>
+</div>
+
+
+    

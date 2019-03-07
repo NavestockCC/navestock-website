@@ -1,10 +1,12 @@
 import * as functions from 'firebase-functions'
-import * as request from 'request';
 import * as cors from "cors";
 
-import { match } from '../objects/match.object';
-import { MatchListImport } from './matchListImport'
 
+/** Navestock Classes */
+import {PlayCricketAPICall} from "./PlayCricketAPICall";
+import {MatchListImport} from "./matchListImport";
+
+/**Cors Import */
 const options: cors.CorsOptions = {
     allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "X-Access-Token"],
     credentials: true,
@@ -16,28 +18,24 @@ const options: cors.CorsOptions = {
 const Cors = cors(options);
 
 export const matchListImport = functions.https.onRequest(async (req, res) => {
-    const matchList: match[] = [];
-    const matchListFunction = new MatchListImport();
+    const playcricketAPICall = new PlayCricketAPICall();
+    const matchListImportFunctions = new MatchListImport();
 
     Cors(req, res, () => {
         try {
             if (req.query.season === undefined) {
-                res.send('season param not found');
+                res.send({"API call status" : "season param not found"});
             } else {
                 const seasonID: string = req.query.season;
-                const url: string = "http://play-cricket.com/api/v2/matches.json?site_id=4513&api_token=b5827cc30a9019c48af36df94eeb386c&season=" + seasonID;
-                request({ url: url }, (error, response, body) => {
-                    const bodyObject = JSON.parse(body);
-                    bodyObject.matches.forEach(matchElement => {
-                        matchList.push(matchListFunction.getMatchDetails(matchElement));
-                    });
-                    matchListFunction.updateMatchList(matchList);
-                    res.send('Import Complete');
-                })
+                playcricketAPICall.playCricketApiCall(seasonID) //Get data from play cricket
+                .subscribe( APIResponse => {
+                    matchListImportFunctions.updateMatchList(APIResponse.body);
+                    res.send({"API call status" : APIResponse.statusCode});
+                    })
             }
         }
         catch (err) {
-            res.send('error: ' + err);
+            res.send({"error" : err });
         }
     })
 });

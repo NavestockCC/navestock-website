@@ -17,12 +17,13 @@ import {MatchDataService} from './matchdata-service/matchdata.service'
 
 /* Navestock components */
 import { environment } from '../../environments/environment';
-import {MatchListComponent} from './matchlist/matchlist.component'
+import {MatchListComponent} from './matchlist/matchlist/matchlist.component'
 import {MatchDetailComponent} from './match-detail/match-detail.component';
 import {BattingComponent} from './batting/batting.component';
 import {BowlingComponent} from './bowling/bowling.component';
 import {GroundComponent} from './ground/ground.component';
 import {MatchWidgetComponent} from './match-widget/match-widget.component';
+import {MatchListComponentAdmin} from "./matchlist/matchlist-admin/matchlist-admin.component";
 
 @NgModule({
     declarations: [
@@ -31,7 +32,8 @@ import {MatchWidgetComponent} from './match-widget/match-widget.component';
         BattingComponent,
         BowlingComponent,
         GroundComponent,
-        MatchWidgetComponent
+        MatchWidgetComponent,
+        MatchListComponentAdmin
     ],
     imports: [ 
         CommonModule,
@@ -40,7 +42,7 @@ import {MatchWidgetComponent} from './match-widget/match-widget.component';
         FormsModule,
         RouterModule,
         ImgModule,
-       AgmCoreModule.forRoot(environment.googleMapKey)
+        AgmCoreModule.forRoot(environment.googleMapKey)
          ],
     exports: [
         MatchListComponent,
@@ -48,7 +50,8 @@ import {MatchWidgetComponent} from './match-widget/match-widget.component';
         BattingComponent,
         BowlingComponent,
         GroundComponent,
-        MatchWidgetComponent
+        MatchWidgetComponent,
+        MatchListComponentAdmin
     ],
     providers: [
         MatchDataService

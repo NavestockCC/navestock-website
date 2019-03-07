@@ -9,6 +9,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire//database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireFunctionsModule, FunctionsRegionToken } from '@angular/fire/functions';
 
 /**Flexlayout import */
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -73,13 +74,14 @@ import {Navestock250Module} from '../Navestock250/navestock250.module';
     AppRoutingModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    AngularFireFunctionsModule,
     MatchModule,
     ImgModule,
     Navestock250Module,
     AgmCoreModule.forRoot(environment.googleMapKey)
   ],
   providers: [
-    
+    { provide: FunctionsRegionToken, useValue: 'us-central1'}
   ],
   bootstrap: [AppComponent],
 })

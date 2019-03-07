@@ -9,7 +9,7 @@
             <li *ngFor="let a of addressLong"> {{a.long_name}}</li>
         </ul>
      </td>
-     <td class="rightcol"><a href="https://waze.com/ul?ll={{groundLat}},{{groundLng}}&navigate=yes" target="_blank">
+     <td *ngIf="groundLat" class="rightcol"><a href="https://waze.com/ul?ll={{groundLat}},{{groundLng}}&navigate=yes" target="_blank">
         <img src="../app/img/waze.png" class="waze">
      </a>
      <br>
@@ -21,6 +21,7 @@
 </table>
 
 <!-- Display Google Map -->
+<div *ngIf="groundLat">
 <agm-map [zoom]="zoom" [draggable] ="draggable" [fitBounds]="latlngBounds">
     <agm-marker *ngFor='let m of markers; let i = index' 
       [latitude]='m.lat'
@@ -35,3 +36,4 @@
       </agm-info-window>
           </agm-marker>
       </agm-map>
+</div>      

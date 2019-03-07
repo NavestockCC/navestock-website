@@ -2,8 +2,19 @@
     <div fxFlex='70' fxFlex.lt-sm="100">
         <button *ngFor="let s of (seasonList | async )?.seasons" mat-button color="primary" (click)="setMatchList(s, tID)">
             {{s}}</button>
+        
+            <form (ngSubmit)="onSubmit(matchListImportForm)" #matchListImportForm="ngForm">
+                    <mat-form-field>
+                            <select matNativeControl required name="season" ngModel>
+                              <option *ngFor="let ov of importSeason" value="{{ov}}">{{ov}}</option>
+                            </select>
+                    </mat-form-field>
+                          <button mat-flat-button color="primary" type="submit" [disabled]="!matchListImportForm.form.valid">
+                              Import Season
+                            </button>
+            </form>   
 
-        <mat-card *ngFor="let mM of matchListSeason  | async" ngClass="cardMatchList">
+        <mat-card a-ng  *ngFor="let mM of matchListSeason  | async" ngClass="cardMatchList">
             <mat-card-header ngClass="monthHeader">
                 {{mM.monthName}} {{mM.year}}
             </mat-card-header>
@@ -11,7 +22,7 @@
     
             <mat-card *ngFor="let m of mM.matchArray" [routerLink]="['/matchdetails/' + m.id]" ngClass="cardMatch">
             <mat-card-header ngClass="matchHeader">
-                {{m.match_date | date}} - {{m.match_time}}
+                {{m.match_date.seconds * 1000 | date}} - {{m.match_time}}
             </mat-card-header>            
             <mat-card-content>
                 <div fxLayout="row" fxLayout.xs="column" fxFlex="100%" fxFlex.xs="100%" ngClass='cardContent' ngClass.xs='cardContentXS'>
