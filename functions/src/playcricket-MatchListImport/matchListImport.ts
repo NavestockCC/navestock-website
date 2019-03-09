@@ -11,17 +11,16 @@ export class MatchListImport {
     public updateMatchList(matchListData: any) {
 
         matchListData.matches.forEach(element => {
-            this.afs.doc('Fixtures/' + element.id).update(element).then(() => {
-                this.afs.doc('Fixtures/' + element.id).update(this.updateDbFields(element)).then().catch( err => {console.error(err);});
-            }
-            ).catch( // If Firestore Update returns error because document does not exsist. Create new Docuemtn with Set.
-                () => {
-                    this.afs.doc('Fixtures/' + element.id).set(element).then(() => {
-                        this.afs.doc('Fixtures/' + element.id).update(this.updateDbFields(element)).then().catch( err => {console.error(err);});
-                    }
-                    ).catch( err => {console.error(err);});
-                }
-            );
+            this.afs.doc('Fixtures/' + element.id).set(element, { merge: true })
+                .then(() => {
+                    this.afs.doc('Fixtures/' + element.id).update(this.updateDbFields(element))
+                    .catch(
+                        err => { console.error(err); }
+                    );
+                })
+                .catch(
+                    err => { console.error(err); }
+                );
         });
 
     } // class end

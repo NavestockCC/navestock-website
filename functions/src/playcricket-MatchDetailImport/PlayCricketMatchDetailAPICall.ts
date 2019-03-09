@@ -1,15 +1,14 @@
 import * as requestpromisenative from 'request-promise-native';
 
-export class PlayCricketAPICall {
+export class PlayCricketMatchDetailAPICall {
 
-    public playCricketApiCall(seasonID:string):Promise<any>{
+    public playCricketApiCall(matchID:string):Promise<any>{
 
         const requestPrimiseOptions = {
-            uri: 'http://play-cricket.com/api/v2/matches.json',
+            uri: 'http://play-cricket.com/api/v2/match_detail.json',
             qs: {
-                site_id: '4513',
                 api_token: 'b5827cc30a9019c48af36df94eeb386c',
-                season: seasonID
+                match_id: matchID
             },
             headers: {
                 'User-Agent': 'Request-Promise',

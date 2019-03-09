@@ -21,8 +21,14 @@ export const listener = functions.https.onRequest(async (req, res) => {
       } else {
         const mID: string = req.query.mid;
         const matchImportFunction = new MatchDetailImport();
-        matchImportFunction.getPlayCricketData(mID);
-        res.send('Import Completed')
+        Promise.all(matchImportFunction.getImportData(mID))
+        .then(
+          () => {res.send({'status' : 200});}
+          )
+        .catch(
+            err => {res.send(err);}
+          );
+        
       }
     }
     catch (err) {

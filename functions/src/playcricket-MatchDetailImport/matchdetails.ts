@@ -12,7 +12,7 @@ export class MatchDetails{
 
 
 /* Import the match result from play cricket */
-public getMatchDetails(importDataObject:any){
+public getMatchDetails(importDataObject:any): Promise<any>{
  
     const matchResult = new match();
     const matchID:string = importDataObject.match_details[0].id.toString();
@@ -50,7 +50,7 @@ public getMatchDetails(importDataObject:any){
        importDataObject.match_details[0].result_applied_to,
        importDataObject.match_details[0].match_notes
     )
-    this.fbMatchDetail.doc(matchID.toString()).update(Object.assign({}, matchResult));
+    return this.fbMatchDetail.doc(matchID.toString()).update(Object.assign({}, matchResult));
 }
 
    

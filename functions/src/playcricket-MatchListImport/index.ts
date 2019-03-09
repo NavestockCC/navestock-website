@@ -28,7 +28,7 @@ export const matchListImport = functions.https.onRequest(async (req, res) => {
             } else {
                 const seasonID: string = req.query.season;
                 playcricketAPICall.playCricketApiCall(seasonID) //Get data from play cricket
-                .subscribe( APIResponse => {
+                .then( APIResponse => {
                     matchListImportFunctions.updateMatchList(APIResponse.body);
                     res.send({"API call status" : APIResponse.statusCode});
                     })
