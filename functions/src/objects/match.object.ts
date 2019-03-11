@@ -44,6 +44,7 @@ export class match{
     result_description: string;
     result_applied_to: string;
     match_notes: string;
+    result_last_imported: admin.firestore.Timestamp;
 
     public setMatchResult(
             id:number,
@@ -131,6 +132,7 @@ export class match{
         this.result_description = result_description;
         this.result_applied_to = result_applied_to;
         this.match_notes = match_notes;
+        this.result_last_imported = admin.firestore.Timestamp.now();
     }
 
     public setMatch(

@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import {NgForm} from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {MatIconRegistry} from '@angular/material';
+import {DomSanitizer} from '@angular/platform-browser';
 
 
 /* Navestock Service */
@@ -29,8 +31,17 @@ export class MatchListComponentAdmin implements OnInit {
     constructor(
             private matchdataService: MatchDataService,
             private route: ActivatedRoute,
-            private http: HttpClient
-                ) { }
+            private http: HttpClient,
+            private iconRegistry: MatIconRegistry, 
+            private sanitizer: DomSanitizer
+                ) { 
+                    iconRegistry.addSvgIcon(
+                        'delete',
+                        sanitizer.bypassSecurityTrustResourceUrl('./app/icons/baseline-delete-24px.svg'));                      
+                        iconRegistry.addSvgIcon(
+                            'import_export',
+                            sanitizer.bypassSecurityTrustResourceUrl('./app/icons/baseline-import_export-24px.svg'));   
+                    }
 
                
 
@@ -69,7 +80,7 @@ export class MatchListComponentAdmin implements OnInit {
     }
 
 
-//Set the match Import matchID so that the firebase function will trigger and import the results
+//Set the match Import seasonID so that the firebase function will trigger and import the list of mathes for a seaon
 public playCricketImport(seasonId:string){
     // this.afs.doc('FixtureImport/Import').update({'matchId': matchid});
     console.log('calling HTTP')
@@ -82,6 +93,21 @@ public playCricketImport(seasonId:string){
     }
 
     this.http.get(url, httpOptions).subscribe( res => console.log(res)) 
+}
+
+//Set the match Import matchId so that the firebase function will trigger and import the results
+public playCricketMatchDetailImport(matchId:string){
+    // this.afs.doc('FixtureImport/Import').update({'matchId': matchid});
+    console.log('calling HTTP')
+
+    const url = `https://us-central1-navestock-website.cloudfunctions.net/playcricketMatchDetailImport?mid=`+ matchId;
+    const httpOptions = {
+        headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+        })
+    }
+
+    this.http.get(url, httpOptions).subscribe(); 
 }
 
 }

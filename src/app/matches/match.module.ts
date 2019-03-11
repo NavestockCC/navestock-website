@@ -18,7 +18,8 @@ import {MatchDataService} from './matchdata-service/matchdata.service'
 /* Navestock components */
 import { environment } from '../../environments/environment';
 import {MatchListComponent} from './matchlist/matchlist/matchlist.component'
-import {MatchDetailComponent} from './match-detail/match-detail.component';
+import {MatchDetailComponent} from './match-detail/match-detail/match-detail.component';
+import {MatchDetailComponentAdmin} from "./match-detail/match-detail-admin/match-detail-admin.component";
 import {BattingComponent} from './batting/batting.component';
 import {BowlingComponent} from './bowling/bowling.component';
 import {GroundComponent} from './ground/ground.component';
@@ -33,7 +34,8 @@ import {MatchListComponentAdmin} from "./matchlist/matchlist-admin/matchlist-adm
         BowlingComponent,
         GroundComponent,
         MatchWidgetComponent,
-        MatchListComponentAdmin
+        MatchListComponentAdmin,
+        MatchDetailComponentAdmin
     ],
     imports: [ 
         CommonModule,
@@ -51,7 +53,8 @@ import {MatchListComponentAdmin} from "./matchlist/matchlist-admin/matchlist-adm
         BowlingComponent,
         GroundComponent,
         MatchWidgetComponent,
-        MatchListComponentAdmin
+        MatchListComponentAdmin,
+        MatchDetailComponentAdmin
     ],
     providers: [
         MatchDataService

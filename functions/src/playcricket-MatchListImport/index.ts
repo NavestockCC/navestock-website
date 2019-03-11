@@ -32,6 +32,7 @@ export const matchListImport = functions.https.onRequest(async (req, res) => {
                     matchListImportFunctions.updateMatchList(APIResponse.body);
                     res.send({"API call status" : APIResponse.statusCode});
                     })
+                .catch( err => {console.error(err)})    
             }
         }
         catch (err) {

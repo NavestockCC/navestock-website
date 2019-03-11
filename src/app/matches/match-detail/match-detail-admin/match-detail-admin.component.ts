@@ -5,17 +5,17 @@
 
 
 /* Navestock Cmoponents, Modules & Service */
-    import {match} from '../objects/match.object';
-    import {innings} from '../objects/innings.object';
-    import {MatchDataService} from '../matchdata-service/matchdata.service'
+    import {match} from '../../objects/match.object';
+    import {innings} from '../../objects/innings.object';
+    import {MatchDataService} from '../../matchdata-service/matchdata.service'
 
 
 @Component({
     selector: 'match-detail',
-    templateUrl: './match-detail.component.html',
-    styleUrls: ['./match-detail.component.scss']
+    templateUrl: './match-detail-admin.component.html',
+    styleUrls: ['../match-detail.component.scss']
 })
-export class MatchDetailComponent implements OnInit {
+export class MatchDetailComponentAdmin implements OnInit {
     public MatchDetails: Observable<match>;
     public inningsDetails: Observable<innings[]>;
     private mID: string = null;

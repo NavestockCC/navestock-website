@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {MatchListComponent} from '../matches/matchlist/matchlist/matchlist.component'
-import {MatchDetailComponent} from '../matches/match-detail/match-detail.component'
+import {MatchDetailComponent} from '../matches/match-detail/match-detail/match-detail.component'
 import {ContactUsComponent} from '../contact-us/contact-us/contact-us.component';
 import {UserAuthenticationComponent} from '../user-authentication/user-authentication.component';
 import {GalaDinnerComponent} from '../Navestock250/gala-dinner/gala-dinner.component';
@@ -16,6 +16,7 @@ import {ClubHistoryComponent} from '../club-history/club-history.component';
 /** Navestock Admin Components */
 import {ContactUsAdminComponent} from '../contact-us/contact-us-admin/contact-us-admin.component';
 import {MatchListComponentAdmin} from "../matches/matchlist/matchlist-admin/matchlist-admin.component";
+import {MatchDetailComponentAdmin} from "../matches/match-detail/match-detail-admin/match-detail-admin.component";
 
 const routes: Routes = [
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'matchlist/:tid', component: MatchListComponent},
   { path: 'matchlist-admin/:tid', component: MatchListComponentAdmin}, // matchlist Admin
   { path: 'matchdetails/:mid', component: MatchDetailComponent},
+  { path: 'matchdetails-admin/:mid', component: MatchDetailComponentAdmin},
   { path: 'contactus', component: ContactUsComponent},
   { path: 'contactus-admin', component: ContactUsAdminComponent}, // constactus Admin
   { path: 'auth', component: UserAuthenticationComponent},
