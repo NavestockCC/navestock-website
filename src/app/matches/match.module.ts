@@ -22,7 +22,8 @@ import {MatchDetailComponent} from './match-detail/match-detail/match-detail.com
 import {MatchDetailComponentAdmin} from "./match-detail/match-detail-admin/match-detail-admin.component";
 import {BattingComponent} from './batting/batting.component';
 import {BowlingComponent} from './bowling/bowling.component';
-import {GroundComponent} from './ground/ground.component';
+import {GroundComponent} from './ground/ground/ground.component';
+import {GroundAdminComponent} from './ground/ground-admin/ground-admin.component';
 import {MatchWidgetComponent} from './match-widget/match-widget.component';
 import {MatchListComponentAdmin} from "./matchlist/matchlist-admin/matchlist-admin.component";
 
@@ -35,7 +36,8 @@ import {MatchListComponentAdmin} from "./matchlist/matchlist-admin/matchlist-adm
         GroundComponent,
         MatchWidgetComponent,
         MatchListComponentAdmin,
-        MatchDetailComponentAdmin
+        MatchDetailComponentAdmin,
+        GroundAdminComponent
     ],
     imports: [ 
         CommonModule,
@@ -54,7 +56,8 @@ import {MatchListComponentAdmin} from "./matchlist/matchlist-admin/matchlist-adm
         GroundComponent,
         MatchWidgetComponent,
         MatchListComponentAdmin,
-        MatchDetailComponentAdmin
+        MatchDetailComponentAdmin,
+        GroundAdminComponent
     ],
     providers: [
         MatchDataService

@@ -47,7 +47,7 @@
             </mat-tab>
 
             <mat-tab label="Ground">
-                <ground [groundLat]="MD.ground_latitude" [groundLng]="MD.ground_longitude" [homeClub]="MD.home_club_name" [groundName]="MD.ground_name"></ground>
+                <ground-admin [groundLat]="MD.ground_latitude" [groundLng]="MD.ground_longitude" [homeClub]="MD.home_club_name" [groundName]="MD.ground_name" [matchId]="MD.id"></ground-admin>
             </mat-tab>
             <mat-tab >
                 <ng-template mat-tab-label><span matBadge="{{numberofPhotos}}" color="primary" matBadgePosition="after"  matBadgeOverlap="false" >Photo's</span></ng-template>

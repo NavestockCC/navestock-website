@@ -40,7 +40,7 @@ export class MatchListComponentAdmin implements OnInit {
                         sanitizer.bypassSecurityTrustResourceUrl('./app/icons/baseline-delete-24px.svg'));                      
                         iconRegistry.addSvgIcon(
                             'import_export',
-                            sanitizer.bypassSecurityTrustResourceUrl('./app/icons/baseline-import_export-24px.svg'));   
+                        sanitizer.bypassSecurityTrustResourceUrl('./app/icons/baseline-import_export-24px.svg'));   
                     }
 
                

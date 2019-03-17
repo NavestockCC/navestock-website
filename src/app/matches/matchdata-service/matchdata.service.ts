@@ -59,11 +59,7 @@ export class MatchDataService {
                 complete: () => { }
             }) //subscribe end 
         })
-}
-
-
-
-
+    }
 
     public getSeasons(): Observable<number[]> {
         let seasonsDoc: AngularFirestoreDocument<number[]> = this.afs.collection('Fixtures').doc<number[]>('seasons');
@@ -111,6 +107,16 @@ export class MatchDataService {
         return matchWidgetData;
     }
 
-
+/**
+ * Method to update the Latitude and Longeture of the ground at which the match is played
+ */
+public updateLatLng(matchId:string, Lat:string, Lng:string ) {
+    this.afs.doc('Fixtures/' + matchId).update({'ground_latitude' : Lat, 'ground_longitude' : Lng})
+    .catch(
+        err => { console.error(err);}
+    ).then(
+        () => {window.location.reload();}
+    );
+}
 
 }

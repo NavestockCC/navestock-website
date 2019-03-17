@@ -1,0 +1,43 @@
+<p><b>Match Played at:</b></p>
+
+<table class="addresstable">
+    <tr>
+        <td class="leftcol">
+            <ul>
+                <li><b>{{homeClub}}</b></li>
+                <li><b>{{groundName}}</b></li>
+                <li *ngFor="let a of addressLong"> {{a.long_name}}</li>
+            </ul>
+        </td>
+        <td>
+
+            <form (ngSubmit)="onSubmit(LatLngForm)" #LatLngForm="ngForm">
+                <input type="hidden" name="mID" [(ngModel)]="matchId">
+                <mat-form-field>
+                    <input matInput placeholder="Latitude" name="gLat" [(ngModel)]="groundLat">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <input matInput placeholder="Longitude" name="gLng" [(ngModel)]="groundLng">
+                </mat-form-field>
+                <button mat-flat-button color="primary" type="submit" [disabled]="!LatLngForm.form.valid">
+                    Update LatLong
+                </button>
+            </form>
+        </td>
+    </tr>
+</table>
+
+<!-- Display Google Map -->
+<div *ngIf="groundLat">
+    <agm-map [zoom]="zoom" [draggable]="draggable" [fitBounds]="true">
+        <agm-marker *ngFor='let m of markers; let i = index' [latitude]='m.lat' [longitude]='m.lng' [label]='m.label'
+            [markerDraggable]='m.draggable' [iconUrl]='m.iconUrl' [agmFitBounds]="true">
+            <agm-info-window [disableAutoPan]="true">
+                <ul style="list-style-type:none">
+                    <li *ngFor='let adrs of m.infowintxt'>{{adrs.address}}</li>
+                </ul>
+            </agm-info-window>
+        </agm-marker>
+    </agm-map>
+</div>
