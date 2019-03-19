@@ -2,7 +2,9 @@
     <div fxFlex='70' fxFlex.lt-sm="100">
         <button *ngFor="let s of (seasonList | async )?.seasons" mat-button color="primary" (click)="setMatchList(s, tID)">
             {{s}}</button>
-        
+            
+            <div *ngIf="userAuth | async; then showForm; else showLogin"></div>
+            <ng-template #showForm>
             <form (ngSubmit)="onSubmit(matchListImportForm)" #matchListImportForm="ngForm">
                     <mat-form-field>
                             <select matNativeControl required name="season" ngModel>
@@ -13,7 +15,11 @@
                               Import Season
                             </button>
             </form>   
-
+        </ng-template>
+        
+        <ng-template #showLogin>
+            <h2 color="primary">** Please Login **</h2>
+        </ng-template>
         <mat-card a-ng  *ngFor="let mM of matchListSeason  | async" ngClass="cardMatchList">
             <mat-card-header ngClass="monthHeader">
                 {{mM.monthName}} {{mM.year}}

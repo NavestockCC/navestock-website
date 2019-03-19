@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { auth } from 'firebase/app';
-import { Observable, from } from 'rxjs';
-
+import { Observable } from 'rxjs';
 import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
+
+/**
+ * Navestock Imports
+ */
+import {UserAuthenticationService} from "../user-authentication-service/user-authentication.service";
 
 @Component({
   selector: 'user-authentication',
@@ -13,30 +15,25 @@ import {DomSanitizer} from '@angular/platform-browser';
 })
 export class UserAuthenticationComponent implements OnInit {
   public userAuth: Observable<firebase.User> = null;
-  public userAuthCredentials: Observable<any> = null;
-  public userPhoto: string = null;
+  
+  constructor(private UAS: UserAuthenticationService, private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer) {
 
-  constructor(public afAuth: AngularFireAuth, private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer) {
     /** Register person icon  */
     iconRegistry.addSvgIcon(
       'person',
       sanitizer.bypassSecurityTrustResourceUrl('./app/icons/baseline-person-24px.svg'));
+
   }
 
   ngOnInit() {
-    this.userAuth = this.afAuth.authState;
-    this.userAuth.subscribe(res => {
-      if(res){
-        this.userPhoto = res.photoURL
-      }
-    });
+    this.userAuth = this.UAS.getUserAuth();
   }
 
   public login() {
-    this.userAuthCredentials = from(this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()));
+    this.UAS.login();
   }
 
   public logout() {
-    this.afAuth.auth.signOut();
+    this.UAS.logout()
   }
 }

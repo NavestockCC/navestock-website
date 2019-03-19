@@ -23,7 +23,6 @@ import { AppMenu } from '../menu/menu.component';
 import { HomeComponent } from '../home-page/home.component';
 import { ContactUsComponent } from '../contact-us/contact-us/contact-us.component';
 import { ContactUsAdminComponent } from '../contact-us/contact-us-admin/contact-us-admin.component';
-import { UserAuthenticationComponent } from '../user-authentication/user-authentication.component';
 import { BannerComponent } from '../banner/banner.component';
 import { FindUsComponent } from '../find-us/find-us.component';
 import { PlayersWanted } from '../players-wanted/players-wanted.component';
@@ -39,11 +38,9 @@ import { AppRoutingModule } from '../app-routing/app-routing.module';
 import { MatchModule } from '../matches/match.module';
 import {ImgModule} from '../imgModule/imgModule';
 import {Navestock250Module} from '../Navestock250/navestock250.module';
+import { UserAuthenticationModule } from '../user-authentication/user-authentication.module';
 
 /*Service Imports */
-
-
-
 
 
 @NgModule({
@@ -54,7 +51,6 @@ import {Navestock250Module} from '../Navestock250/navestock250.module';
     HomeComponent,
     ContactUsComponent,
     ContactUsAdminComponent,
-    UserAuthenticationComponent,
     FindUsComponent,
     PlayersWanted,
     ClubHistoryComponent
@@ -78,7 +74,8 @@ import {Navestock250Module} from '../Navestock250/navestock250.module';
     MatchModule,
     ImgModule,
     Navestock250Module,
-    AgmCoreModule.forRoot(environment.googleMapKey)
+    AgmCoreModule.forRoot(environment.googleMapKey),
+    UserAuthenticationModule
   ],
   providers: [
     { provide: FunctionsRegionToken, useValue: 'us-central1'}

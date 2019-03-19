@@ -2,10 +2,14 @@ import { Component} from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
 import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
+import {Observable} from "rxjs";
 
+/**
+ * Navestock Modules, Component & Services
+ */
 import {CommitteeMember} from '../contact-us-object/committee-member'
 import {ContactUsService} from '../contact-us-service/contact-us-service.service'
-
+import {UserAuthenticationService} from "../../user-authentication/user-authentication-service/user-authentication.service";
 
 
 @Component({
@@ -15,8 +19,13 @@ import {ContactUsService} from '../contact-us-service/contact-us-service.service
 })
 export class ContactUsAdminComponent{
   committeeForm: FormGroup;
+  public userAuth: Observable<firebase.User> = null;
 
-  constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer, private fb: FormBuilder, private contactUsService:ContactUsService) {
+  constructor(private iconRegistry: MatIconRegistry, 
+              private sanitizer: DomSanitizer, 
+              private fb: FormBuilder, 
+              private contactUsService:ContactUsService, 
+              private UAS: UserAuthenticationService) {
     this.createForm();
     this.contactUsService.getCommitteeMembers().valueChanges().subscribe(
       res =>{ 
@@ -35,6 +44,11 @@ export class ContactUsAdminComponent{
         'delete',
         sanitizer.bypassSecurityTrustResourceUrl('./app/icons/baseline-delete-24px.svg'));      
   
+        /** 
+         * Initialise the user authentication service
+         * This will be used to check if the user is authenticated before allowing admin functions
+        */
+        this.userAuth = this.UAS.getUserAuth();
   }
 
 

@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {MatchListComponent} from '../matches/matchlist/matchlist/matchlist.component'
 import {MatchDetailComponent} from '../matches/match-detail/match-detail/match-detail.component'
 import {ContactUsComponent} from '../contact-us/contact-us/contact-us.component';
-import {UserAuthenticationComponent} from '../user-authentication/user-authentication.component';
+import {UserAuthenticationComponent} from '../user-authentication/user-authentication/user-authentication.component';
 import {GalaDinnerComponent} from '../Navestock250/gala-dinner/gala-dinner.component';
 import {Veterans7asideComponent} from '../Navestock250/veterans7aside/veterans7aside.component';
 import {ColinBridgeVillageCupComponent} from '../Navestock250/colin-bridge-village-cup/colin-bridge-village-cup.component';

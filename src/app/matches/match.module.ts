@@ -11,6 +11,7 @@ import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 /* Navestock Modules*/
 import {NavestockMaterialModule} from '../root/match.material.module';
 import {ImgModule} from '../imgModule/imgModule';
+import {UserAuthenticationModule} from "../user-authentication/user-authentication.module";
 
 /* Navetock Services */
 import {MatchDataService} from './matchdata-service/matchdata.service'
@@ -46,7 +47,8 @@ import {MatchListComponentAdmin} from "./matchlist/matchlist-admin/matchlist-adm
         FormsModule,
         RouterModule,
         ImgModule,
-        AgmCoreModule.forRoot(environment.googleMapKey)
+        AgmCoreModule.forRoot(environment.googleMapKey),
+        UserAuthenticationModule
          ],
     exports: [
         MatchListComponent,

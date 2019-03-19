@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MatchDataService } from "../../matchdata-service/matchdata.service";
 import { MapsAPILoader } from '@agm/core';
-
-/** Google map wrapper import */
-//import { GoogleMapsAPIWrapper } from '@agm/core';';
 import { NgForm } from '@angular/forms';
+import {Observable} from 'rxjs';
+import {UserAuthenticationService} from "../../../user-authentication/user-authentication-service/user-authentication.service";
+
 declare var google: any;
 
 @Component({
@@ -20,6 +20,7 @@ export class GroundAdminComponent implements OnInit {
   @Input() groundName: string;
   @Input() matchId: string;
 
+  public userAuth:Observable<firebase.User> = null;
   private markers: marker[] = [];
 
   /* Google Map Parameters */
@@ -29,8 +30,11 @@ export class GroundAdminComponent implements OnInit {
 
   constructor(
     private MDS: MatchDataService,
-    public mapsApiLoader: MapsAPILoader
-  ) { }
+    public mapsApiLoader: MapsAPILoader,
+    private UAS:UserAuthenticationService
+  ) { 
+    this.userAuth = this.UAS.getUserAuth();
+  }
 
   ngOnInit(): void {
     if (this.groundLat !== undefined) {

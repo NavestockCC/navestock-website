@@ -1,8 +1,8 @@
-<div *ngIf="userAuth| async; then showLogout else showLogin"></div>
+<div *ngIf="userAuth | async; then showLogout else showLogin"></div>
 
 <ng-template #showLogout>
   <div fxLayout="row" fxLayoutAlign="center center">
-    <button mat-icon-button (click)="logout()"><img class="userImg" src="{{userPhoto}}"></button>
+    <button mat-icon-button (click)="logout()"><img class="userImg" src="{{(userAuth | async)?.photoURL}}"></button>
   </div>
 </ng-template>
 

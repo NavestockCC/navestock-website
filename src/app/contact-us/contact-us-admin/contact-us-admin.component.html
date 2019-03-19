@@ -34,12 +34,20 @@
       </mat-form-field>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-icon-button (click)="removeMember(i)">
-            <mat-icon svgIcon="delete" color="primary"></mat-icon>
-        </button>
-        <button mat-icon-button (click)="saveMember(i)">
-            <mat-icon svgIcon="save" color="primary"></mat-icon>
-        </button>
+      <div *ngIf="userAuth | async; then showButtons else showLogin"></div>
+        <ng-template #showButtons>
+            <button mat-icon-button (click)="saveMember(i)">
+                <mat-icon svgIcon="save" color="primary"></mat-icon>
+            </button>
+              
+          <button mat-icon-button (click)="removeMember(i)">
+                <mat-icon svgIcon="delete" color="primary"></mat-icon>
+            </button>
+        </ng-template>
+        
+        <ng-template #showLogin>
+          <h2>** Please login **</h2>
+        </ng-template>
     </mat-card-actions>
   </mat-card>
     <mat-card-actions>

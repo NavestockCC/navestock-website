@@ -10,20 +10,27 @@
             </ul>
         </td>
         <td>
+            <div *ngIf="userAuth|async; then showForm; else showLogin"></div>
+            <ng-template #showForm>
+                    <form (ngSubmit)="onSubmit(LatLngForm)" #LatLngForm="ngForm">
+                            <input type="hidden" name="mID" [(ngModel)]="matchId">
+                            <mat-form-field>
+                                <input matInput placeholder="Latitude" name="gLat" [(ngModel)]="groundLat">
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field>
+                                <input matInput placeholder="Longitude" name="gLng" [(ngModel)]="groundLng">
+                            </mat-form-field>
+                            <button mat-flat-button color="primary" type="submit" [disabled]="!LatLngForm.form.valid">
+                                Update LatLong
+                            </button>
+                        </form>
+            </ng-template>
 
-            <form (ngSubmit)="onSubmit(LatLngForm)" #LatLngForm="ngForm">
-                <input type="hidden" name="mID" [(ngModel)]="matchId">
-                <mat-form-field>
-                    <input matInput placeholder="Latitude" name="gLat" [(ngModel)]="groundLat">
-                </mat-form-field>
-                <br>
-                <mat-form-field>
-                    <input matInput placeholder="Longitude" name="gLng" [(ngModel)]="groundLng">
-                </mat-form-field>
-                <button mat-flat-button color="primary" type="submit" [disabled]="!LatLngForm.form.valid">
-                    Update LatLong
-                </button>
-            </form>
+            <ng-template #showLogin>
+                <h2>** Please Login **</h2>
+            </ng-template>
+
         </td>
     </tr>
 </table>
