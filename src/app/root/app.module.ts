@@ -39,6 +39,7 @@ import { MatchModule } from '../matches/match.module';
 import {ImgModule} from '../imgModule/imgModule';
 import {Navestock250Module} from '../Navestock250/navestock250.module';
 import { UserAuthenticationModule } from '../user-authentication/user-authentication.module';
+import { NavestockPrivacyStatementComponent } from '../navestock-privacy-statement/navestock-privacy-statement.component';
 
 /*Service Imports */
 
@@ -53,7 +54,8 @@ import { UserAuthenticationModule } from '../user-authentication/user-authentica
     ContactUsAdminComponent,
     FindUsComponent,
     PlayersWanted,
-    ClubHistoryComponent
+    ClubHistoryComponent,
+    NavestockPrivacyStatementComponent
    /**
     ScoreboardComponent
      */

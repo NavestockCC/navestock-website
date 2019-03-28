@@ -12,6 +12,7 @@ import {FindUsComponent} from '../find-us/find-us.component';
 import {HomeComponent} from '../home-page/home.component';
 import {PlayersWanted} from '../players-wanted/players-wanted.component';
 import {ClubHistoryComponent} from '../club-history/club-history.component';
+import {NavestockPrivacyStatementComponent} from '../navestock-privacy-statement/navestock-privacy-statement.component'
 
 /** Navestock Admin Components */
 import {ContactUsAdminComponent} from '../contact-us/contact-us-admin/contact-us-admin.component';
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: 'findus', component: FindUsComponent},
   { path: 'playerswanted', component: PlayersWanted},
   { path: 'clubhistory', component: ClubHistoryComponent},
+  { path: 'NavestockPrivacyStatement', component: NavestockPrivacyStatementComponent},
   { path: '**', redirectTo: '/home', pathMatch: 'full'}
 ];
 
