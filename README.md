@@ -40,3 +40,9 @@ export const environment = {
 1. run in navestock-website: `sudo npm --prefix functions run build`
 
 2. Then run in navestock-website : `sudo firebase serve --only functions`
+
+
+##Webpack Bundle Analyzer
+1. run 'ng build --prod --aot --stats-json' to create stats.json file
+2. run 'npm run bundle-report' to analize data
+
