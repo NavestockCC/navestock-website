@@ -94,7 +94,7 @@ export class MatchListComponentAdmin implements OnInit {
         // this.afs.doc('FixtureImport/Import').update({'matchId': matchid});
         console.log('calling HTTP')
 
-        const url = `https://us-central1-navestock-website.cloudfunctions.net/playcricketMatchListImport?season=` + seasonId;
+        const url = `https://us-central1-navestock-website.cloudfunctions.net/playcricketMatchListImports?season=` + seasonId;
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',

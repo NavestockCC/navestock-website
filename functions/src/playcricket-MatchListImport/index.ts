@@ -17,7 +17,7 @@ const options: cors.CorsOptions = {
 
 const Cors = cors(options);
 
-export const matchListImport = functions.https.onRequest(async (req, res) => {
+export const matchListImports = functions.https.onRequest(async (req, res) => {
     const playcricketAPICall = new PlayCricketAPICall();
     const matchListImportFunctions = new MatchListImport();
 

@@ -11,6 +11,6 @@ admin.initializeApp(functions.config().firebase);
 
 export const addMessage = AddMessage.helloNavestock;
 export const playcricketMatchDetailImport = PlaycricketMatchDetailImport.listener;
-export const playcricketMatchListImport = PlaycricketMatchListImport.matchListImport;
+export const playcricketMatchListImports = PlaycricketMatchListImport.matchListImports;
 export const resizeimageupload = OnImageUploadResize.generateThumbs;
 //export const emailSendResults = emailSend.listener;
