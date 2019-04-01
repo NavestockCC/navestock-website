@@ -17,12 +17,12 @@ declare var google: any;
 export class AllGroundsComponent implements OnInit {
 
   private markers: marker[] = [];
-  private displayMarkers: marker[] = [];
+  public displayMarkers: marker[] = [];
   public teamsToDisplay: string[] = ['1','2','S']
 
   /* Google Map Parameters */
-  private zoom: number = 15;
-  private draggable: boolean = true;
+  zoom: number = 15;
+  draggable: boolean = true;
 
 
   constructor(
