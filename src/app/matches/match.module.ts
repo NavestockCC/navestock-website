@@ -27,6 +27,7 @@ import {GroundComponent} from './ground/ground/ground.component';
 import {GroundAdminComponent} from './ground/ground-admin/ground-admin.component';
 import {MatchWidgetComponent} from './match-widget/match-widget.component';
 import {MatchListComponentAdmin} from "./matchlist/matchlist-admin/matchlist-admin.component";
+import { AllGroundsComponent } from './all-grounds/all-grounds.component';
 
 @NgModule({
     declarations: [
@@ -38,7 +39,8 @@ import {MatchListComponentAdmin} from "./matchlist/matchlist-admin/matchlist-adm
         MatchWidgetComponent,
         MatchListComponentAdmin,
         MatchDetailComponentAdmin,
-        GroundAdminComponent
+        GroundAdminComponent,
+        AllGroundsComponent
     ],
     imports: [ 
         CommonModule,

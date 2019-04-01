@@ -27,7 +27,6 @@ export class MatchDataService {
     constructor(private afs: AngularFirestore) {
 
     }
-
     public getMatchlist(seasonYear: number, navTeamId: string): Observable<match[]> {
         this.matchesCollection = this.afs.collection('Fixtures', ref => ref.where('season', '==', seasonYear).where('navestock_team_id', '==', navTeamId).orderBy('match_date', 'asc'));
         return this.matchesCollection.valueChanges();
@@ -118,5 +117,17 @@ public updateLatLng(matchId:string, Lat:string, Lng:string ) {
         () => {window.location.reload();}
     );
 }
+/**
+ * @summary Get  address details for each match played
+ * 
+ * @param seasonYear The season for which the matches must be returned
+*/
+public allMatchAddresses(seasonYear: number): Observable<match[]> {
+    const matchesCollection = this.afs.collection<match>('Fixtures', ref => ref.where('season', '==', seasonYear).where('away_club_id', '==', '4513'));
+    return matchesCollection.valueChanges();
+}
 
 }
+
+
+
