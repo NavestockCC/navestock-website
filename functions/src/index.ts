@@ -5,7 +5,7 @@ import * as AddMessage from './add-message';
 import * as PlaycricketMatchDetailImport from './playcricket-MatchDetailImport';
 import * as PlaycricketMatchListImport from './playcricket-MatchListImport';
 import * as OnImageUploadResize from './image-Resize/image-resize';
-import * as emailSend from './emailResults';
+import * as emailSend from './emailResults/index';
 
 admin.initializeApp(functions.config().firebase);
 

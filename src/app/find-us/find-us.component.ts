@@ -24,7 +24,7 @@ markers: marker[] = [
       iconUrl: './app/img/NavestockPin.png',
       infowintxt: [{ address: 'The Green'}, { address: 'Navestockside'}, {address:'near Brentwood Essex'}, {address: 'CM14 5SD'} ]
 	  }
-  ]
+  ];
 }
 // just an interface for type safety.
 interface marker {

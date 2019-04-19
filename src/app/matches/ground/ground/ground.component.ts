@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MatchDataService } from "../../matchdata-service/matchdata.service";
+import { MatchDataService } from '../../matchdata-service/matchdata.service';
 import { MapsAPILoader } from '@agm/core';
 
 /** Google map wrapper import */

@@ -81,8 +81,8 @@ export class GroundAdminComponent implements OnInit {
   private mapsGeocodingAddress(grndLat: any, grndLng: any) {
     //Load map geo-coding  
     this.mapsApiLoader.load().then(() => {
-      let geocoder = new google.maps.Geocoder();
-      let strLatLng = { lat: +grndLat, lng: +grndLng };
+      const geocoder = new google.maps.Geocoder();
+      const strLatLng = { lat: +grndLat, lng: +grndLng };
       geocoder.geocode({ 'location': strLatLng }, (results, status) => {
         if (status === 'OK') {
           if (results[0]) {

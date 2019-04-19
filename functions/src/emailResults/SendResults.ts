@@ -1,45 +1,97 @@
-//import * as functions from 'firebase-functions';
-import * as nodemailer from 'nodemailer';
-import * as admin from 'firebase-admin';
+import * as functions from 'firebase-functions';
+import * as nodemailer from "nodemailer";
+import * as admin from "firebase-admin";
+import { google } from "googleapis";
 
 /** Navestock Objects */
 import { match } from '../objects/match.object';
 
 
 
+/**
+ *  Configure the email transport using the default SMTP transport and a GMail account.
+ * For Gmail, enable these:
+ * 1. https://www.google.com/settings/security/lesssecureapps
+ * 2. https://accounts.google.com/DisplayUnlockCaptcha
+ * For other types of transports such as Sendgrid see https://nodemailer.com/transports/
+ * TODO: Configure the OAuth credentials 
+ * Google Cloud environment variables with > sudo firebase functions:config:set gmail.email="navestockcc@gmail" gmail.clientid="?????????????.apps.googleusercontent.com" gmail.clientsecret="j-??????????" gmail.refreshtoken="?/??????-????" gmail.gmailredirecturl="https://us-central1-navestock-website.cloudfunctions.net"
+ * To inspect what's currently stored in environment config for your project, you can use sudo firebase functions:config:get
+ * Use oauthplayground to setup OAuth certificates https://developers.google.com/oauthplayground/
+ * 
+ */
 
-// Configure the email transport using the default SMTP transport and a GMail account.
-// For Gmail, enable these:
-// 1. https://www.google.com/settings/security/lesssecureapps
-// 2. https://accounts.google.com/DisplayUnlockCaptcha
-// For other types of transports such as Sendgrid see https://nodemailer.com/transports/
-// TODO: Configure the `gmail.email` and `gmail.password` Google Cloud environment variables.
 export class SendResults {
-  gmailEmail: any = 'navestockcc@gmail.com' //functions.config().gmail.email;
-  gmailPassword: any = 'NavestockCC1768'  //functions.config().gmail.password;
-  mailTransport: any = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: this.gmailEmail,
-      pass: this.gmailPassword
-    },
-  });
+  gmailEmail: any = functions.config().gmail.email;
+  gmailAccesstoken: any = "";
+  gmailRefreshtoken: any = functions.config().gmail.refreshtoken;
+  gmailClientsecret: any = functions.config().gmail.clientsecret;
+  gmailClientid: any = functions.config().gmail.clientid;
+  gmailRedirectURL: any = functions.config().gmail.gmailredirecturl;
+  gmailExpiryDate:any = "";
 
-  constructor(private afs = admin.firestore()) {
 
-  }
+  constructor(private afs = admin.firestore()) {}
 
   // Your company name to include in the emails
   // TODO: Change this to your app or company name to customize the email sent.
   APP_NAME: string = 'Navestock CC Weekly Match Results';
 
 
+  /**
+   * @summary Create nodemailer Transporter.
+   * @abstract nodemailer transportet is created with OAuth2 authentication. Credentials for the auth object are stored in functions.config()
+   * 
+   */
+  private createMailTransport(): Promise<any> {
+
+    const OAuth2 = google.auth.OAuth2;
+
+  const oauth2Client = new OAuth2(
+    this.gmailClientid, // ClientID
+    this.gmailClientsecret, // Client Secret
+    this.gmailRedirectURL // Redirect URL
+  );
+
+    oauth2Client.setCredentials({
+      refresh_token: this.gmailRefreshtoken
+    });
+
+    async () => await oauth2Client.getRequestHeaders().then(
+      resp =>  {this.gmailAccesstoken = resp.Authorization.substring(7)}
+    ).catch(
+      err => console.error('Error: ' + err)
+    );
+    
+    const MailTransport = new Promise<any>( (resolve, reject) =>{
+      resolve(
+        nodemailer.createTransport({
+          host: 'smtp.gmail.com',
+          port: 465,
+          secure: true,
+          auth: {
+              type: 'OAuth2',
+              user: this.gmailEmail,
+              clientId: this.gmailClientid,
+              clientSecret: this.gmailClientsecret,
+              refreshToken: this.gmailRefreshtoken,
+              accessToken: this.gmailAccesstoken,
+              expires: 1484314697598
+          }
+      })
+      )
+    })
+    
+    
+  return MailTransport;
+  }
 
   // Sends a welcome email to the given user.
-  sendResultEmail(matchID: string[]): Promise<string> {
+  async sendResultEmail(matchID: string[]): Promise<string> {
     let mailBody: string = null;
     let toList: string = null;
     let mailOptions: object = null;
+
 
     const sendEmailPromise = new Promise<string>((resolve, reject) => {
 
@@ -60,18 +112,25 @@ export class SendResults {
             html: mailBody
           };
           //3. Send the email
-          this.mailTransport.sendMail(mailOptions, (err, info) => {
-            if (info) {
-              console.log(info.envelope);
-              console.log(info.messageId);
-            }
-            if (err) {
-              console.error(err);
-            }
+          this.createMailTransport().then( res => {
+            res.sendMail(mailOptions, (error, response) => {
+              if(error){console.log(error)}
+              else {console.log(response)}
+
+              res.close();
+         });
           })
+          .catch( err => {
+            console.log(err);
+          });
+
           // 4. sendEmailPromise Reslove
           resolve(JSON.stringify(mailOptions))
         })
+        .catch(err => {
+          console.error(err);
+          reject(err);
+        });
 
     }) // end sendEmailPromise creation
 
@@ -83,30 +142,30 @@ export class SendResults {
    * @returns Promise of thype String - list of email addresses.
    */
   public toAddressList(): Promise<string> {
-    let emailAddressString:string = undefined;
+    let emailAddressString: string = undefined;
 
     const emailAddressPromise = new Promise<string>((resolve, reject) => {
 
-      this.afs.collection('emailAdresses').where('resultsEmail', '==' , true).get()
+      this.afs.collection('emailAdresses').where('resultsEmail', '==', true).get()
         .then(emlPromise => {
           emlPromise.forEach(item => {
-            if(emailAddressString != undefined){
-            emailAddressString += item.data().emailaddress + ", ";
-          } else {
-            emailAddressString = item.data().emailaddress + ", ";
-          }
+            if (emailAddressString !== undefined) {
+              emailAddressString += item.data().emailaddress + ", ";
+            } else {
+              emailAddressString = item.data().emailaddress + ", ";
+            }
           })
         })
-        .catch(err => console.error('ERROR: ' + err))
         .then(() => {
-          if (emailAddressString != "") {
-            resolve(emailAddressString.substring(0, emailAddressString.length - 2)); 
+          if (emailAddressString !== undefined) {
+            resolve(emailAddressString.substring(0, emailAddressString.length - 2));
           }
           else {
             reject();
           }
         }
         )
+        .catch(err => console.error('ERROR: ' + err))
     })
     return emailAddressPromise;
   }
@@ -123,7 +182,6 @@ export class SendResults {
     let emailHTML: string = null;
 
     matchID.forEach(mid => {
-      console.log('matchID: ' + mid);
       const p = this.afs.doc('Fixtures/' + mid).get();
       matchDataPromise.push(p);
     });
@@ -148,11 +206,10 @@ export class SendResults {
       )//end allmatchDataPromise.then
         .then(() => {
           emailHTML += "</ol>"
-          console.log('emailHTML: ' + emailHTML);
           resolve(emailHTML)
         })
         .catch(err => {
-          console.log(err)
+          console.error(err)
           reject(err);
         });
     })

@@ -13,7 +13,7 @@ export class ImgWriteDownloadUrl {
      * @param thumbImgMetadata - thumb imgage metadata for the document in Firebase Storage
      */
     public writeImageDownloadURL(firestoreDocRef:string, downloadURL:any, imgMetadata:any, thumbDownloadURL:any) {
-        if(firestoreDocRef != 'none'){
+        if(firestoreDocRef !== 'none'){
 
             this.afs.doc(firestoreDocRef).update({ 'url_thumb': thumbDownloadURL, 'url': downloadURL, 'metadata': imgMetadata}).then(
                 onfulfilled => {
