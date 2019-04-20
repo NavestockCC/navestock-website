@@ -50,9 +50,6 @@ public getMatchDetails(importDataObject:any): Promise<any>{
        importDataObject.match_details[0].result_applied_to,
        importDataObject.match_details[0].match_notes
     )
-    return this.fbMatchDetail.doc(matchID.toString()).update(Object.assign({}, matchResult));
+    return this.fbMatchDetail.doc(matchID.toString()).set(Object.assign({}, matchResult), { merge: true });
 }
-
-   
-
 }
