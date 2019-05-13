@@ -23,7 +23,7 @@
 
 <!-- Display Google Map -->
 <div *ngIf="groundLat">
-    <agm-map [zoom]="zoom" [draggable]="draggable" [fitBounds]="true">
+    <agm-map [zoom]="zoom" [draggable]="draggable" [fitBounds]="fitbounds">
         <agm-marker *ngFor='let m of markers; let i = index' [latitude]='m.lat' [longitude]='m.lng' [label]='m.label'
             [markerDraggable]='m.draggable' [iconUrl]='m.iconUrl' [agmFitBounds]="true">
             <agm-info-window [disableAutoPan]="true">

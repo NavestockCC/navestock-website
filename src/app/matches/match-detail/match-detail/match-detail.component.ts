@@ -2,12 +2,13 @@
     import { Component, OnInit } from '@angular/core';
     import { Observable } from 'rxjs';
     import { ActivatedRoute } from '@angular/router';
-
+    import { FormControl } from '@angular/forms';
 
 /* Navestock Cmoponents, Modules & Service */
     import {match} from '../../objects/match.object';
     import {innings} from '../../objects/innings.object';
     import {MatchDataService} from '../../matchdata-service/matchdata.service'
+
 
 
 @Component({
@@ -20,7 +21,7 @@ export class MatchDetailComponent implements OnInit {
     public inningsDetails: Observable<innings[]>;
     private mID: string = null;
     public numberofPhotos:number = 0;
-
+    public SelectedIndex = new FormControl(0);
 
 
     constructor(
@@ -30,6 +31,7 @@ export class MatchDetailComponent implements OnInit {
 
     ngOnInit(): void {
         this.getMatchDetails();
+        this.SelectedIndex.setValue(1);
      }
 
     public getMatchDetails(){
@@ -41,8 +43,4 @@ export class MatchDetailComponent implements OnInit {
     handlePhotoCounter(nPhotos:number){
         this.numberofPhotos = nPhotos;
     }
-
-    changeTab(event){
-        console.log(JSON.stringify(event));
-      }
 }

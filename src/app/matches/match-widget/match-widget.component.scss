@@ -105,16 +105,13 @@ ul.widget_ul li{
 }
 
 .game_l1{
-	
 	margin: 0em;
-	color: #000000;
 	font-weight: bold;
 }
 
 .game_l2{
 	height: 1em;
 	margin: 0em;
-	color: #000000;
 	font-size: 0.8em;
 	line-height: 0.85em;
 	text-indent: 1em;
@@ -128,18 +125,15 @@ ul.widget_ul li{
 .game_listDate{
 	height: 1em;
 	margin: 1em;
-	color: #000000;
 	line-height: 2em;
 }
 
 .game_listTeams{
 /*	height: 1em; */
 	margin: 0.5em;
-	color: #000000;
 	font-size: 1em;
 	line-height: 1em;
 	padding-left: 2em;
-	
 	border-bottom-style: dotted;
     border-width: 1px;
     border-color: #F0F0F0;
@@ -153,3 +147,15 @@ ul.widget_ul li{
 	white-space: pre-wrap;
 	width: auto;
 }
+
+a {
+    line-height: 1em;
+    font-size: 13px;
+    color: #383B35;
+    text-decoration: none;
+	}
+	
+a:hover {
+		color: #85A366;
+		font-weight: bold;
+	}	

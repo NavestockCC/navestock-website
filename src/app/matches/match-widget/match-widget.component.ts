@@ -15,7 +15,7 @@ import {match} from '../objects/match.object';
 @Component({
   selector: 'matchwidget',
   templateUrl: './match-widget.component.html',
-  styleUrls: ['./match-widget.component.css']
+  styleUrls: ['./match-widget.component.scss']
 })
 export class MatchWidgetComponent implements OnInit{
   private NaveStockTeams:Observable<navestockTeam[]>;

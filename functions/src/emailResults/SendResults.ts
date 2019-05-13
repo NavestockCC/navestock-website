@@ -86,7 +86,16 @@ export class SendResults {
   return MailTransport;
   }
 
-  // Sends a welcome email to the given user.
+  /**
+   * Function to create and send the results email. The function will:
+   * 1. Get the mailBoday and toList from the Promise functions "emailBody" and "toAddressList"
+   * 2. Generate the email
+   * 3. Create nodemailer Transport object and Send the email
+   * 4. Reslove sendResultEmail promise with email and nodemailer status
+   * 
+   * 
+   * @param matchID - Array of matchId's which results will be sent
+   */
   async sendResultEmail(matchID: string[]): Promise<string> {
     let mailBody: string = null;
     let toList: string = null;
@@ -94,11 +103,11 @@ export class SendResults {
 
 
     const sendEmailPromise = new Promise<string>((resolve, reject) => {
-
+      
+      // 1. Get the mailBoday and toList from the Promise functions "emailBody" and "toAddressList"
       Promise.all([this.emailBody(matchID), this.toAddressList()])
         .then(
           PARes => {
-            // 1. Get the mailBoday and toList from the Promise functions "emailBody" and "toAddressList"
             mailBody = PARes[0];
             toList = PARes[1];
           }
@@ -111,7 +120,7 @@ export class SendResults {
             subject: this.APP_NAME,
             html: mailBody
           };
-          //3. Send the email
+          //3. Create nodemailer Transport object and Send the email
           this.createMailTransport().then( res => {
             res.sendMail(mailOptions, (error, response) => {
               if(error){console.log(error)}

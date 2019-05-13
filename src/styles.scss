@@ -18,30 +18,6 @@ body {
     display:block;
 }
 
-.logo_img{
-	position: relative;
-	height: 76px;
-	border-radius: 10px;
-}
-
-.logo_h1{
-	font-family: 'Copperplate Gothic', 'Copperplate Gothic Light';
-	color: #DCC43E;
-	margin-right: 0px;
-  	margin-left: 0px;
-	margin-top: 12px;
-	margin-bottom: 0px;
-}
-
-.logo_h2{
-	font-family: sans-serif;
-	color: #DCC43E;
-	margin-right: 0px;
-  	margin-left: 0px;
-	margin-top: 0px;
-	margin-bottom: 0px;
-}
-
 /*******************
 Page layout <div> box formatting
 *******************/
@@ -58,29 +34,3 @@ Page layout <div> box formatting
   	max-width: 950px; /* or 950px */
 }
 
-.banner{
-   /*
-	<div> formatting
-	*/
-	background: #336600;   
-    border-radius: 10px;
-
-   /*
-  	Position <div> on page
-  	*/
-	position: relative;  
-	margin-right: auto;
-  	margin-left: auto;
-    height: 80px;
-
-	vertical-align: text-middle;
-	text-align: center;	
-}
-
-
-
-.color-primary-0 { color: #336600 }	/* Main Primary color */
-.color-primary-1 { color: #6CA82F }
-.color-primary-2 { color: #4E8714 }
-.color-primary-3 { color: #224400 }
-.color-primary-4 { color: #122400 }

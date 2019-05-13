@@ -6,7 +6,7 @@
     <p class='panel_widget_heading green'>{{t.teamName}}</p>
     <ul class='widget_ul'>
         <li *ngFor="let f of t.matchList | async">
-            <a [routerLink]="['/matchdetails', f.id]">
+            <a [routerLink]="['/matchdetails', f.id]" >
                 <p class='game_l1'>{{f.opposition_club_name}}</p>
                 <p class='game_l2'>{{f.match_date.toDate() | date:'d MMM yy'}} {{f.match_time}}</p>
             </a>

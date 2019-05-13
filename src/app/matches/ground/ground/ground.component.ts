@@ -1,10 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, forwardRef } from '@angular/core';
 import { MatchDataService } from '../../matchdata-service/matchdata.service';
 import { MapsAPILoader } from '@agm/core';
 
 /** Google map wrapper import */
 //import { GoogleMapsAPIWrapper } from '@agm/core';';
-import { NgForm } from '@angular/forms';
 declare var google: any;
 
 @Component({
@@ -12,7 +11,7 @@ declare var google: any;
   templateUrl: './ground.component.html',
   styleUrls: ['../ground.component.scss']
 })
-export class GroundComponent implements OnInit {
+export class GroundComponent implements OnInit  {
 
   @Input() groundLat: string;
   @Input() groundLng: string;
@@ -22,9 +21,11 @@ export class GroundComponent implements OnInit {
 
   private markers: marker[] = [];
 
+
   /* Google Map Parameters */
-  private zoom: number = 15;
-  private draggable: boolean = true;
+  public zoom: number = 15;
+  public draggable: boolean = true;
+  public fitbounds: boolean = true;
   public addressLong: string[] = [];
 
   constructor(
