@@ -40,6 +40,7 @@ import {ImgModule} from '../imgModule/imgModule';
 import {Navestock250Module} from '../Navestock250/navestock250.module';
 import { UserAuthenticationModule } from '../user-authentication/user-authentication.module';
 import { NavestockPrivacyStatementComponent } from '../navestock-privacy-statement/navestock-privacy-statement.component';
+import { ScoreboardModule } from '../scoreboard/scoreboard.module';
 
 /*Service Imports */
 
@@ -56,9 +57,6 @@ import { NavestockPrivacyStatementComponent } from '../navestock-privacy-stateme
     PlayersWanted,
     ClubHistoryComponent,
     NavestockPrivacyStatementComponent
-   /**
-    ScoreboardComponent
-     */
   ],
   imports: [
     BrowserModule,
@@ -77,7 +75,8 @@ import { NavestockPrivacyStatementComponent } from '../navestock-privacy-stateme
     ImgModule,
     Navestock250Module,
     AgmCoreModule.forRoot(environment.googleMapKey),
-    UserAuthenticationModule
+    UserAuthenticationModule,
+    ScoreboardModule
   ],
   providers: [
     { provide: FunctionsRegionToken, useValue: 'us-central1'}

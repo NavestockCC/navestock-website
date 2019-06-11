@@ -1,0 +1,30 @@
+<p>
+Navestock Scoreboard:
+</p>  
+
+<div *ngIf="model">
+<form (ngSubmit)="onSubmit(scoreBoardForm)" #scoreBoardForm="ngForm">
+
+  <mat-form-field>
+    <input matInput type="number" [(ngModel)]="model.Batsman1" name="Batsman1" placeholder="Batsman 1 score">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput type="number"  [(ngModel)]="model.Batsman2" name="Batsman2" placeholder="Batsman 2 score">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput type="number"  [(ngModel)]="model.Overs" placeholder="Overs" name="Overs">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput type="number"  [(ngModel)]="model.Teamscore" placeholder="Team Score" name="Teamscore">
+  </mat-form-field>
+  <br>
+<button mat-button type="submit">Update</button>
+</form>
+</div>
+<br>
+<br>
+<p>Form data: {{model | json}}</p>
+<p>Scoreboard DB Data: {{ scoreboardData | async | json}}</p>

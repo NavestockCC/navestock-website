@@ -14,6 +14,7 @@ import {PlayersWanted} from '../players-wanted/players-wanted.component';
 import {ClubHistoryComponent} from '../club-history/club-history.component';
 import {NavestockPrivacyStatementComponent} from '../navestock-privacy-statement/navestock-privacy-statement.component'
 import {AllGroundsComponent} from '../matches/all-grounds/all-grounds.component';
+import { ScoreboardComponent } from "../scoreboard/scoreboard.component";
 
 /** Navestock Admin Components */
 import {ContactUsAdminComponent} from '../contact-us/contact-us-admin/contact-us-admin.component';
@@ -39,6 +40,7 @@ const routes: Routes = [
   { path: 'clubhistory', component: ClubHistoryComponent},
   { path: 'NavestockPrivacyStatement', component: NavestockPrivacyStatementComponent},
   { path: 'allgrounds', component: AllGroundsComponent},
+  { path: 'scoreboard', component: ScoreboardComponent },
   { path: '**', redirectTo: '/home', pathMatch: 'full'}
 ];
 
