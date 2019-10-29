@@ -23,7 +23,10 @@ export const listener = functions.https.onRequest(async (req, res) => {
         const matchImportFunction = new MatchDetailImport();
         Promise.all(matchImportFunction.getImportData(mID))
         .then(
-          () => {res.send({'status' : 200});}
+            resp => { 
+              console.info(JSON.stringify(resp));
+              res.send(200);
+            }
           )
         .catch(
             err => {res.send(err);}

@@ -1,9 +1,10 @@
 import * as admin from 'firebase-admin';
 import {match} from '../objects/match.object';
+import { DocumentReference, WriteResult } from '@google-cloud/firestore';
 
 export class MatchDetails{
     private fbMatchDetail: any;
-    
+    private matchBatch = this.afs.batch();
 
     constructor(private afs = admin.firestore()) {
         this.fbMatchDetail = this.afs.collection('Fixtures');
@@ -11,11 +12,16 @@ export class MatchDetails{
 
 
 
-/* Import the match result from play cricket */
-public getMatchDetails(importDataObject:any): Promise<any>{
+/**
+ * Gets match details
+ * @param importDataObject 
+ * @returns match details 
+ */
+public getMatchDetails(importDataObject:any): Promise<WriteResult[]>{
  
     const matchResult = new match();
     const matchID:string = importDataObject.match_details[0].id.toString();
+    const dRef:DocumentReference = this.fbMatchDetail.doc(matchID.toString());
 
     let resultUpdated:boolean = false;
     if(importDataObject.match_details[0].result_description !== ''){resultUpdated = true};
@@ -50,6 +56,8 @@ public getMatchDetails(importDataObject:any): Promise<any>{
        importDataObject.match_details[0].result_applied_to,
        importDataObject.match_details[0].match_notes
     )
-    return this.fbMatchDetail.doc(matchID.toString()).set(Object.assign({}, matchResult), { merge: true });
+   //return this.fbMatchDetail.doc(matchID.toString()).set(Object.assign({}, matchResult), { merge: true });
+    this.matchBatch.set(dRef, Object.assign({}, matchResult), { merge: true });
+    return this.matchBatch.commit();
 }
 }

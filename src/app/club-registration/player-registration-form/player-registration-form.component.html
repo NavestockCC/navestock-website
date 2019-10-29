@@ -1,0 +1,195 @@
+<form [formGroup]="playerForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card>
+    <!-- *start* Personal Details -->
+    <div formGroupName="personalDetails">
+      <mat-card-header>
+        <mat-card-title>Section 1: Personal Details of Player</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="First name" formControlName="firstName"> <!-- First Name -->
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Last name" formControlName="lastName"> <!-- Last Name -->
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <textarea matInput placeholder="Address" formControlName="address"></textarea> <!-- Address -->
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="City" formControlName="city"> <!-- City -->
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="County" formControlName="county"> <!-- Country -->
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput #postalCode placeholder="Postal Code" formControlName="postalCode"> <!-- Post Code -->
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="eMail Address" formControlName="emailaddress"> <!--  email  -->
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Mobile Number" formControlName="mobile"> <!--  Mobile -->
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card-content>
+    </div>
+     <!-- *end* Personal Details -->
+      <!-- *start* Emergencey Contact -->
+    <div formGroupName="emergencyContact">
+      <mat-card-header>
+        <mat-card-title>Section 2: Emergency Contact Details</mat-card-title>
+        <mat-card-subtitle>As the person completing this from, you must ensure that each person whose information you
+          include knows what will happen to their information and how it may be disclosed</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="First name" formControlName="firstName"> <!-- First Name -->
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Last name" formControlName="lastName"> <!-- Last Name -->
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Relationship of this person to you" formControlName="relationship"> <!-- Relationship -->
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Mobile contact number" formControlName="mobile"> <!-- Mobile -->
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Landline contact number" formControlName="landline"> <!-- Landline -->
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card-content>
+    </div>
+     <!-- *end* Emergencey Contact -->
+     <!-- *start* Medical Information -->
+     <div formGroupName="medicalInformation">
+        <mat-card-header>
+          <mat-card-title>Section 3: Medical Information</mat-card-title>
+          <mat-card-subtitle>Please detail below any important medical information, club volunteers may need in order to assist you in emergency situations.
+            Information colleted may need to be shared with emergency services in an emergency.
+            Please indicate if you would like to discuss this privetley</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Doctor's name" formControlName="doctorName"> <!-- Doctor's Name -->
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Surgery name" formControlName="surgeryName"> <!-- Surgery Name -->
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Doctor's contact number" formControlName="doctorTel"> <!-- Doctor's Contact Number -->
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <textarea matInput placeholder="Allergies" formControlName="allergies"></textarea> <!-- Allergies Information -->
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                  <mat-form-field class="full-width">
+                    <textarea matInput placeholder="Conditions & Medications required" formControlName="conditionsMedications"></textarea> <!-- Conditions & Medications required -->
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                  <div class="col">
+                       <mat-slide-toggle formControlName="certifyAccurate">I certify that the information that I have given is accurate and
+                          complete and that I will inform Navestock Cricket Club of any changes</mat-slide-toggle><!-- Certify Accurate -->
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                         <mat-slide-toggle formControlName="consentToShare"> I consent to my medical details being shared with Captains / Committee members for the purpose of safe participation in cricket club activities.</mat-slide-toggle><!-- Certify Accurate -->
+                    </div>
+                  </div>                 
+        </mat-card-content>
+    </div>
+    <!-- *end* Medical Information -->    
+     <!-- *start* Photographic Consent -->
+     <div formGroupName="photohraphyConsent">
+        <mat-card-header>
+          <mat-card-title>Section 4: Photographic and Video Consent</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+              <div class="row">
+                  <div class="col">
+                       <mat-slide-toggle formControlName="photoVideoConsent">I consent to photographs and video clips, of my involvement in the cricket club activities, being taken. I also consent to these photos or videos being used on the Clubs's website, social media accounts and local newspapers.</mat-slide-toggle><!-- Certify Accurate -->
+                       <p>If you do not wish to give consent, please constact Navestock Cricket Club Secretery Matthew Richards, to discuss how we could mange any potential concerns. Not giving consent will not affect your membership at the Club.</p>
+                    </div>
+                </div>               
+        </mat-card-content>
+    </div>
+    <!-- *end* Photographic Consent -->
+         <!-- *start* Player Statement -->
+         <div formGroupName="playerStatement">
+            <mat-card-header>
+              <mat-card-title>Section 5: Player Statement</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                  <div class="row">
+                      <div class="col">
+                           <mat-slide-toggle formControlName="photoVideoConsent">I consent to photographs and video clips, of my involvement in the cricket club activities, being taken. I also consent to these photos or videos being used on the Clubs's website, social media accounts and local newspapers.</mat-slide-toggle><!-- Certify Accurate -->
+                           <p>If you do not wish to give consent, please constact Navestock Cricket Club Secretery Matthew Richards, to discuss how we could mange any potential concerns. Not giving consent will not affect your membership at the Club.</p>
+                        </div>
+                    </div>               
+            </mat-card-content>
+        </div>
+        <!-- *end* Player Statement -->       
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
+
+
+. 

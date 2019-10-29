@@ -21,13 +21,14 @@ export class MatchDataService {
     private battingCollection: AngularFirestoreCollection<batting>;
     private bowlingCollection: AngularFirestoreCollection<bowling>;
     public matchesObservable: Observable<match[]>;
-    //public matchesperSeason: matchspermonth[];
+    // public matchesperSeason: matchspermonth[];
 
 
     constructor(private afs: AngularFirestore) {
 
     }
     public getMatchlist(seasonYear: number, navTeamId: string): Observable<match[]> {
+        // tslint:disable-next-line: max-line-length
         this.matchesCollection = this.afs.collection('Fixtures', ref => ref.where('season', '==', seasonYear).where('navestock_team_id', '==', navTeamId).orderBy('match_date', 'asc'));
         return this.matchesCollection.valueChanges();
     }
@@ -40,7 +41,7 @@ export class MatchDataService {
         return Observable.create( (observer) => { // wrap getMatchlist in a new Observable
             this.getMatchlist(seasonYear, navTeamId).subscribe({
                 next: resMatch => {
-                    const matchesperSeason: matchspermonth[] = []
+                    const matchesperSeason: matchspermonth[] = [];
                     resMatch.forEach(element => {
                         const md = element.match_date.toDate();
                         if (tempMonth == md.getMonth() && tempYear == md.getFullYear()) {
@@ -52,16 +53,16 @@ export class MatchDataService {
                             i = matchesperSeason.length;
                         } // end if
                         observer.next(matchesperSeason); // Emit value to observer
-                    })
+                    });
                 },
-                error: err => { console.log('Received an errror: ' + err) },
+                error: err => { console.log('Received an errror: ' + err); },
                 complete: () => { }
-            }) //subscribe end 
-        })
+            }); // subscribe end
+        });
     }
 
     public getSeasons(): Observable<number[]> {
-        let seasonsDoc: AngularFirestoreDocument<number[]> = this.afs.collection('Fixtures').doc<number[]>('seasons');
+        const seasonsDoc: AngularFirestoreDocument<number[]> = this.afs.collection('Fixtures').doc<number[]>('seasons');
         return seasonsDoc.valueChanges();
     }
 
@@ -87,7 +88,7 @@ export class MatchDataService {
 
     /* **** Match Widget data service. **** */
 
-    //Get fixture widget data from navestock webservice
+    // Get fixture widget data from navestock webservice
     private getMatchWidgetData_FB(teamId: string, nRecordstoreturn: number): Observable<match[]> {
         let matchesCollection: AngularFirestoreCollection<match>;
         matchesCollection = this.afs.collection('Fixtures', ref => (ref.where('navestock_team_id', '==', teamId).where('match_date', ">=", new Date())).orderBy('match_date', 'asc').limit(nRecordstoreturn));
@@ -97,24 +98,24 @@ export class MatchDataService {
     //Read data received from getfixturewidgetData_Http and parse into fixturewidgetdata object.
     // NaveStockTeams: {tmName:string; tmId:number;}[]
     getmatchWidgetData(NaveStockTeams: Observable<navestockTeam[]>, nRecordstoreturn: number): { teamName: string, teamId: string, matchList: Observable<match[]> }[] {
-        let matchWidgetData: { teamName: string, teamId: string, matchList: Observable<match[]> }[] = []
+        let matchWidgetData: { teamName: string, teamId: string, matchList: Observable<match[]> }[] = [];
         NaveStockTeams.subscribe(res => {
             res.forEach(tm => {
                 matchWidgetData.push({ teamName: tm.team_name, teamId: tm.team_id, matchList: this.getMatchWidgetData_FB(tm.team_id, nRecordstoreturn) });
             });
-        })
+        });
         return matchWidgetData;
     }
 
 /**
  * Method to update the Latitude and Longeture of the ground at which the match is played
  */
-public updateLatLng(matchId:string, Lat:string, Lng:string ) {
+public updateLatLng(matchId: string, Lat: string, Lng: string ) {
     this.afs.doc('Fixtures/' + matchId).update({'ground_latitude' : Lat, 'ground_longitude' : Lng})
     .catch(
-        err => { console.error(err);}
+        err => { console.error(err); }
     ).then(
-        () => {window.location.reload();}
+        () => {window.location.reload(); }
     );
 }
 /**

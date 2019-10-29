@@ -7,7 +7,7 @@
 /* Navestock Cmoponents, Modules & Service */
     import {match} from '../../objects/match.object';
     import {innings} from '../../objects/innings.object';
-    import {MatchDataService} from '../../matchdata-service/matchdata.service'
+    import {MatchDataService} from '../../matchdata-service/matchdata.service';
 
 
 @Component({
@@ -19,7 +19,7 @@ export class MatchDetailComponentAdmin implements OnInit {
     public MatchDetails: Observable<match>;
     public inningsDetails: Observable<innings[]>;
     private mID: string = null;
-    public numberofPhotos:number = 0;
+    public numberofPhotos: number = 0;
 
 
 
@@ -32,17 +32,17 @@ export class MatchDetailComponentAdmin implements OnInit {
         this.getMatchDetails();
      }
 
-    public getMatchDetails(){
+    public getMatchDetails() {
         this.mID = this.route.snapshot.paramMap.get('mid');
         this.MatchDetails = this.matchdataService.getMatchDetail(this.mID);
         this.inningsDetails = this.matchdataService.getMatchInningsDetails(this.mID);
     }
 
-    handlePhotoCounter(nPhotos:number){
+    handlePhotoCounter(nPhotos: number) {
         this.numberofPhotos = nPhotos;
     }
 
-    changeTab(event){
+    changeTab(event) {
         console.log(JSON.stringify(event));
       }
 }

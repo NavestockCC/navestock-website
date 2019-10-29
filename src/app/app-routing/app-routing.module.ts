@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {MatchListComponent} from '../matches/matchlist/matchlist/matchlist.component'
-import {MatchDetailComponent} from '../matches/match-detail/match-detail/match-detail.component'
+import {MatchListComponent} from '../matches/matchlist/matchlist/matchlist.component';
+import {MatchDetailComponent} from '../matches/match-detail/match-detail/match-detail.component';
 import {ContactUsComponent} from '../contact-us/contact-us/contact-us.component';
 import {UserAuthenticationComponent} from '../user-authentication/user-authentication/user-authentication.component';
 import {GalaDinnerComponent} from '../Navestock250/gala-dinner/gala-dinner.component';
@@ -12,14 +12,14 @@ import {FindUsComponent} from '../find-us/find-us.component';
 import {HomeComponent} from '../home-page/home.component';
 import {PlayersWanted} from '../players-wanted/players-wanted.component';
 import {ClubHistoryComponent} from '../club-history/club-history.component';
-import {NavestockPrivacyStatementComponent} from '../navestock-privacy-statement/navestock-privacy-statement.component'
+import {NavestockPrivacyStatementComponent} from '../navestock-privacy-statement/navestock-privacy-statement.component';
 import {AllGroundsComponent} from '../matches/all-grounds/all-grounds.component';
-import { ScoreboardComponent } from "../scoreboard/scoreboard.component";
+import { ScoreboardComponent } from '../scoreboard/scoreboard.component';
 
 /** Navestock Admin Components */
 import {ContactUsAdminComponent} from '../contact-us/contact-us-admin/contact-us-admin.component';
-import {MatchListComponentAdmin} from "../matches/matchlist/matchlist-admin/matchlist-admin.component";
-import {MatchDetailComponentAdmin} from "../matches/match-detail/match-detail-admin/match-detail-admin.component";
+import {MatchListComponentAdmin} from '../matches/matchlist/matchlist-admin/matchlist-admin.component';
+import {MatchDetailComponentAdmin} from '../matches/match-detail/match-detail-admin/match-detail-admin.component';
 
 const routes: Routes = [
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
@@ -41,17 +41,15 @@ const routes: Routes = [
   { path: 'NavestockPrivacyStatement', component: NavestockPrivacyStatementComponent},
   { path: 'allgrounds', component: AllGroundsComponent},
   { path: 'scoreboard', component: ScoreboardComponent },
+  { path: 'clubregistration',
+    loadChildren: () => import('../club-registration/club-registration.module').then(mod => mod.ClubRegistrationModule) },
   { path: '**', redirectTo: '/home', pathMatch: 'full'}
 ];
 
 /* FIXME: remove after completion
-
-
-  
   { path: 'scoreboard', component: ScoreboardComponent},
   { path: 'photolist', component: ImgViewerComponent},
   { path: 'photoupload', component: ImgUploadComponent},
-
 */
 
 @NgModule({
