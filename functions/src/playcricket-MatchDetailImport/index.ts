@@ -23,19 +23,30 @@ export const listener = functions.https.onRequest(async (req, res) => {
         const matchImportFunction = new MatchDetailImport();
         Promise.all(matchImportFunction.getImportData(mID))
         .then(
-            resp => { 
-              console.info(JSON.stringify(resp));
-              res.send(200);
+            () => { 
+              const respObject = {
+                "status": "OK",
+                "code": 200,
+                "messages": "Import Completed",
+            }
+              res.send(respObject);
             }
           )
         .catch(
-            err => {res.send(err);}
+            err => {
+              const respObject = {
+                "status": "Error",
+                "code": 400,
+                "messages": err,
+            }
+              res.status(400).send(respObject);
+            }
           );
         
       }
     }
     catch (err) {
-      res.send('error: Could not import PlayCricket Match')
+      res.status(400).send('error: Could not import PlayCricket Match')
     }
 
   });

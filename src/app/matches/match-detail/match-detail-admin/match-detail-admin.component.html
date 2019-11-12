@@ -23,7 +23,7 @@
         </mat-card-actions>
     </mat-card>
     <mat-divider></mat-divider>
-    <mat-tab-group selectedIndex="0"> <!-- FIXME: Fix default tab selected, should be the score card not the map -->
+    <mat-tab-group selectedIndex="0"> 
             <mat-tab *ngFor="let inningsData of inningsDetails | async" label={{inningsData.team_batting_name}}>
                 <p><b>{{inningsData.team_batting_name}} Batting</b></p>
                  <!-- Batting Card -->

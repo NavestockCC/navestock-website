@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { share } from 'rxjs/operators';
 import { NgForm } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MatIconRegistry } from '@angular/material';
@@ -9,12 +10,13 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 
 /* Navestock Service */
-import { MatchDataService } from '../../matchdata-service/matchdata.service'
-import { UserAuthenticationService } from "../../../user-authentication/user-authentication-service/user-authentication.service";
+import { MatchDataService } from '../../matchdata-service/matchdata.service';
+import { UserAuthenticationService } from '../../../user-authentication/user-authentication-service/user-authentication.service';
 
 /* Navestock Objects */
 import { match } from '../../objects/match.object';
-import { matchspermonth } from '../../matchpermonth.object'
+import { matchspermonth } from '../../matchpermonth.object';
+
 
 @Component({
     selector: 'match-list',
@@ -28,6 +30,7 @@ export class MatchListComponentAdmin implements OnInit {
     public tID: string = null;
     public importSeason: number[] = [];
     public userAuth: Observable<firebase.User> = null;
+    public loading: boolean = false;
 
 
     constructor(
@@ -45,7 +48,7 @@ export class MatchListComponentAdmin implements OnInit {
             'import_export',
             sanitizer.bypassSecurityTrustResourceUrl('./app/icons/baseline-import_export-24px.svg'));
 
-    /** 
+    /**
     * Initialise the user authentication service
     * This will be used to check if the user is authenticated before allowing admin functions
     */
@@ -64,7 +67,7 @@ export class MatchListComponentAdmin implements OnInit {
     }
 
     public getimportSeason(): number[] {
-        let ret: number[] = []
+        const ret: number[] = [];
         const startYear: number = new Date().getFullYear();
         ret.push(startYear + 1);
         for (let index = 0; index < 11; index++) {
@@ -89,34 +92,45 @@ export class MatchListComponentAdmin implements OnInit {
     }
 
 
-    //Set the match Import seasonID so that the firebase function will trigger and import the list of mathes for a seaon
+    // Set the match Import seasonID so that the firebase function will trigger and import the list of mathes for a seaon
     public playCricketImport(seasonId: string) {
         // this.afs.doc('FixtureImport/Import').update({'matchId': matchid});
-        console.log('calling HTTP')
+        console.log('calling HTTP');
 
         const url = `https://us-central1-navestock-website.cloudfunctions.net/playcricketMatchListImports?season=` + seasonId;
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
             })
-        }
+        };
 
-        this.http.get(url, httpOptions).subscribe(res => console.log(res))
+        this.http.get(url, httpOptions).subscribe(res => console.log(res));
     }
 
-    //Set the match Import matchId so that the firebase function will trigger and import the results
     public playCricketMatchDetailImport(matchId: string) {
         // this.afs.doc('FixtureImport/Import').update({'matchId': matchid});
-        console.log('calling HTTP')
+        console.log('calling HTTP');
 
         const url = `https://us-central1-navestock-website.cloudfunctions.net/playcricketMatchDetailImport?mid=` + matchId;
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
             })
-        }
+        };
 
-        this.http.get(url, httpOptions).subscribe();
+        const request = this.http.get(url, httpOptions)
+        .pipe(
+            share()
+        );
+        this.setLoadingSpinner(request);
     }
+
+    setLoadingSpinner(spinnerObservable: Observable<any>) {
+        this.loading = true;
+        spinnerObservable.subscribe(
+            () => {this.loading = false; }
+        );
+    }
+
 
 }

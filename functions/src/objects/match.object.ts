@@ -23,6 +23,8 @@ export class match{
     home_team_name: string;
     home_team_id: string;
     home_club_id: string;
+    home_team_runs: number;
+    home_team_wickets: number;
     home_team_isNavestock: boolean;
     navestock_club_name: string;
     navestock_team_name: string;
@@ -36,6 +38,8 @@ export class match{
     away_team_name: string;
     away_team_id: string;
     away_club_id: string;
+    away_team_runs: number;
+    away_team_wickets: number;
     toss_won_by_team_id: string;
     toss: string;
     batted_first: string;

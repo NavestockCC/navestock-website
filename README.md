@@ -39,7 +39,13 @@ export const environment = {
 ##Test Functions Locally
 1. run in navestock-website: `sudo npm --prefix functions run build`
 
-2. Then run in navestock-website : `sudo firebase serve --only functions`
+2. Then run in navestock-website : `firebase emulators:start --only functions`
+
+Provide authentication credentials to your application code by setting the environment variable:
+"export GOOGLE_APPLICATION_CREDENTIALS="/Users/lefrascoetzee/Documents/Code/navestock-website/navestock-website-b4c3fdc31495.json""
+
+NOTE: If you're using custom functions configuration variables, run the following command in the functions directory of your project before running firebase serve.
+run in navestock-website\functions: `firebase functions:config:get > .runtimeconfig.json`
 
 
 ##Webpack Bundle Analyzer
