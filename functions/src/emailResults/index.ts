@@ -27,17 +27,17 @@ req.query.mids.forEach(element => {
         SendgridMailService.send(mailDataResp)
           .then(
             result => {
-              res.send("Mail sent check your inbox");
+              res.status(200).send("Mail sent check your inbox");
             }
           )
           .catch(
             err => {
-              res.send("Oops somthing went wrong. Error" + err);
+              res.send("Oops somthing went wrong. Error: " + err);
             }
           )
       })
     .catch(
       err => {
-        res.send("Oops somthing went wrong. Error" + err);
+        res.send("Oops somthing went wrong. Error: " + err);
       })
 });

@@ -17,7 +17,7 @@ src/environments/environment.prod.ts
 src/environments/environment.ts
 functions/src/environments/environment.prod.ts
 functions/src/environments/environment.ts
-navestock-website-2bb256920e11.json
+navestock-website-*.json
 
 # IDEs and editors
 /.idea
