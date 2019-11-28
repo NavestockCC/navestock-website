@@ -93,6 +93,24 @@ export class SendResults {
         res => {
           res.forEach(mtch => {
             matchData = <match>mtch.data();
+            let homeTeamRuns: string = "";
+            let homeTeamWickets: string = "";
+            let awayTeamRuns: string = "";
+            let awayTeamWickets: string = "";
+
+            if (matchData.home_team_runs) {
+              homeTeamRuns = matchData.home_team_runs.toString();
+            }
+            if (matchData.home_team_wickets) {
+              homeTeamWickets = matchData.home_team_wickets.toString();
+            }
+            if (matchData.away_team_runs) {
+              awayTeamRuns = matchData.away_team_runs.toString();
+            }
+            if (matchData.away_team_wickets) {
+              awayTeamWickets = matchData.away_team_wickets.toString();
+            }
+
             teamResult.push(
               {
                 navestock_club_name: matchData.navestock_club_name,
@@ -105,12 +123,12 @@ export class SendResults {
                 toss: matchData.toss,
                 ground_name: matchData.ground_name,
                 home_club_name: matchData.home_club_name,
-                home_team_runs: matchData.home_team_runs.toString(),
-                home_team_wickets: matchData.home_team_wickets.toString(),
+                home_team_runs: homeTeamRuns,
+                home_team_wickets: homeTeamWickets,
                 away_club_name: matchData.away_club_name,
-                away_team_runs: matchData.away_team_runs.toString(),
-                away_team_wickets: matchData.away_team_wickets.toString(),
-                match_url: 'https://navestockcc.org/matchlist/' + matchData.id
+                away_team_runs: awayTeamRuns,
+                away_team_wickets: awayTeamWickets,
+                match_url: 'https://navestockcc.org/matchdetails/' + matchData.id
               }
             )
           })// end for each
