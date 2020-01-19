@@ -38,13 +38,13 @@ export class MatchDataService {
         let tempMonth: number = null;
         let i: number = null;
 
-        return Observable.create( (observer) => { // wrap getMatchlist in a new Observable
+        return Observable.create((observer) => { // wrap getMatchlist in a new Observable
             this.getMatchlist(seasonYear, navTeamId).subscribe({
                 next: resMatch => {
                     const matchesperSeason: matchspermonth[] = [];
                     resMatch.forEach(element => {
                         const md = element.match_date.toDate();
-                        if (tempMonth == md.getMonth() && tempYear == md.getFullYear()) {
+                        if (tempMonth === md.getMonth() && tempYear === md.getFullYear()) {
                             matchesperSeason[i - 1].addMatch(element);
                         } else {
                             tempYear = md.getFullYear();
@@ -95,7 +95,7 @@ export class MatchDataService {
         return matchesCollection.valueChanges();
     }
 
-    //Read data received from getfixturewidgetData_Http and parse into fixturewidgetdata object.
+    // Read data received from getfixturewidgetData_Http and parse into fixturewidgetdata object.
     // NaveStockTeams: {tmName:string; tmId:number;}[]
     getmatchWidgetData(NaveStockTeams: Observable<navestockTeam[]>, nRecordstoreturn: number): { teamName: string, teamId: string, matchList: Observable<match[]> }[] {
         let matchWidgetData: { teamName: string, teamId: string, matchList: Observable<match[]> }[] = [];

@@ -2,14 +2,14 @@ import { Component} from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
 import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
-import {Observable} from "rxjs";
+import {Observable} from 'rxjs';
 
 /**
  * Navestock Modules, Component & Services
  */
-import {CommitteeMember} from '../contact-us-object/committee-member'
-import {ContactUsService} from '../contact-us-service/contact-us-service.service'
-import {UserAuthenticationService} from "../../user-authentication/user-authentication-service/user-authentication.service";
+import {CommitteeMember} from '../contact-us-object/committee-member';
+import {ContactUsService} from '../contact-us-service/contact-us-service.service';
+import {UserAuthenticationService} from '../../user-authentication/user-authentication-service/user-authentication.service';
 
 
 @Component({
@@ -17,34 +17,32 @@ import {UserAuthenticationService} from "../../user-authentication/user-authenti
   templateUrl: './contact-us-admin.component.html',
   styleUrls: ['./contact-us-admin.component.scss']
 })
-export class ContactUsAdminComponent{
+export class ContactUsAdminComponent {
   committeeForm: FormGroup;
   public userAuth: Observable<firebase.User> = null;
 
-  constructor(private iconRegistry: MatIconRegistry, 
-              private sanitizer: DomSanitizer, 
-              private fb: FormBuilder, 
-              private contactUsService:ContactUsService, 
+  constructor(private iconRegistry: MatIconRegistry,
+              private sanitizer: DomSanitizer,
+              private fb: FormBuilder,
+              private contactUsService: ContactUsService,
               private UAS: UserAuthenticationService) {
     this.createForm();
     this.contactUsService.getCommitteeMembers().valueChanges().subscribe(
-      res =>{ 
+      res => {
         this.createForm();
         res.forEach(element => {
         this.addMember(element);
       });
-      
     }
     );
-  
     iconRegistry.addSvgIcon(
       'save',
       sanitizer.bypassSecurityTrustResourceUrl('./app/icons/baseline-save-24px.svg'));
       iconRegistry.addSvgIcon(
         'delete',
-        sanitizer.bypassSecurityTrustResourceUrl('./app/icons/baseline-delete-24px.svg'));      
-  
-        /** 
+        sanitizer.bypassSecurityTrustResourceUrl('./app/icons/baseline-delete-24px.svg'));
+
+        /**
          * Initialise the user authentication service
          * This will be used to check if the user is authenticated before allowing admin functions
         */
@@ -62,7 +60,7 @@ export class ContactUsAdminComponent{
     return this.committeeForm.get('membersArray') as FormArray;
   }
 
-  initMember(m:CommitteeMember):FormGroup{
+  initMember(m: CommitteeMember): FormGroup {
       return this.fb.group({
         'Key': new FormControl(m.Key),
         'Title': new FormControl(m.Title, Validators.required),
@@ -76,21 +74,21 @@ export class ContactUsAdminComponent{
     }
 
 
-  addMember(m?:CommitteeMember) {
-    if(m){
+  addMember(m?: CommitteeMember) {
+    if (m) {
       this.membersArray.push(this.initMember(m));
     } else {
-      let tm:CommitteeMember = new CommitteeMember()
+      const tm: CommitteeMember = new CommitteeMember();
       this.membersArray.push(this.initMember(tm));
     }
   }
 
-  removeMember(indx:number){
+  removeMember(indx: number) {
     this.contactUsService.deleteCommitteeMembers(this.membersArray.at(indx).value);
     this.membersArray.removeAt(indx);
   }
 
-  saveMember(indx:number){
+  saveMember(indx: number) {
     this.contactUsService.saveCommitteeMembers(this.membersArray.at(indx).value);
   }
 }

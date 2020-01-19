@@ -42,7 +42,7 @@ const routes: Routes = [
   { path: 'allgrounds', component: AllGroundsComponent},
   { path: 'scoreboard', component: ScoreboardComponent },
   { path: 'clubregistration',
-    loadChildren: () => import('../club-registration/club-registration.module').then(mod => mod.ClubRegistrationModule) },
+    loadChildren: () => import('../club-registration-module/club-registration.module').then(mod => mod.ClubRegistrationModule) },
   { path: '**', redirectTo: '/home', pathMatch: 'full'}
 ];
 

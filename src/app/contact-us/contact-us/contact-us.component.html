@@ -11,9 +11,9 @@
 				<mat-card-title class="customMembercard">{{member.Name}}</mat-card-title>
 				<mat-card-subtitle>{{member.Title}}</mat-card-subtitle>
 			</mat-card-header>
-			<mat-card-content class="customMembercard">
-				{{member.Tel}}<br>
-				{{member.email}}
+			<mat-card-content *ngIf="member.ContactDetailsPublish" class="customMembercard">
+				<span *ngIf="member.TelPublish">{{member.Tel}}<br></span>
+				<span *ngIf="member.emailPublish">{{member.email}}</span>
 			</mat-card-content>
 		</mat-card>
 
