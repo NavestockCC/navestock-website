@@ -6,6 +6,7 @@ import * as PlaycricketMatchDetailImport from './playcricket-MatchDetailImport';
 import * as PlaycricketMatchListImport from './playcricket-MatchListImport';
 import * as OnImageUploadResize from './image-Resize/image-resize';
 import * as emailSend from './emailResults/index';
+import * as phoneAuth from './navestockSMSAuth/index';
 
 admin.initializeApp(functions.config().firebase);
 
@@ -14,3 +15,4 @@ export const playcricketMatchDetailImport = PlaycricketMatchDetailImport.listene
 export const playcricketMatchListImports = PlaycricketMatchListImport.matchListImports;
 export const resizeimageupload = OnImageUploadResize.generateThumbs;
 export const emailSendResults = emailSend.emailResults;
+export const phoneAuthorisation = phoneAuth.navestockSMSAuth;

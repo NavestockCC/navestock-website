@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 /* Material Design Modules */
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {CdkTableModule} from '@angular/cdk/table'
+import {CdkTableModule} from '@angular/cdk/table';
 
 import {
     MatButtonModule,

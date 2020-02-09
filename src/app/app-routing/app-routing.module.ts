@@ -15,6 +15,7 @@ import {ClubHistoryComponent} from '../club-history/club-history.component';
 import {NavestockPrivacyStatementComponent} from '../navestock-privacy-statement/navestock-privacy-statement.component';
 import {AllGroundsComponent} from '../matches/all-grounds/all-grounds.component';
 import { ScoreboardComponent } from '../scoreboard/scoreboard.component';
+import { PhoneLoginComponent } from '../user-authentication/phone-login/phone-login.component';
 
 /** Navestock Admin Components */
 import {ContactUsAdminComponent} from '../contact-us/contact-us-admin/contact-us-admin.component';
@@ -43,6 +44,7 @@ const routes: Routes = [
   { path: 'scoreboard', component: ScoreboardComponent },
   { path: 'clubregistration',
     loadChildren: () => import('../club-registration/club-registration.module').then(mod => mod.ClubRegistrationModule) },
+  { path: 'phonelogin', component: PhoneLoginComponent },
   { path: '**', redirectTo: '/home', pathMatch: 'full'}
 ];
 

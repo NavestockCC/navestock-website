@@ -1,0 +1,95 @@
+[debug] [2020-02-09T19:51:53.791Z] ----------------------------------------------------------------------
+[debug] [2020-02-09T19:51:53.792Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy --only functions
+[debug] [2020-02-09T19:51:53.792Z] CLI Version:   7.12.1
+[debug] [2020-02-09T19:51:53.792Z] Platform:      darwin
+[debug] [2020-02-09T19:51:53.792Z] Node Version:  v12.13.0
+[debug] [2020-02-09T19:51:53.796Z] Time:          Sun Feb 09 2020 19:51:53 GMT+0000 (Greenwich Mean Time)
+[debug] [2020-02-09T19:51:53.796Z] ----------------------------------------------------------------------
+[debug] [2020-02-09T19:51:53.796Z] 
+[debug] [2020-02-09T19:51:53.802Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-02-09T19:51:53.802Z] > authorizing via signed-in user
+[debug] [2020-02-09T19:51:53.802Z] [iam] checking project navestock-website for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2020-02-09T19:51:53.803Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-02-09T19:51:53.803Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-02-09T19:51:54.178Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-09T19:51:54.193Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/navestock-website:testIamPermissions  
+
+[debug] [2020-02-09T19:51:55.282Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'navestock-website'...
+[info] 
+[info] i  deploying functions
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[info] Running command: npm --prefix "$RESOURCE_DIR" run build
+[info] ✔  functions: Finished running predeploy script.
+[debug] [2020-02-09T19:52:03.857Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "tslint --project tsconfig.json",
+    "build": "tsc",
+    "serve": "npm run build && firebase serve --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "@firebase/firestore-types": "^1.0.2",
+    "@google-cloud/firestore": "^2.5.0",
+    "@google-cloud/storage": "^2.4.3",
+    "@sendgrid/helpers": "^6.4.0",
+    "@sendgrid/mail": "^6.4.0",
+    "@types/node": "^12.11.7",
+    "@types/nodemailer": "^4.6.6",
+    "ajv": "^6.9.2",
+    "child-process-promise": "^2.2.1",
+    "cors": "^2.8.5",
+    "firebase": "^5.8.4",
+    "firebase-admin": "^8.6.1",
+    "firebase-functions": "^3.3.0",
+    "firebase-tools": "^7.6.2",
+    "fs-extra": "^7.0.1",
+    "googleapis": "^39.2.0",
+    "nodemailer": "^5.1.1",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.7",
+    "rxjs": "~6.3.3",
+    "sharp": "^0.23.2"
+  },
+  "devDependencies": {
+    "tslint": "^5.12.0",
+    "typescript": "^3.6.4"
+  },
+  "private": true,
+  "engines": {
+    "node": "8"
+  }
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[debug] [2020-02-09T19:52:03.858Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/navestock-website/services/cloudfunctions.googleapis.com  
+ 
+[debug] [2020-02-09T19:52:03.858Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/navestock-website/services/runtimeconfig.googleapis.com  
+ 
+[debug] [2020-02-09T19:52:04.746Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-09T19:52:04.791Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: all necessary APIs are enabled
+[debug] [2020-02-09T19:52:04.791Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/navestock-website/adminSdkConfig  
+ 
+[debug] [2020-02-09T19:52:05.106Z] <<< HTTP RESPONSE 200
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2020-02-09T19:52:05.108Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/navestock-website/configs  
+ 
+[debug] [2020-02-09T19:52:05.563Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-09T19:52:05.564Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/navestock-website/configs/sendgrid/variables  
+ 
+[debug] [2020-02-09T19:52:05.972Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-09T19:52:05.973Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/navestock-website/configs/sendgrid/variables/apikey  
+ 
+[debug] [2020-02-09T19:52:05.973Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/navestock-website/configs/sendgrid/variables/key  
+ 
+[debug] [2020-02-09T19:52:06.306Z] <<< HTTP RESPONSE 200
+[debug] [2020-02-09T19:52:06.410Z] <<< HTTP RESPONSE 200
+[error] 
+[error] Error: There was an unknown problem while trying to parse function triggers. Please ensure you are using Node.js v6 or greater.
