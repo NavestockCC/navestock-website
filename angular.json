@@ -146,5 +146,8 @@
       }
     }
   },
-  "defaultProject": "navestock-website"
+  "defaultProject": "navestock-website",
+  "cli": {
+    "analytics": "65e90f14-b573-4ea1-a960-474b283a8143"
+  }
 }
