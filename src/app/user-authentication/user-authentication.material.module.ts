@@ -5,11 +5,8 @@ import { CommonModule } from '@angular/common';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {CdkTableModule} from '@angular/cdk/table';
 
-import {
-    MatButtonModule,
-    MatIconModule,
-
-  } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
     declarations: [],
