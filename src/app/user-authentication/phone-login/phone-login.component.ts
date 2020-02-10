@@ -6,6 +6,7 @@ import { WindowService } from '../user-authentication-service/window.service';
 import { PhoneNumber } from './phone-number';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { share } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-phone-login',
@@ -15,7 +16,7 @@ import { share } from 'rxjs/operators';
 export class PhoneLoginComponent implements OnInit {
   windowRef: any;
   emailLogin: string;
-  verificationCode: string;
+  verificationCode: Observable<any>;
   user: any;
 
   constructor(private win: WindowService,
@@ -36,14 +37,16 @@ export class PhoneLoginComponent implements OnInit {
 
     console.log('calling HTTP');
 
-    const url = `https://us-central1-navestock-website.cloudfunctions.net/playcricketMatchDetailImport?mid=` + matchId;
+    const url = `https://us-central1-navestock-website.cloudfunctions.net/playcricketMatchDetailImport
+                ?eml=` + this.emailLogin + `&vc=` +  appVerifier;
+
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       })
     };
 
-    const request = this.http.get(url, httpOptions)
+    this.verificationCode = this.http.get(url, httpOptions)
       .pipe(
         share()
       );

@@ -6,6 +6,8 @@
     <div id="recaptcha-container"></div>
   
     <button (click)="sendLoginCode()">SMS Text Login Code</button>
+    <br>
+    <p>{{ verificationCode | async | json }}</p>
   
     <div *ngIf="windowRef.confirmationResult">
       <hr>
