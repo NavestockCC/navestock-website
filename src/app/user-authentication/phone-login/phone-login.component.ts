@@ -37,7 +37,7 @@ export class PhoneLoginComponent implements OnInit {
 
     console.log('calling HTTP');
 
-    const url = `https://us-central1-navestock-website.cloudfunctions.net/playcricketMatchDetailImport
+    const url = `https://us-central1-navestock-website.cloudfunctions.net/phoneAuthorisation
                 ?eml=` + this.emailLogin + `&vc=` +  appVerifier;
 
     const httpOptions = {
