@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MatSlideToggleChange } from '@angular/material';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 import { MatchDataService } from "../matchdata-service/matchdata.service";
 import { MapsAPILoader } from '@agm/core';

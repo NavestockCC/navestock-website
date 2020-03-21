@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -56,6 +57,10 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
@@ -141,5 +146,8 @@
       }
     }
   },
-  "defaultProject": "navestock-website"
+  "defaultProject": "navestock-website",
+  "cli": {
+    "analytics": "65e90f14-b573-4ea1-a960-474b283a8143"
+  }
 }

@@ -4,8 +4,8 @@ import { CommonModule } from '@angular/common';
 /**
  * Navestock authentication modules
  */
-  import {NavestockUserAuthenticationMaterialModule} from "./user-authentication.material.module";
-  import {UserAuthenticationComponent} from "./user-authentication/user-authentication.component";
+  import {NavestockUserAuthenticationMaterialModule} from './user-authentication.material.module';
+  import {UserAuthenticationComponent} from './user-authentication/user-authentication.component';
 
 @NgModule({
   declarations: [

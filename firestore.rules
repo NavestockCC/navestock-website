@@ -1,3 +1,4 @@
+rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
  
@@ -58,17 +59,27 @@ match /emailSent/{document=**}{
       allow read;
       allow write: if hasAdminWrite();  
 }
+
+//Member Rules
+match /Members/{document=**}{
+      allow read;
+      allow write;
+      }
    
 function getAdminUserData() {
-  return get(/databases/$(database)/documents/AdminUsers/$(request.auth.uid)).data
+  return get(/databases/$(database)/documents/AdminUsers/$(request.auth.uid)).data;
 }
 
 function hasPhotoWrite(){
-	return getAdminUserData().photoUpload == true
+	return getAdminUserData().photoUpload == true;
 }
 
 function hasAdminWrite(){
-	return getAdminUserData().AdminWrite == true
+	return getAdminUserData().AdminWrite == true;
+}
+
+function hasMemberRead(){
+  return getAdminUserData().memberRead == true;
 }
 
   }

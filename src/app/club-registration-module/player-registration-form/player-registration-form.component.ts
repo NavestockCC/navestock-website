@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormArray } from '@angular/forms';
-import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { tap } from 'rxjs/operators';
+import { MatIconRegistry } from '@angular/material/icon';
 
 /**
  * Navestock Services
  */
 import { PlayerRegistrationService } from '../player-registration.service';
 import { MemberObject } from '../player.object';
+
 
 @Component({
   selector: 'app-player-registration-form',

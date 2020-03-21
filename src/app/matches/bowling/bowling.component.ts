@@ -2,7 +2,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 /** Material Imports */
-import {MatPaginator, MatTableDataSource} from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 /** Navestock Objects */
 import {bowling} from '../objects/bowling.object';
