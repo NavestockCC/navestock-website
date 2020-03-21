@@ -16,7 +16,9 @@ import { Observable } from 'rxjs';
 export class PhoneLoginComponent implements OnInit {
   windowRef: any;
   emailLogin: string;
-  verificationCode: Observable<any>;
+  verificationPhoneObservable: Observable<any>;
+  verificationPhone: string = null;
+  verificationCode: string;
   user: any;
 
   constructor(private win: WindowService,
@@ -31,34 +33,42 @@ export class PhoneLoginComponent implements OnInit {
   }
 
 
-  sendLoginCode() {
+  sendLoginPhone() {
     const appVerifier = this.windowRef.recaptchaVerifier;
-    const num = '+447415950733';
-
-    console.log('calling HTTP');
-
-    const url = `https://us-central1-navestock-website.cloudfunctions.net/phoneAuthorisation
-                ?eml=` + this.emailLogin + `&vc=` +  appVerifier;
+    const url = `https://us-central1-navestock-website.cloudfunctions.net/phoneAuthorisation?eml=`
+    + this.emailLogin + `&vc=` +  appVerifier;
 
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       })
     };
-
-    this.verificationCode = this.http.get(url, httpOptions)
+    this.verificationPhoneObservable = this.http.get(url, httpOptions)
       .pipe(
         share()
       );
+  }
+
+  sendLoginCode() {
+
+    const appVerifier = this.windowRef.recaptchaVerifier;
+    this.verificationPhoneObservable.subscribe(
+      resp => {
+        this.verificationPhone = resp.phoneAuth as string;
+        firebase.auth().signInWithPhoneNumber(this.verificationPhone, appVerifier)
+        .then(result => {
+            this.windowRef.confirmationResult = result;
+        })
+        .catch( error => console.log(error) );
+      }
+    );
   }
 
   verifyLoginCode() {
     this.windowRef.confirmationResult
                   .confirm(this.verificationCode)
                   .then( result => {
-
                     this.user = result.user;
-
     })
     .catch( error => console.log(error, 'Incorrect code entered?'));
   }

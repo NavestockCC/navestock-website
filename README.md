@@ -30,7 +30,7 @@ export const environment = {
 
 1. If you have an existing Firebase project you'd like to deploy, cd to the project's root directory and run: `firebase init`
 2. To deploy your site, simply run the following command from your project directory: `firebase deploy --except functions`
-3. Deploying functions `sudo firebase deploy --only functions`
+3. Deploying functions `sudo firebase deploy --only functions` to deply a single function `sudo firebase deploy --only functions:<function name>`
 
 ## GIT
 

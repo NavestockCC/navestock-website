@@ -1,27 +1,34 @@
-<div [hidden]="user">
-    <h1>Sign In with Your Phone Number</h1>
-  
-    <label for="phone">Phone Number</label><br>
-    <input type="text" [(ngModel)]="emailLogin"  class="input" placeholder="email address" >
-    <div id="recaptcha-container"></div>
-  
-    <button (click)="sendLoginCode()">SMS Text Login Code</button>
-    <br>
-    <p>{{ verificationCode | async | json }}</p>
-  
-    <div *ngIf="windowRef.confirmationResult">
-      <hr>
-      <label for="code">Enter your Verification Code Here</label><br>
-      <input type="text" name="code" [(ngModel)]="verificationCode">
-  
-      <button (click)="verifyLoginCode()">Verify</button>
-    </div>
-  
+<h1>Sign In with email address</h1>
+<div id="recaptcha-container"></div>
+<br>
+
+<ng-container *ngIf="verificationPhoneObservable | async then ngifVerifyPhone; else ngifVerifyEmail"></ng-container>
+<ng-template #ngifVerifyEmail>
+  <mat-form-field>
+    <input matInput type="text" [(ngModel)]="emailLogin" class="input" placeholder="email address">
+  </mat-form-field>
+  <button mat-raised-button color="accent" (click)="sendLoginPhone()">Verify eMail</button>
+</ng-template>
+
+<ng-template #ngifVerifyPhone>
+  <div *ngIf="verificationPhoneObservable | async; let phnbr">
+    <button mat-raised-button color="accent" (click)="sendLoginCode()">
+      Click to send SMS Login Code to {{phnbr.phoneAuth}}
+    </button>
   </div>
-  
-  <div *ngIf="user">
-    You have successfully logged in with your phone number!
-  
-    UserId: {{ user?.uid }}
-  
-  </div>
+</ng-template>
+
+
+<div *ngIf="windowRef.confirmationResult">
+  <mat-form-field>
+    <input matInput placeholder="Enter your Verification Code Here" type="text" name="code" [(ngModel)]="verificationCode">
+  </mat-form-field>
+  <button mat-raised-button color="accent" (click)="verifyLoginCode()">Verify</button>
+</div>
+
+<div *ngIf="user">
+  You have successfully logged in with your phone number!
+
+  UserId: {{ user?.uid }}
+
+</div>

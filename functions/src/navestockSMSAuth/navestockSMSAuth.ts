@@ -15,9 +15,14 @@ export class NavestockSMSAuth {
      * @returns phone number(string) associated with the email UID
      */
     public getPhoneforAuth(loginEmail: string){
-
-        this.memberDetails.limit(1)
-        .where('memberAuth.email', '==', loginEmail);
+        try{
+            this.memberDetails.limit(1)
+            .where('memberAuth.email', '==', loginEmail);
+        }
+        catch(err){
+            console.error("getPhoneforAuth: " + err)
+        }
+        
         
        return this.memberDetails.get()
     }
