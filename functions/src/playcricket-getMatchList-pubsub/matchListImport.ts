@@ -1,5 +1,6 @@
-import * as firestore from '@google-cloud/firestore';
+
 import {PlayCricketAPICall} from "./PlayCricketAPICall";
+import admin = require('firebase-admin');
 
 /**
  * Match list import class
@@ -16,7 +17,7 @@ import {PlayCricketAPICall} from "./PlayCricketAPICall";
     
 
     constructor(
-        private afs = new firestore.Firestore(), 
+        private afs = admin.firestore(), 
         private plycrctAPICall = new PlayCricketAPICall()
         ) {}
     /**
@@ -43,10 +44,10 @@ import {PlayCricketAPICall} from "./PlayCricketAPICall";
      * @param matchListData 
      * @returns match list 
      */
-    private updateMatchList(matchListData: any): firestore.WriteBatch {
+    private updateMatchList(matchListData: any): admin.firestore.WriteBatch {
         const matchListBatch = this.afs.batch();
         matchListData.matches.forEach(element => {
-            const dRef:firestore.DocumentReference = this.afs.doc('Fixtures/' + element.id)
+            const dRef:admin.firestore.DocumentReference = this.afs.doc('Fixtures/' + element.id)
             matchListBatch.set(dRef, this.updateDbFields(element), { merge: true });
         });
 
@@ -62,7 +63,7 @@ import {PlayCricketAPICall} from "./PlayCricketAPICall";
      */
 
      //admin.firestore.Timestamp
-    private toDate(dateStr: string, timeStr?: string): firestore.Timestamp{
+    private toDate(dateStr: string, timeStr?: string): admin.firestore.Timestamp{
         const tmpDate: string[] = dateStr.split("/");
         let matchTime: string;
 
@@ -73,7 +74,7 @@ import {PlayCricketAPICall} from "./PlayCricketAPICall";
         }
 
         
-        return firestore.Timestamp.fromDate(
+        return admin.firestore.Timestamp.fromDate(
             new Date(tmpDate[2] + '-' + tmpDate[1] + '-' + tmpDate[0] + 'T' + matchTime + ':00+01:00')
         );
     }
