@@ -18,7 +18,7 @@ export const navestockSMSAuth = functions.https.onRequest(async (req, res) => {
       if (req.query.eml === undefined) {
         res.status(400).send('error: param not found');
       } else {
-        const eMail: string = req.query.eml;
+        const eMail: string = req.query.eml.toString();
 
         navestockSMSAuthFunction.getPhoneforAuth(eMail)
           .then(respSnapshot => {

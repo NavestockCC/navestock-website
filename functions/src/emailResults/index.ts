@@ -2,7 +2,7 @@
 import * as functions from 'firebase-functions';
 import * as SendgridMailService from "@sendgrid/mail";
 
-import {SendResults} from "./SendResults";
+//import {SendResults} from "./SendResults";
 
 
 
@@ -15,12 +15,16 @@ SendgridMailService.setApiKey(SENDGRID_API_KEY);
  * @param url params "mids[]" as a string. example "?mids[]=xxx&mids[]=xxxx"
  */
 export const emailResults = functions.https.onRequest((req, res) => {
-const sendResults = new SendResults();
-const MatchIds:string[] = [];
+//const sendResults = new SendResults();
+// const MatchIds:string[] = [];
+/* TODO Fix req.query.mids not an array problem 
 req.query.mids.forEach(element => {
     MatchIds.push(element);
 });
- 
+*/
+res.send("req.query.mids: " + req.query.mids);
+
+/*
   sendResults.sendGridMailData(MatchIds)
     .then(
       mailDataResp => {
@@ -40,4 +44,5 @@ req.query.mids.forEach(element => {
       err => {
         res.send("Oops somthing went wrong. Error: " + err);
       })
+      */
 });

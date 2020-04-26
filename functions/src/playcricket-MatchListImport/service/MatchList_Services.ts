@@ -1,29 +1,7 @@
 import * as admin from 'firebase-admin'
 
 export class MatchListImport {
-    // private dbFixtureList: admin.firestore.CollectionReference;
 
-    constructor(private afs = admin.firestore()) {
-        // this.dbFixtureList = this.afs.collection('Fixtures');
-    }
-
-    /* Update the match list, season is kept in the Firestore at "FixtureImport/MatchList" */
-    public updateMatchList(matchListData: any) {
-
-        matchListData.matches.forEach(element => {
-            this.afs.doc('Fixtures/' + element.id).set(element, { merge: true })
-                .then(() => {
-                    this.afs.doc('Fixtures/' + element.id).update(this.updateDbFields(element))
-                    .catch(
-                        err => { console.error(err); }
-                    );
-                })
-                .catch(
-                    err => { console.error(err); }
-                );
-        });
-
-    } // class end
 
     /** Takes a string dd/mm/yyy and converts it to an ISO date */
     private toDate(dateStr: string, timeStr?: string): admin.firestore.Timestamp {
@@ -41,7 +19,7 @@ export class MatchListImport {
         );
     }
 
-    private updateDbFields(element: any): object {
+    public updateDbFields(element: any): object {
         // set the oposition and navestock team info
         let navestock_club_id: string = ""
         let navestock_club_name: string = ""
