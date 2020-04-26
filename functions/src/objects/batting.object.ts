@@ -50,7 +50,11 @@ export class batting{
         
         if(batsman_id === null || batsman_id === ""){
             this.batsman_id = uuId.generateUUID();
-            this.batsman_name = 'Batsman Unidentified'
+            if(batsman_name === null || batsman_name === ""){
+                this.batsman_name = 'Batsman Unidentified'
+            } else {
+                this.batsman_name = batsman_name;
+            }
         } else{
             this.batsman_id = batsman_id.toString();
             this.batsman_name = batsman_name;

@@ -35,7 +35,11 @@ export class bowling{
         
         if(bowler_id === null || bowler_id === ""){
             this.bowler_id = uuId.generateUUID();
-            this.bowler_name = 'Bowler Unidentified';
+            if (bowler_name === null || bowler_name === "") {
+                this.bowler_name = 'Bowler Unidentified';
+            } else {
+                this.bowler_name = bowler_name ;
+            }
         }else{
             this.bowler_id = bowler_id;
             this.bowler_name = bowler_name ;
