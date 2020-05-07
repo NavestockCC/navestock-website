@@ -25,15 +25,15 @@ export const getPlayCricketMatchDetailsPubSub = functions.pubsub
     .topic('Match_Detail_Import')
     .onPublish(msgPayload => {
         if (msgPayload.json.mid === undefined) {
-            console.error('E_getPCMD_1: mid param not found');
+            console.error(new Error('E_getPCMD_1: mid param not found'));
             return 'getPlayCricketMatchDetailsPubSub: excution ERROR!!!';
         } else {
             const callplayCricketApi = MatchDetailAPICall.playCricketApiCall(msgPayload.json.mid);
             const pubSubClient = new PubSub(credentialsData);
             const pubsubTopic = pubSubClient.topic('PlayCricket_Match_Details_Data', {
                 batching: {
-                  maxMessages: 500,
-                  maxMilliseconds: 5000,
+                  maxMessages: 1000,
+                  maxMilliseconds: 10000,
                 }
               });
 
@@ -46,7 +46,7 @@ export const getPlayCricketMatchDetailsPubSub = functions.pubsub
                                 console.log(`PubSub Message ${pubSubPublisgResponse} published to topic PlayCricket_Match_Details_Data.`);
                             })
                         .catch(
-                            err => console.error('E_getPCMD_2: PubSub Message Publish: ' + err)
+                            err => console.error(new Error('E_getPCMD_2: PubSub Message Publish for MarchID: ' + msgPayload.json.mid + ' ** ' + err))
                         );
                 }
             )

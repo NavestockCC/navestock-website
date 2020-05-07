@@ -1,5 +1,5 @@
 
-export class batting{
+export class batting {
     position: number;
     batsman_name: string;
     batsman_id: string;
@@ -14,8 +14,8 @@ export class batting{
     balls: number;
 
 
-    constructor(){}   
-    
+    constructor() {}
+
     setbatting(
         position: string,
         batsman_name: string,
@@ -29,7 +29,7 @@ export class batting{
         fours: string,
         sixes: string,
         balls: string,
-    ){
+    ) {
         this.position = +position;
         this.batsman_name = batsman_name;
         this.batsman_id = batsman_id;
@@ -40,7 +40,7 @@ export class batting{
         this.bowler_id = bowler_id;
         this.runs = +runs;
         this.fours = +fours;
-        this.sixes =+sixes;
-        this.balls = +balls; 
+        this.sixes = +sixes;
+        this.balls = +balls;
     }
 }

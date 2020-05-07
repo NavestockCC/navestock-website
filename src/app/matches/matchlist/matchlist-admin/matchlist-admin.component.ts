@@ -15,7 +15,7 @@ import { UserAuthenticationService } from '../../../user-authentication/user-aut
 
 /* Navestock Objects */
 import { match } from '../../objects/match.object';
-import { matchspermonth } from '../../matchpermonth.object';
+import { MatchsPerMonth } from '../../matchpermonth.object';
 
 
 @Component({
@@ -23,9 +23,10 @@ import { matchspermonth } from '../../matchpermonth.object';
     templateUrl: './matchlist-admin.component.html',
     styleUrls: ['../matchlist.component.scss']
 })
+
 export class MatchListComponentAdmin implements OnInit {
     public matchList: Observable<match[]>;
-    public matchListSeason: Observable<matchspermonth[]>;
+    public matchListSeason: Observable<MatchsPerMonth[]>;
     public seasonList: Observable<number[]>;
     public tID: string = null;
     public importSeason: number[] = [];

@@ -22,19 +22,18 @@ export class ContactUsService {
     return this.afs.collection<CommitteeMember>('NavestockCommitee', ref => ref.where('Publish', '==', true).where('MemberType', '==', 'Captains').orderBy('SortPosition', 'asc'));
   }
 
-  saveCommitteeMembers(CM: CommitteeMember):void {
+  saveCommitteeMembers(CM: CommitteeMember): void {
     if (CM.Key) {
-      this.afs.doc<CommitteeMember>('NavestockCommitee/' + CM.Key).update(CM)
-    } 
-    else {
+      this.afs.doc<CommitteeMember>('NavestockCommitee/' + CM.Key).update(CM);
+    } else {
       this.afs.collection('NavestockCommitee').add(CM).then(ref => {
-        this.afs.doc<CommitteeMember>(ref.path).update({ 'Key': ref.id })
-      })
+        this.afs.doc<CommitteeMember>(ref.path).update({ 'Key': ref.id });
+      });
     }
   }
 
-  deleteCommitteeMembers(CM:CommitteeMember):void{
-    if(CM.Key){
+  deleteCommitteeMembers(CM: CommitteeMember): void {
+    if (CM.Key) {
       this.afs.doc<CommitteeMember>('NavestockCommitee/' + CM.Key).delete();
     }
   }

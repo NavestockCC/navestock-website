@@ -65,6 +65,12 @@ match /Members/{document=**}{
       allow read;
       allow write;
       }
+
+// HonoursBoard
+match /HonoursBoard/{document=**}{
+      allow read;
+      allow write: if hasAdminWrite();  
+}      
    
 function getAdminUserData() {
   return get(/databases/$(database)/documents/AdminUsers/$(request.auth.uid)).data;

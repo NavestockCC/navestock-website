@@ -41,13 +41,31 @@
 	border-radius: 10px;
 }
 
-.NIG_img{
-	width: 45%;
-}
+ #wrapper {
+	height:100px;
+	width: 50px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+ }
+ #wrapper td {
+	vertical-align: middle;
+	text-align: center;
+ }
+ 
 .BlackBull_img{
-	width: 30%;
+		width: auto;
+		height: 80px;
 }
 
+.EssexDemCo_img{
+	width: auto;
+	height: 50px;
+}
+.AGS_img{
+	width: 50px;
+	height: auto;
+}
 .event_table{
 	width: 100%;
 	margin-bottom: 30px;

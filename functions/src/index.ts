@@ -13,7 +13,7 @@ import * as AddMessagePubSub from './add-message-pubsub';
 
 //PlayCricket Match List Import Functions
 import * as GetPlayCricketMatchListPubSub from './playcricket-MatchListImport/pubsub/getPlayCricketMatchList';
-import * as MatchListLogger from './playcricket-MatchListImport/pubsub/MatchListLogger';
+// import * as MatchListLogger from './playcricket-MatchListImport/pubsub/MatchListLogger';
 import * as MatchListImport from './playcricket-MatchListImport/pubsub/MatchListImport';
 
 //PlayCricket MatchDetails Import Functions
@@ -21,7 +21,7 @@ import * as PlaycricketMatchDetailImport from './playcricket-MatchDetailImport/h
 import * as GetPlayCricketMatchDetailsPubSub from './playcricket-MatchDetailImport/pubsub/getPlayCricketMatchDetails';
 import * as MatchDetailImport from './playcricket-MatchDetailImport/pubsub/MatchDetailsImport';
 import * as MatchDetailImportInnings from './playcricket-MatchDetailImport/pubsub/MatchDetailsImportInnings';
-import * as MatchDetailLogger from './playcricket-MatchDetailImport/pubsub/MatchDetailsLogger';
+// import * as MatchDetailLogger from './playcricket-MatchDetailImport/pubsub/MatchDetailsLogger';
 
 //Player Stats Functions
 import * as PlayerStatsImport from './navestock-PlayerStats/navestock_PlayerStats';
@@ -54,7 +54,7 @@ export const addMessagePubSub = AddMessagePubSub.helloNavestock;
 
 //PlayCricket MatchList Import Functions
 export const getPlayCricketMatchListPubSub = GetPlayCricketMatchListPubSub.getPlayCricketMatchListPubSub;
-export const matchListLogger = MatchListLogger.matchListLogger;
+// export const matchListLogger = MatchListLogger.matchListLogger;
 export const matchListImport = MatchListImport.matchListImport;
 
 //PlayCricket MatchDetails Import Functions
@@ -62,7 +62,7 @@ export const playcricketMatchDetailImport = PlaycricketMatchDetailImport.listene
 export const  getPlayCricketMatchDetailsPubSub = GetPlayCricketMatchDetailsPubSub.getPlayCricketMatchDetailsPubSub; // Pull data from playcricket API
 export const  matchDetailImport = MatchDetailImport.matchDetailImport; // Write Matchdetails to DB
 export const  matchDetailImportInnings = MatchDetailImportInnings.matchDetailImportInnings; // Write Match Innings to DB
-export const  matchDetailLogger = MatchDetailLogger.matchDetailLogger; // Log data to conole pulled from PlayCricket Match Details API
+// export const  matchDetailLogger = MatchDetailLogger.matchDetailLogger; // Log data to conole pulled from PlayCricket Match Details API
 
 //Player Stats Functions
 export const playerStatsImport = PlayerStatsImport.playerStatsImport;

@@ -1,7 +1,7 @@
 import { Timestamp } from '@firebase/firestore-types';
 
-export class match{
-    id:string;
+export class match {
+    id: string;
     status: string;
     published: string;
     last_updated: Timestamp;
@@ -25,7 +25,7 @@ export class match{
     home_club_id: string;
     home_team_isNavestock: boolean;
     home_team_runs: number;
-    home_team_wickets:number;
+    home_team_wickets: number;
     navestock_club_name: string;
     navestock_team_name: string;
     navestock_team_id: string;
@@ -33,26 +33,26 @@ export class match{
     opposition_club_name: string;
     opposition_team_name: string;
     opposition_team_id: string;
-    opposition_club_id: string;    
+    opposition_club_id: string;
     away_club_name: string;
     away_team_name: string;
     away_team_id: string;
     away_club_id: string;
     away_team_runs: number;
-    away_team_wickets:number;
+    away_team_wickets: number;
     toss_won_by_team_id: string;
     toss: string;
     batted_first: string;
     no_of_overs: string;
-    result_Updated:boolean;
+    result_Updated: boolean;
     result_description: string;
     result_applied_to: string;
     match_notes: string;
 
-    constructor(){}
+    constructor() {}
 
     public setMatch(
-            id:number,
+            id: number,
             status: string,
             published: string,
             last_updated: string,
@@ -78,11 +78,11 @@ export class match{
             away_team_name: string,
             away_team_id: string,
             away_club_id: string
-    ){
-        //check to see if Navestock is the home club
+    ) {
+        // check to see if Navestock is the home club
         this.home_team_isNavestock = this.isNavestockHomeTeam(home_club_id);
         // set the oposition and navestock team info
-        if(this.home_team_isNavestock === true){
+        if (this.home_team_isNavestock === true) {
             this.navestock_club_id = home_club_id;
             this.navestock_club_name = home_club_name;
             this.navestock_team_id = home_team_id;
@@ -101,10 +101,10 @@ export class match{
             this.opposition_club_id = home_club_id;
             this.opposition_club_name = home_club_name;
             this.opposition_team_id = home_team_id;
-            this.opposition_team_name = home_team_name;            
+            this.opposition_team_name = home_team_name;
         }
 
-        
+
         this.id = id.toString(),
         this.status = status,
         this.published = published,
@@ -130,11 +130,11 @@ export class match{
         this.away_club_name = away_club_name,
         this.away_team_name = away_team_name,
         this.away_team_id = away_team_id,
-        this.away_club_id = away_club_id
+        this.away_club_id = away_club_id;
     }
 
     public setMatchResult(
-        id:number,
+        id: number,
         status: string,
         published: string,
         last_updated: string,
@@ -160,15 +160,15 @@ export class match{
         toss: string,
         batted_first: string,
         no_of_overs: string,
-        result_Updated:boolean,
+        result_Updated: boolean,
         result_description: string,
         result_applied_to: string,
         match_notes: string
-){
-    //check to see if Navestock is the home club
+) {
+    // check to see if Navestock is the home club
     this.home_team_isNavestock = this.isNavestockHomeTeam(home_club_id);
     // set the oposition and navestock team info
-    if(this.home_team_isNavestock === true){
+    if (this.home_team_isNavestock === true) {
         this.navestock_club_id = home_club_id;
         this.navestock_club_name = home_club_name;
         this.navestock_team_id = home_team_id;
@@ -187,10 +187,10 @@ export class match{
         this.opposition_club_id = home_club_id;
         this.opposition_club_name = home_club_name;
         this.opposition_team_id = home_team_id;
-        this.opposition_team_name = home_team_name;            
+        this.opposition_team_name = home_team_name;
     }
 
-    
+
     this.id = id.toString();
     this.status = status;
     this.published = published;
@@ -226,23 +226,23 @@ export class match{
     /*
         Takes a string dd/mm/yyy and converts it to an ISO date
     */
-    private  toDate(dateStr:string, timeStr?:string):Timestamp {
-        let tmpDate:string[] = dateStr.split("/");
-        if(timeStr==null || timeStr ==''){
-            timeStr = '12:00'
+    private  toDate(dateStr: string, timeStr?: string): Timestamp {
+        const tmpDate: string[] = dateStr.split('/');
+        if (timeStr == null || timeStr === '') {
+            timeStr = '12:00';
         }
-        const ND:number = new Date(tmpDate[2] + '-' + tmpDate[1]  + '-' + tmpDate[0] + 'T' + timeStr + ':00+01:00').getUTCSeconds(); 
-        return new Timestamp(ND,0)
+        const ND: number = new Date(tmpDate[2] + '-' + tmpDate[1]  + '-' + tmpDate[0] + 'T' + timeStr + ':00+01:00').getUTCSeconds();
+        return new Timestamp(ND, 0);
     }
 
     /*
         Evaluates the 'home_club_id' to see if it equal to 4513 Which is the Navestock Playcrick club id.
     */
-    private isNavestockHomeTeam(home_club_id:string):boolean{
-        let returnVal:boolean = null;
-        if(home_club_id === '4513'){
+    private isNavestockHomeTeam(home_club_id: string): boolean {
+        let returnVal: boolean = null;
+        if (home_club_id === '4513') {
             returnVal = true;
-        } else{
+        } else {
             returnVal = false;
         }
         return returnVal;

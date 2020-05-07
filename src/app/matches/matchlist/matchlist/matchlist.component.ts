@@ -9,7 +9,7 @@ import {MatchDataService} from '../../matchdata-service/matchdata.service'
 /* Navestock Objects */
 
 import {match} from '../../objects/match.object';
-import {matchspermonth} from '../../matchpermonth.object'
+import {MatchsPerMonth} from '../../matchpermonth.object'
 
 @Component({
     selector: 'match-list',
@@ -18,7 +18,7 @@ import {matchspermonth} from '../../matchpermonth.object'
 })
 export class MatchListComponent implements OnInit {
     public matchList: Observable<match[]>;
-    public matchListSeason: Observable<matchspermonth[]>;
+    public matchListSeason: Observable<MatchsPerMonth[]>;
     public seasonList: Observable<number[]>;
     public tID: string = null;
 
@@ -27,8 +27,6 @@ export class MatchListComponent implements OnInit {
             private matchdataService: MatchDataService,
             private route: ActivatedRoute,
                 ) { }
-
-               
 
     ngOnInit(): void {
         this.route.params.subscribe(params => {

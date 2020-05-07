@@ -42,6 +42,7 @@ import { UserAuthenticationModule } from '../user-authentication/user-authentica
 import { NavestockPrivacyStatementComponent } from '../navestock-privacy-statement/navestock-privacy-statement.component';
 import { ScoreboardModule } from '../scoreboard/scoreboard.module';
 import { PhoneLoginComponent } from '../user-authentication/phone-login/phone-login.component';
+import { HonoursboardComponent } from '../honoursboard/honoursboard.component';
 
 /*Service Imports */
 
@@ -58,7 +59,8 @@ import { PhoneLoginComponent } from '../user-authentication/phone-login/phone-lo
     PlayersWanted,
     ClubHistoryComponent,
     NavestockPrivacyStatementComponent,
-    PhoneLoginComponent
+    PhoneLoginComponent,
+    HonoursboardComponent
   ],
   imports: [
     BrowserModule,

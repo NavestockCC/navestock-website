@@ -10,6 +10,7 @@
       <span *ngFor="let t of menuTeams | async">
         <a [routerLink]="['/matchlist', t.team_id]">{{t.team_name}}</a>
       </span>
+      <span><a [routerLink]="['/honoursboard']">Honours Board</a></span>
       <span><a [routerLink]="['/contactus']">Contact Us</a></span>
       <span><a [routerLink]="['/findus']">Find Us</a></span>
       <span><user-authentication></user-authentication></span>
@@ -29,6 +30,7 @@
         <li><a [routerLink]="['/clubhistory']">Club History</a></li>
         <li><a [routerLink]="['/homecomponent250']">250th Anniversary</a></li>
         <li *ngFor="let t of menuTeams | async"><a [routerLink]="['/matchlist', t.team_id]">{{t.team_name}}</a></li>
+        <li><a [routerLink]="['/honoursboard']">Honours Board</a></li>
         <li><a [routerLink]="['/contactus']">Contact Us</a></li>
         <li><a [routerLink]="['/findus']">Find Us</a></li>
         <li><user-authentication></user-authentication></li>

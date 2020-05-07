@@ -14,12 +14,12 @@ import {navestockTeam} from '../objects/navestock-teams.objects';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss']
 })
-export class AppMenu implements OnInit{
+export class AppMenu implements OnInit {
   @Input() menuStyle: string;
 
-  public menuTeams:Observable<navestockTeam[]>;
-  public showHorizontalMenu:boolean = false;
-  public showPopupMenu:boolean = false;
+  public menuTeams: Observable<navestockTeam[]>;
+  public showHorizontalMenu = false;
+  public showPopupMenu = false;
 
 constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private NavDataSrv: FixtureFirebaseDBServices) {
     iconRegistry.addSvgIcon(
@@ -29,27 +29,27 @@ constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private NavD
 
   ngOnInit(): void {
     this.menuTeams = this.NavDataSrv.getNavestockTeams(true, false);
-    
+
     /*  Select the type of menu to display */
-    switch(this.menuStyle){
-      case 'popup':{
+    switch (this.menuStyle) {
+      case 'popup': {
         this.showPopupMenu = true;
         break;
       }
-      case 'horizontal':{
+      case 'horizontal': {
         this.showHorizontalMenu = true;
         break;
       }
-      case 'dynamic':{
+      case 'dynamic': {
         this.showPopupMenu = true;
         this.showHorizontalMenu = true;
         break;
       }
-      default:{
+      default: {
         this.showPopupMenu = true;
         this.showHorizontalMenu = true;
         break;
-      }       
+      }
     }
   }
 

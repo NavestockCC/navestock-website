@@ -3,7 +3,7 @@ import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection 
 import { Observable, of, from } from 'rxjs';
 
 import { match } from '../objects/match.object';
-import { matchspermonth } from '../matchpermonth.object';
+import { MatchsPerMonth } from '../matchpermonth.object';
 import { innings } from '../objects/innings.object';
 import { batting } from '../objects/batting.object';
 import { bowling } from '../objects/bowling.object';
@@ -21,7 +21,6 @@ export class MatchDataService {
     private battingCollection: AngularFirestoreCollection<batting>;
     private bowlingCollection: AngularFirestoreCollection<bowling>;
     public matchesObservable: Observable<match[]>;
-    // public matchesperSeason: matchspermonth[];
 
 
     constructor(private afs: AngularFirestore) {
@@ -33,7 +32,7 @@ export class MatchDataService {
         return this.matchesCollection.valueChanges();
     }
 
-    public getMatchlistPerMonth(seasonYear: number, navTeamId: string): Observable<matchspermonth[]> {
+    public getMatchlistPerMonth(seasonYear: number, navTeamId: string): Observable<MatchsPerMonth[]> {
         let tempYear: number = null;
         let tempMonth: number = null;
         let i: number = null;
@@ -41,7 +40,7 @@ export class MatchDataService {
         return Observable.create((observer) => { // wrap getMatchlist in a new Observable
             this.getMatchlist(seasonYear, navTeamId).subscribe({
                 next: resMatch => {
-                    const matchesperSeason: matchspermonth[] = [];
+                    const matchesperSeason: MatchsPerMonth[] = [];
                     resMatch.forEach(element => {
                         const md = element.match_date.toDate();
                         if (tempMonth === md.getMonth() && tempYear === md.getFullYear()) {
@@ -49,7 +48,7 @@ export class MatchDataService {
                         } else {
                             tempYear = md.getFullYear();
                             tempMonth = md.getMonth();
-                            matchesperSeason.push(new matchspermonth(element));
+                            matchesperSeason.push(new MatchsPerMonth(element));
                             i = matchesperSeason.length;
                         } // end if
                         observer.next(matchesperSeason); // Emit value to observer
@@ -91,17 +90,25 @@ export class MatchDataService {
     // Get fixture widget data from navestock webservice
     private getMatchWidgetData_FB(teamId: string, nRecordstoreturn: number): Observable<match[]> {
         let matchesCollection: AngularFirestoreCollection<match>;
-        matchesCollection = this.afs.collection('Fixtures', ref => (ref.where('navestock_team_id', '==', teamId).where('match_date', ">=", new Date())).orderBy('match_date', 'asc').limit(nRecordstoreturn));
+        matchesCollection = this.afs.collection('Fixtures', ref => (
+                                                            ref.where('navestock_team_id', '==', teamId)
+                                                            .where('match_date', '>=', new Date()))
+                                                            .orderBy('match_date', 'asc')
+                                                            .limit(nRecordstoreturn)
+                                                            );
         return matchesCollection.valueChanges();
     }
 
     // Read data received from getfixturewidgetData_Http and parse into fixturewidgetdata object.
     // NaveStockTeams: {tmName:string; tmId:number;}[]
     getmatchWidgetData(NaveStockTeams: Observable<navestockTeam[]>, nRecordstoreturn: number): { teamName: string, teamId: string, matchList: Observable<match[]> }[] {
-        let matchWidgetData: { teamName: string, teamId: string, matchList: Observable<match[]> }[] = [];
+        const matchWidgetData: { teamName: string, teamId: string, matchList: Observable<match[]> }[] = [];
         NaveStockTeams.subscribe(res => {
             res.forEach(tm => {
-                matchWidgetData.push({ teamName: tm.team_name, teamId: tm.team_id, matchList: this.getMatchWidgetData_FB(tm.team_id, nRecordstoreturn) });
+                matchWidgetData.push({
+                                teamName: tm.team_name, teamId: tm.team_id,
+                                matchList: this.getMatchWidgetData_FB(tm.team_id, nRecordstoreturn) 
+                                });
             });
         });
         return matchWidgetData;
@@ -124,7 +131,10 @@ public updateLatLng(matchId: string, Lat: string, Lng: string ) {
  * @param seasonYear The season for which the matches must be returned
 */
 public allMatchAddresses(seasonYear: number): Observable<match[]> {
-    const matchesCollection = this.afs.collection<match>('Fixtures', ref => ref.where('season', '==', seasonYear).where('away_club_id', '==', '4513'));
+    const matchesCollection = this.afs.collection<match>('Fixtures', ref =>
+                                                                     ref.where('season', '==', seasonYear)
+                                                                     .where('away_club_id', '==', '4513')
+                                                                     );
     return matchesCollection.valueChanges();
 }
 
