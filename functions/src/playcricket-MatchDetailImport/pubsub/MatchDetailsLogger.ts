@@ -14,7 +14,7 @@ export const matchDetailLogger = functions.pubsub
 .topic('PlayCricket_Match_Details_Data')
 .onPublish( msgPayload => {
     if (msgPayload.json.match_details === undefined) {
-        console.error('Match Details not found');
+        console.error(new Error('E_matchDetailLogger_0: Match Details not found'));
         return 'matchDetailLogger: execution ERROR!!!';
       } else {
         console.log(JSON.stringify(msgPayload.json.match_details));

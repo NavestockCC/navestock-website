@@ -26,7 +26,7 @@ export const matchListImport = functions.pubsub
 .topic('PlayCricket_Match_List_Data')
 .onPublish( msgPayload => {
     if (msgPayload.json.matches === undefined) {
-        console.error('E_MatchListImport_1: Match List not found');
+        console.error(new Error('E_MatchListImport_1: Match List not found'));
         return 'matchDetailLogger: execution ERROR!!!';
       } else {
         // Crearte an instanse of Firestore
@@ -49,7 +49,7 @@ export const matchListImport = functions.pubsub
         // Parse the Paylaod array to extract data and create Match batch and Publish PubSub Payload {"mid": matchId} to Topic: Match_Detail_Import
         msgPayload.json.matches.forEach(matchReturned => {
             if(matchReturned.id === undefined){
-                console.error('E_MatchListImport_4: mid not found not found')
+                console.error(new Error('E_MatchListImport_4: mid not found not found'));
                 }
             else {
                 matchListBatch.set(afs.doc('Fixtures/' + matchReturned.id), Object.assign({}, MatchListImportServices.updateDbFields(matchReturned)), { merge: true });
@@ -67,7 +67,7 @@ export const matchListImport = functions.pubsub
                     };
             })
         .catch( err => {
-                console.error('E_MatchListImport_3: ' + err);
+                console.error(new Error('E_MatchListImport_3: ' + err));
             });
     
         //Parse response from PubSub.Publish to Topic: Match_Detail_Import
@@ -80,7 +80,7 @@ export const matchListImport = functions.pubsub
                         })
                     })
                     .catch(
-                    err => console.error('E_MatchListImport_2: PubSub Message Publish: ' + err)
+                    err => console.error(new Error('E_MatchListImport_2: PubSub Message Publish: ' + err))
                 );
         //Terminate function
         return 'matchDetailLogger: execution completed sucessfully';

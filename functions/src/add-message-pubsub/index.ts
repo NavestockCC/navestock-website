@@ -7,6 +7,6 @@ export const helloNavestock = functions.pubsub
             const msg = msgPayload.json.message;
             console.log('Message for Navestock: ' + msg);
         } catch (error) {
-            console.error(error);
+            console.error(new Error('E_helloNavestock: ' + error));
         }
     });

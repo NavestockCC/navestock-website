@@ -44,13 +44,14 @@ export const matchListImports = functions.https.onRequest(async (req, res) => {
                         })
                     .catch(
                         err => {
-                          console.error('E_httpMatchDetailImport_1: PubSub Message Publish: ' + err)
-                          res.status(400).send('error: Could not import PlayCricket Match')
+                          console.error(new Error('E_httpMatchDetailImport_1: PubSub Message Publish: ' + err));
+                          res.status(400).send('error: Could not import PlayCricket Match');
                         }
                     );
             }
         }
         catch (err) {
+            console.error(new Error('E_httpMatchDetailImport_2: PubSub Message Publish: ' + err));
             res.send({"error" : err });
         }
     })

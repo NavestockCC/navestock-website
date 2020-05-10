@@ -21,7 +21,7 @@ export const matchDetailImportInnings = functions.pubsub
     .onPublish(async msgPayload => {
         // Validate if the payload has delivered the match details
         if (msgPayload.json.match_details === undefined) {
-            console.error('E_MatchInnings_1: Match Details not found');
+            console.error(new Error('E_MatchInnings_1: Match Details not found'));
             return 'matchDetailImportInnings: execution ERROR!!!';
 
         } else {
@@ -60,7 +60,7 @@ export const matchDetailImportInnings = functions.pubsub
                                 })
                         })
                 } catch (error) {
-                    console.error('E_MatchInnings_2: Error when deleting innings data: ' + error);
+                    console.error(new Error('E_MatchInnings_2: Error when deleting innings data: ' + error));
                 }
 
 
@@ -91,7 +91,7 @@ export const matchDetailImportInnings = functions.pubsub
                             inningBatch.set(dRefBatting, Object.assign({}, battingData));
                         }
                         catch{
-                            (e: any) => console.error('E_MatchInnings_3: ' + e)
+                            (e: any) => console.error(new Error('E_MatchInnings_3: ' + e));
                         }
 
                     });
@@ -104,7 +104,7 @@ export const matchDetailImportInnings = functions.pubsub
                             inningBatch.set(dRefBowling, Object.assign({}, bowlingData));
                         }
                         catch{
-                            (e: any) => console.error('E_MatchInnings_4: ' + e)
+                            (e: any) => console.error(new Error('E_MatchInnings_4: ' + e));
                         }
 
                     });
@@ -118,7 +118,7 @@ export const matchDetailImportInnings = functions.pubsub
                 }
             ).catch(
                 err => {
-                    console.error('E_MatchInnings_5: ' + err);
+                    console.error(new Error('E_MatchInnings_5: ' + err));
                 }
             );
             return 'matchDetailImportInnings: completed sucessfully';

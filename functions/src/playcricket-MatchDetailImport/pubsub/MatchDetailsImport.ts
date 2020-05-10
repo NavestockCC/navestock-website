@@ -16,7 +16,7 @@ export const matchDetailImport = functions.pubsub
 .onPublish( msgPayload => {
     // Validate if the payload has delivered the match details
     if (msgPayload.json.match_details === undefined) {
-        console.error('Match Details not found');
+        console.error(new Error('E_matchDetailImport_0: Match Details not found'));
         return 'matchDetailImport: execution ERROR!!!';
       } else {
 
@@ -75,7 +75,7 @@ export const matchDetailImport = functions.pubsub
             }
         ).catch(
             err => {
-                console.error('E_MatchDetail_1: ' + err);
+                console.error(new Error('E_MatchDetail_1: ' + err));
             }
         );
 

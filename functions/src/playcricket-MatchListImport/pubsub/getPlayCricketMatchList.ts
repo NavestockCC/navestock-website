@@ -25,7 +25,7 @@ export const getPlayCricketMatchListPubSub = functions.pubsub
     .topic('Match_List_Import')
     .onPublish(msgPayload => {
         if (msgPayload.json.season === undefined) {
-            console.error('E_getPCML_1: season param not found');
+            console.error(new Error('E_getPCML_1: season param not found'));
             return 'getPlayCricketMatchListPubSub: excution ERROR!!!';
         } else {
             const callplayCricketApi = MatchListAPICall.playCricketApiCall(msgPayload.json.season)
@@ -46,7 +46,7 @@ export const getPlayCricketMatchListPubSub = functions.pubsub
                                 console.log(`PubSub Message ${pubSubPublisgResponse} published to topic PlayCricket_Match_List_Data.`);
                             })
                         .catch(
-                            err => console.error('E_getPCML_2: PubSub Message Publish: ' + err)
+                            err => console.error(new Error('E_getPCML_2: PubSub Message Publish: ' + err))
                         );
                 }
             )

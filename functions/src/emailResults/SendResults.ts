@@ -62,7 +62,7 @@ export class SendResults {
           })
         })
         .catch(err => {
-            console.error('ERROR: ' + err);
+            console.error(new Error('E_toAddressList_1: ' + err));
             return [{ email: 'lefras.coetzee@gmail.com', name: 'Lefras Coetzee'}]
             }
         )
@@ -138,7 +138,7 @@ export class SendResults {
         } //response
       )//end allmatchDataPromise.then
         .catch(err => {
-          console.error(err)
+          console.error(new Error('E_emailDynamicTemplateData: ' + err))
         });
 
     return dynamicTemplateData;

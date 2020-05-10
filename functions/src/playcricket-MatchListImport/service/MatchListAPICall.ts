@@ -34,7 +34,7 @@ export class PlayCricketMatchListAPICall {
                             `Expected application/json but received ${contentType}`);
                     }
                     if (error) {
-                        console.error(error.message);
+                        console.error(new Error('E_playCricketApiCall_0: ' + error.message));
                         // Consume response data to free up memory
                         res.resume();
                     }
@@ -47,12 +47,12 @@ export class PlayCricketMatchListAPICall {
                             observer.next(rawData);
                             observer.complete();
                         } catch (e) {
-                            console.error('E_http_3: ${e.message}');
+                            console.error(new  Error('E_playCricketApiCall_3: ' + e.message));
                         }
                     });
                 }).on('error', (e) => {
                     observer.error(e.message)
-                    console.error(`E_http_4: Got error: ${e.message}`);
+                    console.error(new Error('E_playCricketApiCall_4: Got error: ' + e.message));
                 });
             }
         )

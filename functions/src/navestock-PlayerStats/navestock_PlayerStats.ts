@@ -23,7 +23,7 @@ export const playerStatsImport = functions.pubsub
     .onPublish(msgPayload => {
 
         if (msgPayload.json.match_details === undefined) {
-            console.error('Match Details not found');
+            console.error(new Error('E_playerStatsImportMatch_0: Details not found'));
             return 'playerStatsImport: execution ERROR!!!';
         } else {
             const afs = admin.firestore();
@@ -78,7 +78,7 @@ export const playerStatsImport = functions.pubsub
 
                                 }
                                 catch{
-                                    (e: any) => console.error('E_playerStatsImport_1: ' + e)
+                                    (e: any) => console.error(new Error('E_playerStatsImport_1: ' + e));
                                 }
 
                             });
@@ -116,7 +116,7 @@ export const playerStatsImport = functions.pubsub
                                     }
                                 }
                                 catch{
-                                    (e: any) => console.error('E_playerStatsImport_2 ' + e)
+                                    (e: any) => console.error(new Error('E_playerStatsImport_2 ' + e));
                                 }
 
                             })
@@ -134,7 +134,7 @@ export const playerStatsImport = functions.pubsub
                 }
             ).catch(
                 err => {
-                    console.error('E_playerStatsImport_4: ' + err);
+                    console.error(new Error('E_playerStatsImport_4: ' + err));
                 }
             );
 

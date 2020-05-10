@@ -20,7 +20,7 @@ export class NavestockSMSAuth {
             .where('memberAuth.email', '==', loginEmail);
         }
         catch(err){
-            console.error("getPhoneforAuth: " + err)
+            console.error(new Error(`E_getPhoneforAuth_1: ${err}`));
         }
         
         

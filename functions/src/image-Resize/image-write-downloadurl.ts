@@ -24,7 +24,7 @@ export class ImgWriteDownloadUrl {
                 },
                 onrejected => {console.log('DB update rejected: ' + onrejected)}
             )
-            .catch(err => console.error(err));
+            .catch(err => console.error(new Error('E_ImgWriteDownloadUrl_1: ' + err)));
         } 
         //If the doc referance does not exist then writh the image data to imgWithoutDBReferance collection in the DB
         else{
@@ -38,7 +38,7 @@ export class ImgWriteDownloadUrl {
                 },
                 onrejected => {console.log('DB add rejected: ' + onrejected)}
             )
-            .catch(err => console.error(err));
+            .catch(err => console.error(new Error(`E_ImgWriteDownloadUrl_2: ${err}`)));
         }
     }
 
