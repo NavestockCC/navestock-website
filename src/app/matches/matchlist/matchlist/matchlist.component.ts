@@ -1,15 +1,15 @@
 /* Angular Imports */
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 
 /* Navestock Service */
-import {MatchDataService} from '../../matchdata-service/matchdata.service'
+import {MatchDataService} from '../../matchdata-service/matchdata.service';
 
 /* Navestock Objects */
 
 import {match} from '../../objects/match.object';
-import {MatchsPerMonth} from '../../matchpermonth.object'
+import {MatchsPerMonth} from '../../matchpermonth.object';
 
 @Component({
     selector: 'match-list',
@@ -36,7 +36,7 @@ export class MatchListComponent implements OnInit {
         });
     }
 
-    public setMatchList(seasonYear:number, navTeamId:string):void{
+    public setMatchList(seasonYear: number, navTeamId: string): void {
         this.matchListSeason = this.matchdataService.getMatchlistPerMonth(seasonYear, navTeamId);
     }
 

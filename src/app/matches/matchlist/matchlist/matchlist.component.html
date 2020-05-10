@@ -1,4 +1,4 @@
-<div fxLayout="row" fxLayoutAlign="center start">
+<div fxLayout="row" fxLayout.xs="column"  fxLayoutAlign="center start">
     <div fxFlex='70' fxFlex.lt-sm="100">
         <button *ngFor="let s of (seasonList | async )?.seasons" mat-button color="primary" (click)="setMatchList(s, tID)">
             {{s}}</button>
@@ -29,10 +29,11 @@
         </mat-card>
 
     </div>
-    <div fxFlex='30' fxHide.lt-sm fxLayoutAlign="start" ƒ>
-        <a [routerLink]="['/playerswanted']"><img ngClass="players_wanted_img" src='../../../app/img/PlayersWantedRedv1.png'></a>
+    <div fxFlex="30" fxHide.lt-sm fxLayoutAlign="start">
+        <a [routerLink]="['/playerswanted']"><img ngClass='players_wanted_img' src='./app/img/PlayersWantedRedv1.png'></a>
     </div>
 </div>
+
 
 
     

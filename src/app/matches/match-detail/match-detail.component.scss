@@ -1,6 +1,6 @@
 @import '~@angular/material/theming';
 
-@mixin match-list-theme($theme) {
+@mixin match-detail-theme($theme) {
   $primary: map-get($theme, primary);
   $accent: map-get($theme, accent);
   

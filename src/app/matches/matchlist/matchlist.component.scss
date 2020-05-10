@@ -4,48 +4,53 @@
   $primary: map-get($theme, primary);
   $accent: map-get($theme, accent);
   
-      .monthHeader{
+  .monthHeader{
         background:mat-color($primary, 400);
         color: mat-color($primary, '400-contrast');
         font-size: 0.95em;
       }
-      .matchHeader{
+
+  .matchHeader{
         color: mat-color($primary, '100-contrast') ;
         justify-content: flex-start;
         font-weight: bold;
         font-size:  0.9em;
       }
  
-    .cardMatch{
+  .cardMatch{
       max-width: 100%;
       height: auto;
       cursor: pointer;
     }
 
-    .cardMatchList{
+  .cardMatchList{
       max-width: 80%;
       box-shadow: none !important;
     }
-    .monthHeader{
+
+  .monthHeader{
       background: mat-color($primary, 400);
       color: mat-color($primary, '400-contrast');
       font-size: 0.95em;
       border-radius: 3px;
     }
-    .matchHeader{
+
+  .matchHeader{
       color: mat-color($primary, '100-contrast') ;
       font-weight: bold;
       font-size:  0.9em;
     }
-    .cardContent{
+
+  .cardContent{
       height: 60px;
       padding-left: 30px;
     }
 
-    .cardContentXS{
+  .cardContentXS{
       height: 90px;
     }
-    .cardTeams{
+  
+  .cardTeams{
       font-size: 0.9em;
       margin: 1px;
       padding-top: 1px;
@@ -56,6 +61,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
+  
     .cardTeamsXS{
       font-size: 0.9em;
       margin: 1px;
@@ -67,11 +73,13 @@
       overflow: hidden;
       text-overflow: clip;
     }
+  
     .cardInfo{
       font-size:  0.8em;
       padding-left: 10px;
       border-left: 3px solid mat-color($accent, 500);
     }
+  
     .cardInfoXS{
       font-size:  0.8em;
       border-left: 0px ;
@@ -79,10 +87,11 @@
       padding-left: 10px;
     }
   
-
   .players_wanted_img{
-    width: 100%;
+    width: 95%;
     height: auto;
+    margin-top: 10px;
+    margin-left: 5px;
     border-radius: 10px;
   }
 

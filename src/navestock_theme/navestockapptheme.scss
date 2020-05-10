@@ -1,11 +1,15 @@
-@import '~@angular/material/theming';
-@include mat-core();
+/**
+* @Referance https://blog.thoughtram.io/angular/2017/05/23/custom-themes-with-angular-material.html
+*/
 
+@import '~@angular/material/theming';
 @import 'navestockappthemepalette';
 //@import './app/banner/banner.component.scss-theme.scss';
 @import '../app/matches/matchlist/matchlist.component.scss';
 @import '../app/honoursboard/honoursboard.component.scss';
+@import '../app/matches/match-detail/match-detail.component.scss';
 
+@include mat-core();
 
 // mandatory stuff for theming
 $nav-app-primary: mat-palette($nav-brand);
@@ -17,8 +21,15 @@ $nav-app-theme: mat-light-theme(
   $nav-app-accent
   );
 
+  //create a meta theme mix-in that executes all theme mix-ins for our custom components
+  @mixin nav-app-theme($theme) {
+    @include match-list-theme($theme);
+    @include honours-board-theme($theme);
+    @include match-detail-theme($theme);
+  }
+
 // include the custom theme object into the angular material theme
 @include angular-material-theme($nav-app-theme);
-//@include banner-theme($nav-app-theme);
-@include match-list-theme($nav-app-theme);
+@include nav-app-theme($nav-app-theme);
+
 
