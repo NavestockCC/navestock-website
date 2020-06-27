@@ -1,5 +1,6 @@
 // define a real custom palette (using http://mcg.mbitson.com)
 $nav-brand:(
+  0 : #ffffff,
   50 : #e7ede3,
   100 : #c2d1b8,
   200 : #9ab289,
@@ -15,6 +16,7 @@ $nav-brand:(
   A400 : #48ff09,
   A700 : #3cef00,
   contrast: (
+      0 : #000000,    
       50 : #000000,
       100 : #000000,
       200 : #000000,
@@ -35,7 +37,8 @@ $nav-brand:(
 
 
 $nav-accent:(
-  50 : #f9f6e7,
+    0 : #ffffff,  
+    50 : #f9f6e7,
     100 : #f1e9c4,
     200 : #e7da9d,
     300 : #ddcb76,
@@ -50,6 +53,7 @@ $nav-accent:(
     A400 : #ffde80,
     A700 : #ffd867,
     contrast: (
+        0 : #000000,
         50 : #000000,
         100 : #000000,
         200 : #000000,

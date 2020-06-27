@@ -46,7 +46,7 @@ export const getPlayCricketMatchDetailsPubSub = functions.pubsub
                                 console.log(`PubSub Message ${pubSubPublisgResponse} published to topic PlayCricket_Match_Details_Data.`);
                             })
                         .catch(
-                            err => console.error(new Error('E_getPCMD_2: PubSub Message Publish for MarchID: ' + msgPayload.json.mid + ' ** ' + err))
+                            err => console.error(new Error('E_getPCMD_2: PubSub Message Publish for MatchID: ' + msgPayload.json.mid + ' ** ' + err))
                         );
                 }
             )

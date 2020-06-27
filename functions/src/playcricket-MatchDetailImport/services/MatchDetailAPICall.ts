@@ -55,7 +55,7 @@ export class PlayCricketMatchDetailAPICall {
                     });
                 }).on('error', (e) => {
                     observer.error(e.message)
-                    console.error(new Error(`E_playCricketApiCall_4: Got error: ${e.message}`));
+                    console.error(new Error(`E_playCricketApiCall_Detail_4: Got error: ${e.message}`));
                 });
             }
         )

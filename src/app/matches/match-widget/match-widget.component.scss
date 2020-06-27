@@ -1,161 +1,94 @@
-/*
-	Widget styles 
-*/
-.right_panel_widgets{
-	background: #FFFFFF;
-	border-radius: 10px;
-	width: 99%;
-	margin-top: 5px;
-	border-style: solid;
-    border-width: 2px;
-	display: inline-block;	
-}
+@import '~@angular/material/theming';
 
-.right_panel_widgets.green{
-	border-color: #336600;
-}
+@mixin matchwidget-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
 
-.right_panel_widgets.blue{
-	border-color: #0000FF;
-}
+  app-matchwidget{
+	  /** */
+	.right_panel_widgets{
+		background: mat-color($primary,  0);
+		border-radius: 10px;
+		width: 95%;
+		margin-top: 5px;
+		border-style: solid;
+		border-width: 2px;
+		display: inline-block;	
+		}
+		/** */
+	.right_panel_widgets.green{
+		border-color: mat-color($primary,  600);
+		}
+		/** */
+	.panel_widget_menu{
+		width: 100%;
+		border-top-left-radius: 3px;
+		border-top-right-radius: 3px;
+		//width: 50%;
+		//height: 25px;
+		//vertical-align: middle;
+		//line-height: 20px;
+		}
+		/** */
+	.panel_widget_menu.green{
+			background: linear-gradient( mat-color($primary,  600),  mat-color($primary,  500),  mat-color($primary,  400), mat-color($primary,  300),  mat-color($primary,  200));
+			color: mat-color($primary,  '600-contrast');
+		}
 
-.panel_widget_menu{
-	width: 100%;
-	border-top-left-radius: 3px;
-	border-top-right-radius: 3px;	
-}
+	mat-card-header{
+		background-color: mat-color($accent,  300);
+		border-radius: 5px 5px 0px 0px;
+		color: mat-color($accent,  '300-contrast');
+		padding:10px;
+		
+		}
 
-.panel_widget_menu.green{
-		background: linear-gradient(#336600, #5C8533, #70944D, #85A366, #85A366);
-}
+	mat-card-content{
+		background-color:mat-color($accent,  50);
+		border-radius: 0px 0px 5px 5px;
+	  }
 
-.panel_widget_menu.blue{
-		background: linear-gradient(#0000E6, #0000FF,#1919FF, #4D4DFF, #8080FF);
-}
+	  h2{   
+		color: mat-color($primary,  '600-contrast');
+		}
+	a {
+		line-height: 1em;
+		font-size: 13px;
+		color: mat-color($accent,  '50-contrast');
+		text-decoration: none;
+		}
+		
+	a:hover {
+			color: mat-color($accent,  900);
+			font-weight: bold;
+		}
 
-.panel_widget_menu_item_select{
-	display: inline-block;
-	border-top-left-radius: 10px;
-	border-top-right-radius: 3px;
-	width: 35%;
-	height: 25px;
-	vertical-align: middle;
-	line-height: 20px;
-	text-indent: 1.2em;
-	color: #336600;
-	font-weight: bold;
-	margin: 0;
-}
-
-.panel_widget_menu_item_select.green{
-	background: linear-gradient(#85A366, #FFFFFF);
-}
-
-.panel_widget_menu_item_select.blue{
-	background: linear-gradient(#0000E6, #8080FF);	
-}
-
-.panel_widget_menu_item_notselected{
-	display: inline-block;
-	border-top-left-radius: 10px;
-	border-top-right-radius: 0px;
-	width: 35%;
-	height: 25px;
-	vertical-align: middle;
-	line-height: 20px;
-	text-indent: 1.2em;
-	color: #FFFFFF;
-	font-weight: bold;
-	margin: 0;
-}
-
-
-.panel_widget_heading{
-	height: 1.5em;	
-	color: #FFFFFF;
-	font-weight: bold;
-	vertical-align: middle;
-	line-height: 1.5em;
-	text-indent: 1em;
-}
-
-.panel_widget_heading.green{
-	background: linear-gradient(#85A366, #70944D, #5C8533, #477519, #336600);
-}
-
-.panel_widget_heading.blue{
-	background: linear-gradient(#8080FF, #4D4DFF,  #1919FF, #0000FF, #0000E6);
-}
-
-.light_green_gradient{
-	background-color: #6CA82F;
-}
-
-ul.widget_ul{
-   /*
-  	Position <ul> on page
-  	*/
-	position: relative;
-	margin: 0em;
-	display: block;
-}
-
-ul.widget_ul li{
-	display: block;
-}
-
-.game_l1{
-	margin: 0em;
-	font-weight: bold;
-}
-
-.game_l2{
-	height: 1em;
-	margin: 0em;
-	font-size: 0.8em;
-	line-height: 0.85em;
-	text-indent: 1em;
-	
-	border-bottom-style: dotted;
-    border-width: 1px;
-    border-color: #F0F0F0;
-    margin-bottom: 0.2em;
-}
-
-.game_listDate{
-	height: 1em;
-	margin: 1em;
-	line-height: 2em;
-}
-
-.game_listTeams{
-/*	height: 1em; */
-	margin: 0.5em;
-	font-size: 1em;
-	line-height: 1em;
-	padding-left: 2em;
-	border-bottom-style: dotted;
-    border-width: 1px;
-    border-color: #F0F0F0;
-    margin-bottom: 0.2em;
-}
-
-.news_txt{
-	margin-left: 0.8em;
-	margin-right: 0.8em;
-	line-height: 1em;
-	white-space: pre-wrap;
-	width: auto;
-}
-
-a {
-    line-height: 1em;
-    font-size: 13px;
-    color: #383B35;
-    text-decoration: none;
 	}
+}
+
+@mixin matchwidget-typography($config) {
 	
-a:hover {
-		color: #85A366;
-		font-weight: bold;
-	}	
+	app-matchwidget{
+		h2{
+			@include mat-typography-level-to-styles($config, title);
+			font-weight: bold;
+			text-align: left;
+			margin: 0 0 0 20px;
+			padding:  5px 0 0 0;
+		}
+        h3{
+			font-family: mat-font-family($config);
+			font-weight: bold;
+			text-align: left;
+			margin: 0 0 0 20px;
+			padding:  10px 0 0 0;
+		}
+		h4{
+			font-family: mat-font-family($config);
+			font-weight: lighter;
+			text-align: left;
+			margin: 0 0 0 30px;
+			padding: 0 0 10px 0;
+        }
+    }
+}

@@ -4,17 +4,17 @@
   $primary: map-get($theme, primary);
   $accent: map-get($theme, accent);
   
+
   .monthHeader{
         background:mat-color($primary, 400);
         color: mat-color($primary, '400-contrast');
-        font-size: 0.95em;
-      }
+        padding: 5px;
+  }
 
   .matchHeader{
         color: mat-color($primary, '100-contrast') ;
         justify-content: flex-start;
         font-weight: bold;
-        font-size:  0.9em;
       }
  
   .cardMatch{

@@ -1,19 +1,30 @@
-.splash_img{
-	position: relative;
-	width: 95%;
-	border-radius: 10px;
-}
 
-.left_panel_heading{
-	text-align: center;    
-    font-size: 1.5em;
-    font-weight: bold;
-}
+@import '~@angular/material/theming';
 
-.left_panel_text{
+@mixin club-history-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+
+app-club-history{  
+p{
+    margin: auto;
+    width: 80%;
     text-align: justify;
     text-justify: inter-word;
-    margin: 20px;
+    padding-bottom: 1em;
+}
+
+h1{
+    text-align: center;
+}
+
+  .splash_img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+	width: 95%;
+    border-radius: 10px;
+    border: 0.5px solid mat-color($primary, 100);
 }
 
 .players_wanted_img{
@@ -22,4 +33,18 @@
     margin-top: 10px;
     margin-left: 5px;
     border-radius: 10px;
+}
+}
+}
+
+@mixin club-history-typography($config) {
+    app-club-history{
+        p{
+            @include mat-typography-level-to-styles($config, body-1);
+        }
+        h1{
+            @include mat-typography-level-to-styles($config, subheading-1);
+            font-weight: bold;
+        }
+    }
 }

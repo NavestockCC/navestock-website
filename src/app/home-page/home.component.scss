@@ -1,82 +1,74 @@
+@import '~@angular/material/theming';
 
-.splash_img{
-	display: block;
-    margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 30px;
-	margin-top: 10px;
-	width: 50%;
-	border: 0;
-	border-radius: 5px	
-}
+@mixin home-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
 
-.left_panel_heading{
-	text-align: center;    
-    font-size: 1.5em;
-	font-weight: bold;
-  	color: #b28d19;
-}
-.left_panel_heading2{
-	text-align: center;    
-    font-size: 1.1em;
-	font-weight: bold;
-	  color: #305d10;
-}
+	app-home-component{
+		h1{
+			text-align: center;    
+			color: mat-color($accent,  900);
+			}
+		h2{
+			text-align: center;    
+			color: mat-color($primary,  600);
+			}
+		p{
+			margin: auto;
+			width: 80%;
+			text-align: justify;
+			text-justify: inter-word;
+			padding-bottom: 1em;
+			}
+		.players_wanted_img{
+			width: 95%;
+			height: auto;
+			margin-top: 10px;
+			margin-left: 5px;
+			border-radius: 10px;
+			}
 
-.left_panel_text{
-    text-align: justify;
-    text-justify: inter-word;
-    margin: 20px;
-}
-
-.right_panel_heading2{
-	padding-top: 0.5em;
-	text-align: left;    
-    font-size: 1em;
-	font-weight: bold;
-	  color: #305d10;
-}
-.players_wanted_img{
-	width: 95%;
-    height: auto;
-    margin-top: 10px;
-    margin-left: 5px;
-    border-radius: 10px;
-}
-
- #wrapper {
-	height:100px;
-	width: 50px;
-	margin: 0;
-	padding: 0;
-	border: 0;
- }
- #wrapper td {
-	vertical-align: middle;
-	text-align: center;
- }
- 
-.BlackBull_img{
-		width: auto;
-		height: 80px;
+		//img formatting		
+		.splash_img{
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			margin-bottom: 30px;
+			margin-top: 10px;
+			width: 50%;
+			border: 0;
+			border-radius: 5px	
+			}
+		.BlackBull_img{
+			width: auto;
+			height: 80px;
+			margin: 5px;
+			}
+		.EssexDemCo_img{
+			width: auto;
+			height: 50px;
+			margin: 5px;
+			}
+		.AGS_img{
+			width: 50px;
+			height: auto;
+			margin: 5px;
+			}	
+	}
 }
 
-.EssexDemCo_img{
-	width: auto;
-	height: 50px;
-}
-.AGS_img{
-	width: 50px;
-	height: auto;
-}
-.event_table{
-	width: 100%;
-	margin-bottom: 30px;
-}
-
-.event_col, a{
-	width: 50%;
-	text-align: center;
-	padding: 8px;
-	color: black;
+@mixin home-typography($config) {
+    app-home-component{
+        p{
+            @include mat-typography-level-to-styles($config, body-1);
+        }
+        h1{
+            @include mat-typography-level-to-styles($config, headline);
+            font-weight: bold;
+		}
+		h2{
+            @include mat-typography-level-to-styles($config, subheading-2);
+            font-weight: bold;
+        }
+    }
 }

@@ -4,12 +4,22 @@
 
 @import '~@angular/material/theming';
 @import 'navestockappthemepalette';
+@import 'navestockappthemefonts';
+
+//Navestock Themes
 //@import './app/banner/banner.component.scss-theme.scss';
+@import '../app/home-page/home.component.scss';
+@import '../app/menu/menu.component.scss';
+@import '../app/club-history/club-history.component.scss';
 @import '../app/matches/matchlist/matchlist.component.scss';
 @import '../app/honoursboard/honoursboard.component.scss';
 @import '../app/matches/match-detail/match-detail.component.scss';
+@import '../app/matches/match-widget/match-widget.component.scss';
 
-@include mat-core();
+
+
+
+@include mat-core($navestock-typography);
 
 // mandatory stuff for theming
 $nav-app-primary: mat-palette($nav-brand);
@@ -23,13 +33,18 @@ $nav-app-theme: mat-light-theme(
 
   //create a meta theme mix-in that executes all theme mix-ins for our custom components
   @mixin nav-app-theme($theme) {
+    @include home-theme($theme);
+    @include home-typography($navestock-typography);
     @include match-list-theme($theme);
     @include honours-board-theme($theme);
     @include match-detail-theme($theme);
+    @include menu-theme($theme);
+    @include club-history-theme($theme);
+    @include club-history-typography($navestock-typography);
+    @include matchwidget-theme($theme);
+    @include matchwidget-typography($navestock-typography);
   }
 
 // include the custom theme object into the angular material theme
 @include angular-material-theme($nav-app-theme);
 @include nav-app-theme($nav-app-theme);
-
-

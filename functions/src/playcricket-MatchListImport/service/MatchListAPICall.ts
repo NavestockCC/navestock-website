@@ -52,7 +52,7 @@ export class PlayCricketMatchListAPICall {
                     });
                 }).on('error', (e) => {
                     observer.error(e.message)
-                    console.error(new Error('E_playCricketApiCall_4: Got error: ' + e.message));
+                    console.error(new Error('E_playCricketApiCall_List_4: Got error: ' + e.message));
                 });
             }
         )

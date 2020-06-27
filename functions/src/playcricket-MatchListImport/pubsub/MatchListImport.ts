@@ -46,16 +46,13 @@ export const matchListImport = functions.pubsub
 
         const matchListPromiseArray: Promise<string>[] = [];
         
-        // Parse the Paylaod array to extract data and create Match batch and Publish PubSub Payload {"mid": matchId} to Topic: Match_Detail_Import
+        // Parse the Paylaod array to extract data and create Match batch.
         msgPayload.json.matches.forEach(matchReturned => {
             if(matchReturned.id === undefined){
                 console.error(new Error('E_MatchListImport_4: mid not found not found'));
                 }
             else {
                 matchListBatch.set(afs.doc('Fixtures/' + matchReturned.id), Object.assign({}, MatchListImportServices.updateDbFields(matchReturned)), { merge: true });
-                const payloadData = JSON.stringify({"mid": matchReturned.id});
-                const dataBuffer = Buffer.from(payloadData);
-                matchListPromiseArray.push(pubsubTopic.publish(dataBuffer));
             }
         });
 
@@ -68,6 +65,27 @@ export const matchListImport = functions.pubsub
             })
         .catch( err => {
                 console.error(new Error('E_MatchListImport_3: ' + err));
+            })
+            .finally(()=>{
+                /* 
+                    Once the batch commit is completed.
+                    Parse the Paylaod array to extract data and Publish PubSub Payload {"mid": matchId} to Topic: Match_Detail_Import.
+                    This is a workaround to try and manage capcity in the Firestore write problems.
+                */
+               
+            msgPayload.json.matches.forEach(matchReturned => {
+                if(matchReturned.id === undefined){
+                    console.error(new Error('E_MatchListImport_4: mid not found not found'));
+                    }
+                else {
+                    const payloadData = JSON.stringify({"mid": matchReturned.id});
+                    const dataBuffer = Buffer.from(payloadData);
+                    matchListPromiseArray.push(pubsubTopic.publish(dataBuffer));
+                }
+            });
+            })
+            .catch( err => {
+                console.error(new Error('E_MatchListImport_5: ' + err));
             });
     
         //Parse response from PubSub.Publish to Topic: Match_Detail_Import

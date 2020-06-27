@@ -1,4 +1,10 @@
- mat-toolbar{
+@import '~@angular/material/theming';
+
+@mixin menu-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+
+mat-toolbar{
     background-color: transparent;
     border-color: transparent;
     height: 14px;
@@ -42,3 +48,5 @@ a:hover {
 .example-spacer {
     flex: 1 1 auto;
   }
+
+}
