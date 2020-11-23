@@ -1,8 +1,8 @@
 {
   "extends": "../../tslint.json",
   "rules": {
-    "directive-selector": [true, "attribute", "navestock", "camelCase"],
-    "component-selector": [true, "element", "navestock", "kebab-case"]
+    "directive-selector": [true, "attribute", "ncc-app", "camelCase"],
+    "component-selector": [true, "element", "ncc-app", "kebab-case"]
   },
   "linterOptions": {
     "exclude": ["!**/*"]

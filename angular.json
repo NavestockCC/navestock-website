@@ -10,7 +10,7 @@
       },
       "root": "apps/navestock-website",
       "sourceRoot": "apps/navestock-website/src",
-      "prefix": "navestock",
+      "prefix": "ncc-app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -25,7 +25,10 @@
               "apps/navestock-website/src/favicon.ico",
               "apps/navestock-website/src/assets"
             ],
-            "styles": ["apps/navestock-website/src/styles.scss"],
+            "styles": [
+              "apps/navestock-website/src/styles-scss/styles.scss",
+              "apps/navestock-website/src/styles-scss/navestock_theme/navestockapptheme.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -84,7 +87,10 @@
               "apps/navestock-website/tsconfig.spec.json",
               "apps/navestock-website/tsconfig.editor.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/navestock-website/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/navestock-website/**/*"
+            ]
           }
         },
         "test": {
@@ -93,6 +99,10 @@
             "jestConfig": "apps/navestock-website/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     },
@@ -117,7 +127,9 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/navestock-website-e2e/tsconfig.e2e.json"],
+            "tsConfig": [
+              "apps/navestock-website-e2e/tsconfig.e2e.json"
+            ],
             "exclude": [
               "**/node_modules/**",
               "!apps/navestock-website-e2e/**/*"
@@ -171,7 +183,8 @@
       "e2eTestRunner": "cypress"
     },
     "@nrwl/angular:library": {
-      "unitTestRunner": "jest"
+      "unitTestRunner": "jest",
+      "style": "scss"
     }
   },
   "defaultProject": "navestock-website"

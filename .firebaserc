@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "navestock-website": {
+      "hosting": {
+        "navestock-website": [
+          "navestock-website"
+        ]
+      }
+    }
+  }
+}
