@@ -12,6 +12,7 @@
 @import '../../app/home-page-module/home-page-module.scss';
 @import '../../app/navestock250-module/navestock250.module.scss';
 @import '../../app/user-authentication-module/user-authentication.module.scss';
+@import '../../app/honoursboard-module/honoursboard.module.scss';
 // @import '../app/matches/matchlist/matchlist.component.scss';
 // @import '../app/honoursboard/honoursboard.component.scss';
 // @import '../app/matches/match-detail/match-detail.component.scss';
@@ -42,6 +43,7 @@ $nav-app-theme: mat-light-theme(
     @include home-page-module($theme);
     @include navestock250-module($theme);
     @include user-authentication-module($theme);
+    @include honoursboard-module($theme);
   }
 
 // include the custom theme object into the angular material theme

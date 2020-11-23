@@ -29,7 +29,12 @@ import {ImgModule} from '../imgModule/imgModule';
         ImgModule,
         Navestock250RoutingModule
     ],
-    exports: [],
+    exports: [
+        GalaDinnerComponent,
+        Veterans7asideComponent,
+        ColinBridgeVillageCupComponent,
+        HomeComponent250
+    ],
     providers: [],
 })
 export class Navestock250Module {}

@@ -30,7 +30,7 @@
         <li><a [routerLink]="['/club/clubhistory']">Club History</a></li>
         <li><a [routerLink]="['/ncc250/250home']">250th Anniversary</a></li>
         <li *ngFor="let t of menuTeams | async"><a [routerLink]="['/matchlist', t.team_id]">{{t.team_name}}</a></li>
-        <li><a [routerLink]="['/honoursboard']">Honours Board</a></li>
+        <li><a [routerLink]="['/honoursboard/honoursboard']">Honours Board</a></li>
         <li><a [routerLink]="['/club/contactus']">Contact Us</a></li>
         <li><a [routerLink]="['/club/findus']">Find Us</a></li>
         <li><ncc-app-user-authentication></ncc-app-user-authentication></li>

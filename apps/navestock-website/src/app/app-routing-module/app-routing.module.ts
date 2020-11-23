@@ -19,6 +19,10 @@ const nccRoutes: Routes = [
   {
     path: 'ncc250',
     loadChildren: () => import('../navestock250-module/navestock250-routing.module').then(mod => mod.Navestock250RoutingModule)
+  },
+  {
+    path: 'honoursboard',
+    loadChildren: () => import('../honoursboard-module/honoursboard-routing.module').then(mod => mod.HonoursboardRoutingModule)
   }
 ];
 
