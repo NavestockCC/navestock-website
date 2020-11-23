@@ -19,8 +19,8 @@
 
 # Environment Variables
 apps/navestock-website/src/environments
-apps/navestock-website/src/environments/environment.prod.ts
 apps/navestock-website/src/environments/environment.ts
+apps/navestock-website/src/environments/environment.prod.ts
 
 # IDE - VSCode
 .vscode/*
@@ -42,3 +42,4 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
