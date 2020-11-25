@@ -1,0 +1,40 @@
+/** Angular Imports */
+import { Component, OnInit, Input } from '@angular/core';
+
+/** Material Imports */
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+
+/** Navestock Objects */
+import {batting} from '../objects/batting.object';
+
+/** Navestock Service */
+import {MatchDataService} from '../matchdata-service/matchdata.service';
+
+
+
+
+@Component({
+    selector: 'ncc-app-batting-card',
+    templateUrl: './batting.component.html',
+    styleUrls: ['./batting.component.scss']
+})
+export class BattingComponent implements OnInit {
+
+    @Input() BatTeamId:string;
+    @Input() MatchId:string;
+
+    public displayedColumns: string[];
+    public dataSourceBatting: MatTableDataSource<batting> = new MatTableDataSource<batting>();
+
+    constructor(
+        private matchdataService: MatchDataService
+    ) {
+        
+     }
+
+    ngOnInit(): void { 
+        this.displayedColumns = ['battingPlayer', 'battingRuns', 'batting4', 'batting6'];
+        this.matchdataService.getBatting(this.MatchId, this.BatTeamId).subscribe( res => (this.dataSourceBatting.data = res));
+    }
+}

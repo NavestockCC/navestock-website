@@ -23,6 +23,10 @@ const nccRoutes: Routes = [
   {
     path: 'honoursboard',
     loadChildren: () => import('../honoursboard-module/honoursboard-routing.module').then(mod => mod.HonoursboardRoutingModule)
+  },
+  {
+    path: 'match',
+    loadChildren: () => import('../matches-module/match-routing.module').then(mod => mod.MatchRoutingModule)
   }
 ];
 

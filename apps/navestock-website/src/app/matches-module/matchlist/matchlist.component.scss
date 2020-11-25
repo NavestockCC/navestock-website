@@ -1,0 +1,101 @@
+// Import library functions for theme creation.
+@import '~@angular/material/theming';
+
+// Define a mixin that accepts a theme and outputs the theme-specific styles.
+@mixin match-list-theme($theme) {
+  // Extract the palettes you need from the theme definition.
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+
+  ncc-app-match-list {
+    .monthHeader {
+      background: mat-color($primary, 400);
+      color: mat-color($primary, '400-contrast');
+      padding: 5px;
+    }
+
+    .matchHeader {
+      color: mat-color($primary, '100-contrast');
+      justify-content: flex-start;
+      font-weight: bold;
+    }
+
+    .cardMatch {
+      max-width: 100%;
+      height: auto;
+      cursor: pointer;
+    }
+
+    .cardMatchList {
+      max-width: 80%;
+      box-shadow: none !important;
+    }
+
+    .monthHeader {
+      background: mat-color($primary, 400);
+      color: mat-color($primary, '400-contrast');
+      font-size: 0.95em;
+      border-radius: 3px;
+    }
+
+    .matchHeader {
+      color: mat-color($primary, '100-contrast');
+      font-weight: bold;
+      font-size: 0.9em;
+    }
+
+    .cardContent {
+      height: 60px;
+      padding-left: 30px;
+    }
+
+    .cardContentXS {
+      height: 90px;
+    }
+
+    .cardTeams {
+      font-size: 0.9em;
+      margin: 1px;
+      padding-top: 1px;
+      padding-bottom: 2px;
+      padding-left: 5px;
+      white-space: nowrap;
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .cardTeamsXS {
+      font-size: 0.9em;
+      margin: 1px;
+      padding-top: 2px;
+      padding-bottom: 2px;
+      padding-left: 0px;
+      white-space: nowrap;
+      width: 100%;
+      overflow: hidden;
+      text-overflow: clip;
+    }
+
+    .cardInfo {
+      font-size: 0.8em;
+      padding-left: 10px;
+      border-left: 3px solid mat-color($accent, 500);
+    }
+
+    .cardInfoXS {
+      font-size: 0.8em;
+      border-left: 0px;
+      border-top: 1px solid mat-color($accent, 500);
+      padding-left: 10px;
+    }
+
+    .players_wanted_img {
+      width: 95%;
+      height: auto;
+      margin-top: 10px;
+      margin-left: 5px;
+      border-radius: 10px;
+    }
+  }
+}

@@ -28,6 +28,7 @@ import { HomePageModule } from '../home-page-module/home-page.module';
 import { Navestock250Module } from '../navestock250-module/navestock250.module';
 import { GeneratedbdataComponent } from '../firebasedb/generatedbdata/generatedbdata.component';
 import { HonoursboardModule } from '../honoursboard-module/honoursboard.module';
+import { MatchModule } from '../matches-module/match.module';
 
 
 
@@ -52,7 +53,8 @@ import { HonoursboardModule } from '../honoursboard-module/honoursboard.module';
     ClubInfoModule,
     HomePageModule,
     Navestock250Module,
-    HonoursboardModule
+    HonoursboardModule,
+    MatchModule
   ],
   providers: [
 

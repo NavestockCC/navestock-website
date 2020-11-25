@@ -1,0 +1,23 @@
+<div class='right_panel_widgets green'>
+	<div class='panel_widget_menu green'>
+		<h2>Fixtures</h2>
+	</div>
+    <div *ngFor="let t of matchWidgetData">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>{{t.teamName}}</mat-card-title>
+                <mat-card-subtitle></mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <div *ngFor="let f of t.matchList | async">
+                    <a [routerLink]="['/matchdetails', f.id]" >
+                        <h3>{{f.opposition_club_name}}</h3>
+                        <h4>{{f.match_date.toDate() | date:'d MMM yy'}} {{f.match_time}}</h4>
+                    </a>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+<br>
+<br>

@@ -1,0 +1,39 @@
+// Import library functions for theme creation.
+@import '~@angular/material/theming';
+
+// Define a mixin that accepts a theme and outputs the theme-specific styles.
+@mixin ground-theme($theme) {
+  // Extract the palettes you need from the theme definition.
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+
+  ncc-app-ground {
+    agm-map {
+      height: 400px;
+    }
+
+    ul {
+      list-style-type: none;
+    }
+
+    .waze {
+      vertical-align: top;
+      width: 100px;
+    }
+
+    .gmaps {
+      vertical-align: top;
+      width: 60px;
+    }
+
+    .leftcol {
+      width: 50%;
+    }
+    .rightcol {
+      width: 50%;
+    }
+    .addresstable {
+      width: 80%;
+    }
+  }
+} ;

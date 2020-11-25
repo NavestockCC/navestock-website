@@ -25,6 +25,8 @@ import { ClubHistoryComponent } from './club-history/club-history.component';
 import { FindUsComponent } from './find-us/find-us.component';
 import { ContactUsComponent } from './contact-us/contact-us/contact-us.component';
 import { ContactUsAdminComponent } from './contact-us/contact-us-admin/contact-us-admin.component';
+import { PlayersWantedComponent } from './players-wanted/players-wanted.component';
+import { NavestockPrivacyStatementComponent } from './navestock-privacy-statement/navestock-privacy-statement.component';
 
 
 
@@ -34,6 +36,8 @@ import { ContactUsAdminComponent } from './contact-us/contact-us-admin/contact-u
     FindUsComponent,
     ContactUsComponent,
     ContactUsAdminComponent,
+    PlayersWantedComponent,
+    NavestockPrivacyStatementComponent
   ],
   imports: [
     CommonModule,
@@ -49,7 +53,9 @@ import { ContactUsAdminComponent } from './contact-us/contact-us-admin/contact-u
     ClubHistoryComponent,
     FindUsComponent,
     ContactUsComponent,
-    ContactUsAdminComponent
+    ContactUsAdminComponent,
+    PlayersWantedComponent,
+    NavestockPrivacyStatementComponent
   ]
 })
 export class ClubInfoModule { }

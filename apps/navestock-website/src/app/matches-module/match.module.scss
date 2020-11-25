@@ -1,0 +1,17 @@
+@import './match-detail/match-detail.component.scss';
+@import './ground/ground.component.scss';
+@import './matchlist/matchlist.component.scss';
+@import './match-widget/match-widget.component.scss';
+@import './bowling/bowling.component.scss';
+@import './batting/batting.component.scss';
+@import './all-grounds/all-grounds.component.scss';
+
+@mixin matches-module($theme) {
+    @include match-detail-theme($theme);
+    @include ground-theme($theme);
+    @include match-list-theme($theme);
+    @include match-widget-theme($theme);
+    @include bowling-card-theme($theme);
+    @include batting-card-theme($theme);
+    @include all-grounds-theme($theme);
+}

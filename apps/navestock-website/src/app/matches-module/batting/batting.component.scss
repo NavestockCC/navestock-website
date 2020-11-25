@@ -1,0 +1,22 @@
+@import '~@angular/material/theming';
+
+// Define a mixin that accepts a theme and outputs the theme-specific styles.
+@mixin batting-card-theme($theme) {
+  // Extract the palettes you need from the theme definition.
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+
+  ncc-app-batting-card {
+    .mat-column-battingRuns {
+      flex: 0 0 60px;
+    }
+
+    .mat-column-batting4 {
+      flex: 0 0 50px;
+    }
+
+    .mat-column-batting6 {
+      flex: 0 0 50px;
+    }
+  }
+}

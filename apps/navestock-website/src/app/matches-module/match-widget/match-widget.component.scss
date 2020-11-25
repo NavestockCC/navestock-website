@@ -1,0 +1,97 @@
+@import '~@angular/material/theming';
+// Import library functions for theme creation.
+@import '~@angular/material/theming';
+
+// Define a mixin that accepts a theme and outputs the theme-specific styles.
+@mixin match-widget-theme($theme) {
+  // Extract the palettes you need from the theme definition.
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+
+  ncc-app-matchwidget{
+	.right_panel_widgets{
+		background: mat-color($primary,  0);
+		border-radius: 10px;
+		width: 95%;
+		margin-top: 5px;
+		border-style: solid;
+		border-width: 2px;
+		display: inline-block;	
+		}
+		/** */
+	.right_panel_widgets.green{
+		border-color: mat-color($primary,  600);
+		}
+		/** */
+	.panel_widget_menu{
+		width: 100%;
+		border-top-left-radius: 3px;
+		border-top-right-radius: 3px;
+		//width: 50%;
+		//height: 25px;
+		//vertical-align: middle;
+		//line-height: 20px;
+		}
+		/** */
+	.panel_widget_menu.green{
+			background: linear-gradient( mat-color($primary,  600),  mat-color($primary,  500),  mat-color($primary,  400), mat-color($primary,  300),  mat-color($primary,  200));
+			color: mat-color($primary,  '600-contrast');
+		}
+
+	mat-card-header{
+		background-color: mat-color($accent,  300);
+		border-radius: 5px 5px 0px 0px;
+		color: mat-color($accent,  '300-contrast');
+		padding:10px;
+		
+		}
+
+	mat-card-content{
+		background-color:mat-color($accent,  50);
+		border-radius: 0px 0px 5px 5px;
+	  }
+
+	  h2{   
+		color: mat-color($primary,  '600-contrast');
+		}
+	a {
+		line-height: 1em;
+		font-size: 13px;
+		color: mat-color($accent,  '50-contrast');
+		text-decoration: none;
+		}
+		
+	a:hover {
+			color: mat-color($accent,  900);
+			font-weight: bold;
+		}
+
+	}
+}
+
+@mixin matchwidget-typography($config) {
+	
+	app-matchwidget{
+		h2{
+			@include mat-typography-level-to-styles($config, title);
+			font-weight: bold;
+			text-align: left;
+			margin: 0 0 0 20px;
+			padding:  5px 0 0 0;
+		}
+        h3{
+			font-family: mat-font-family($config);
+			font-weight: bold;
+			text-align: left;
+			margin: 0 0 0 20px;
+			padding:  10px 0 0 0;
+		}
+		h4{
+			font-family: mat-font-family($config);
+			font-weight: lighter;
+			text-align: left;
+			margin: 0 0 0 30px;
+			padding: 0 0 10px 0;
+        }
+    }
+}
