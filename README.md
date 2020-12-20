@@ -1,98 +1,54 @@
-# Navestock
+# NavestockWebsite
 
-This project was generated using [Nx](https://nx.dev).
-
-<p align="center"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
-
-🔎 **Nx is a set of Extensible Dev Tools for Monorepos.**
-
-## Quick Start & Documentation
-
-[Nx Documentation](https://nx.dev/angular)
-
-[10-minute video showing all Nx features](https://nx.dev/angular/getting-started/what-is-nx)
-
-[Interactive Tutorial](https://nx.dev/angular/tutorial/01-create-application)
-
-## Adding capabilities to your workspace
-
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
-
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
-
-Below are our core plugins:
-
-- [Angular](https://angular.io)
-  - `ng add @nrwl/angular`
-- [React](https://reactjs.org)
-  - `ng add @nrwl/react`
-- Web (no framework frontends)
-  - `ng add @nrwl/web`
-- [Nest](https://nestjs.com)
-  - `ng add @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `ng add @nrwl/express`
-- [Node](https://nodejs.org)
-  - `ng add @nrwl/node`
-
-There are also many [community plugins](https://nx.dev/nx-community) you could add.
-
-## Generate an application
-
-Run `ng g @nrwl/angular:app my-app` to generate an application.
-
-> You can use any of the plugins above to generate applications as well.
-
-When using Nx, you can create multiple applications and libraries in the same workspace.
-
-## Generate a library
-
-Run `ng g @nrwl/angular:lib my-lib` to generate a library.
-
-> You can also use any of the plugins above to generate libraries as well.
-
-Libraries are sharable across libraries and applications. They can be imported from `@navestock/mylib`.
-
-## Development server
-
-Run `ng serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng g component my-component --project=my-app` to generate a new component.
+Website for navestock cricket club <https://navestockcc.org>
 
 ## Build
 
-Run `ng build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `ng build --prod --aot` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-## Running unit tests
+## Environment Setup
 
-Run `ng test my-app` to execute the unit tests via [Jest](https://jestjs.io).
+1. Create /src/environments/environment.ts and /src/environments/environment.prod.ts add your Firebase and Google maps key configuration:
+export const environment = {
+  production: false,
+  //Firebase config
+  firebaseConfig: {
+    apiKey: '<your-key>',
+    authDomain: '<your-project-authdomain>',
+    databaseURL: '<your-database-URL>',
+    projectId: '<your-project-id>',
+    storageBucket: '<your-storage-bucket>',
+    messagingSenderId: '<your-messaging-sender-id>'
+  },
+  //Google map key
+  googleMapKey:{
+    apiKey: '<your-key>'
+  }
+};
 
-Run `nx affected:test` to execute the unit tests affected by a change.
+## Deploy
 
-## Running end-to-end tests
+1. If you have an existing Firebase project you'd like to deploy, cd to the project's root directory and run: `firebase init`
+2. To deploy your site, simply run the following command from your project directory: `firebase deploy --except functions`
+3. Deploying functions `sudo firebase deploy --only functions` to deply a single function `sudo firebase deploy --only functions:<function name>`
 
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
+## GIT
 
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
+1. Upload changes to GIT
+`git push origin master https://github.com/NavestockCC/navestock-website.git`
 
-## Understand your workspace
+## Test Functions Locally
 
-Run `nx dep-graph` to see a diagram of the dependencies of your projects.
+1. run in navestock-website: `sudo npm --prefix functions run build`
+2. Then run in navestock-website : `firebase emulators:start --only functions`
 
-## Further help
+Provide authentication credentials to your application code by setting the environment variable:
+"export GOOGLE_APPLICATION_CREDENTIALS="/Users/lefrascoetzee/Documents/Code/navestock-website/navestock-website-b4c3fdc31495.json""
 
-Visit the [Nx Documentation](https://nx.dev/angular) to learn more.
+NOTE: If you're using custom functions configuration variables, run the following command in the functions directory of your project before running firebase serve.
+run in navestock-website\functions: `firebase functions:config:get > .runtimeconfig.json`
 
-## ☁ Nx Cloud
+## Webpack Bundle Analyzer
 
-### Computation Memoization in the Cloud
-
-<p align="center"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
-
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
-
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
-
-Visit [Nx Cloud](https://nx.app/) to learn more.
+1. run 'ng build --prod --aot --stats-json' to create stats.json file
+2. run 'npm run bundle-report' to analize data.
