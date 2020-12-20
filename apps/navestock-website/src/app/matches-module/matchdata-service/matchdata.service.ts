@@ -98,7 +98,7 @@ export class MatchDataService {
         matchesCollection = this.afs.collection('Fixtures', ref => (
                                                             ref.where('navestock_team_id', '==', teamId)
                                                             .where('match_date', '>=', new Date()))
-                                                            .orderBy('match_date', 'asc')
+                                                            .orderBy('match_date', 'desc')
                                                             .limit(nRecordstoreturn)
                                                             );
         return matchesCollection.valueChanges();
@@ -106,6 +106,7 @@ export class MatchDataService {
 
     // Read data received from getfixturewidgetData_Http and parse into fixturewidgetdata object.
     // NaveStockTeams: {tmName:string; tmId:number;}[]
+    /*
     getmatchWidgetData(NaveStockTeams: Observable<navestockTeam[]>, nRecordstoreturn: number): { teamName: string, teamId: string, matchList: Observable<match[]> }[] {
         const matchWidgetData: { teamName: string, teamId: string, matchList: Observable<match[]> }[] = [];
         NaveStockTeams.subscribe(res => {
@@ -118,6 +119,18 @@ export class MatchDataService {
         });
         return matchWidgetData;
     }
+    */
+   getmatchWidgetData(nRecordstoreturn: number): Observable<match[]> {
+    let matchWidgetData: AngularFirestoreCollection<match>;
+    matchWidgetData = this.afs.collection('Fixtures', ref => (
+                                                        ref
+                                                        .where('published', '==', 'Yes')
+                                                        .where('match_date', '>=', new Date()))
+                                                        .orderBy('match_date', 'asc')
+                                                        .limit(nRecordstoreturn)
+                                                        );
+    return matchWidgetData.valueChanges();
+}
 
 /**
  * Method to update the Latitude and Longeture of the ground at which the match is played

@@ -2,18 +2,19 @@
 	<div class='panel_widget_menu green'>
 		<h2>Fixtures</h2>
 	</div>
-    <div *ngFor="let t of matchWidgetData">
+    <div *ngFor="let t of matchWidgetData | async | matchwidgetdata">
         <mat-card>
             <mat-card-header>
                 <mat-card-title>{{t.teamName}}</mat-card-title>
                 <mat-card-subtitle></mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
-                <div *ngFor="let f of t.matchList | async">
-                    <a [routerLink]="['/matchdetails', f.id]" >
-                        <h3>{{f.opposition_club_name}}</h3>
-                        <h4>{{f.match_date.toDate() | date:'d MMM yy'}} {{f.match_time}}</h4>
+                <div *ngFor="let f of t.matchList ">
+                    <a [routerLink]="['/match/matchdetails', f.id]" >
+                        <div>{{f.match_date.toDate() | date:'d MMM yyyy'}} @ {{f.match_time}}</div>
+                        <div>{{f.opposition_club_name}}</div>
                     </a>
+                    <mat-divider></mat-divider>
                 </div>
             </mat-card-content>
         </mat-card>

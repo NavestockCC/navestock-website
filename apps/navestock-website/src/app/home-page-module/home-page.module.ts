@@ -11,6 +11,7 @@ import { NavestockMaterialModule } from '../app-root-module/match.material.modul
 
 import { HomePageRoutingModule } from './home-page-routing.module';
 import { HomeComponent } from './home-page/home.component';
+import { MatchModule } from '../matches-module/match.module';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { HomeComponent } from './home-page/home.component';
     CommonModule,
     FlexLayoutModule,
     NavestockMaterialModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    MatchModule
   ],
   exports:[
     HomeComponent

@@ -20,7 +20,7 @@ import {match} from '../objects/match.object';
 export class MatchWidgetComponent implements OnInit {
   private NaveStockTeams: Observable<navestockTeam[]>;
 
-  public matchWidgetData: {teamName: string, teamId: string, matchList: Observable<match[]>}[] = [];
+  public matchWidgetData: Observable<match[]>;
 
 
   errorMessage: string;
@@ -34,6 +34,6 @@ export class MatchWidgetComponent implements OnInit {
     }
 
     ngOnInit(): void {
-      this.matchWidgetData = this.matchWidgetDataService.getmatchWidgetData(this.NaveStockTeams, 3);
+      this.matchWidgetData = this.matchWidgetDataService.getmatchWidgetData(9);
     }
 }

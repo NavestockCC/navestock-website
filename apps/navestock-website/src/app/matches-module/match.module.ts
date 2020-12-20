@@ -28,7 +28,9 @@ import {GroundAdminComponent} from './ground/ground-admin/ground-admin.component
 import {MatchWidgetComponent} from './match-widget/match-widget.component';
 import {MatchListComponentAdmin} from './matchlist/matchlist-admin/matchlist-admin.component';
 import { AllGroundsComponent } from './all-grounds/all-grounds.component';
-import { ReverseArrayPipe } from './reverse/reverse.pipe';
+import { ReverseArrayPipe } from './pipes/reverse_array/reverse.pipe';
+import { ImplicitReceiver } from '@angular/compiler';
+import { MatchwidgetdataPipe } from './pipes/match_widget/matchwidgetdata.pipe';
 
 @NgModule({
     declarations: [
@@ -42,7 +44,8 @@ import { ReverseArrayPipe } from './reverse/reverse.pipe';
         MatchDetailComponentAdmin,
         GroundAdminComponent,
         AllGroundsComponent,
-        ReverseArrayPipe
+        ReverseArrayPipe,
+        MatchwidgetdataPipe
     ],
     imports: [
         CommonModule,
