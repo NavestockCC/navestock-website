@@ -1,0 +1,51 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "Fixtures",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "season",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "match_date",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "NavestockCommitee",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "Publish",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "MemberType",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "SortPosition",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "Fixtures",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "navestock_team_id",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "match_date",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}
