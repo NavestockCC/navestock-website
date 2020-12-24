@@ -31,6 +31,7 @@ import { AllGroundsComponent } from './all-grounds/all-grounds.component';
 import { ReverseArrayPipe } from './pipes/reverse_array/reverse.pipe';
 import { ImplicitReceiver } from '@angular/compiler';
 import { MatchwidgetdataPipe } from './pipes/match_widget/matchwidgetdata.pipe';
+import { MatchImportComponent } from './match-import/match-import.component';
 
 @NgModule({
     declarations: [
@@ -45,7 +46,8 @@ import { MatchwidgetdataPipe } from './pipes/match_widget/matchwidgetdata.pipe';
         GroundAdminComponent,
         AllGroundsComponent,
         ReverseArrayPipe,
-        MatchwidgetdataPipe
+        MatchwidgetdataPipe,
+        MatchImportComponent
     ],
     imports: [
         CommonModule,
