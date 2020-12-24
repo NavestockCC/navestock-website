@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 /** 
  * Navestock Routing Components
  */
-
+import { GCPIdentityComponent } from '../gcpidentity/gcpidentity.component';
 
 const nccRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -27,6 +27,10 @@ const nccRoutes: Routes = [
   {
     path: 'match',
     loadChildren: () => import('../matches-module/match-routing.module').then(mod => mod.MatchRoutingModule)
+  },
+  { 
+    path: 'google67cec1e0b4652e94', 
+    component: GCPIdentityComponent 
   }
 ];
 
