@@ -23,7 +23,8 @@
             "aot": true,
             "assets": [
               "apps/navestock-website/src/favicon.ico",
-              "apps/navestock-website/src/assets"
+              "apps/navestock-website/src/assets",
+              "apps/navestock-website/src/google67cec1e0b4652e94.html"
             ],
             "styles": [
               "apps/navestock-website/src/styles-scss/styles.scss",
