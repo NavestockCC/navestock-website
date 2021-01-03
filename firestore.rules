@@ -77,6 +77,12 @@ match /NestBooking/{document=**}{
       allow read;
       allow write: if hasAdminWrite();  
 }
+
+// Match Import
+match /MatchList/{document=**}{
+      allow read;
+      allow write;  
+}
    
 function getAdminUserData() {
   return get(/databases/$(database)/documents/AdminUsers/$(request.auth.uid)).data;

@@ -1,5 +1,5 @@
 
-import { Timestamp } from '@firebase/firestore-types';
+import * as firebase from 'firebase/app'
 
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, CollectionReference } from '@angular/fire/firestore';
@@ -7,6 +7,7 @@ import { AngularFirestore, AngularFirestoreCollection, CollectionReference } fro
 import { matchItem } from '../objects/matchlist.object';
 
 import { MATCHLIST } from './matchlistData';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -15,24 +16,31 @@ import { MATCHLIST } from './matchlistData';
 })
 export class MatchImportComponent implements OnInit {
 
+  public matchList: Observable<any>;
+
   private matchList_Col: AngularFirestoreCollection;
   private matchListData = MATCHLIST;
+
+
 
   constructor(private afs: AngularFirestore) { }
 
   ngOnInit(): void {
     this.matchList_Col = this.afs.collection('MatchList');
+    this.matchList = this.getMatchList('2019');
   }
 
   /**
-   * importList
+   * Imports list
+   * @param importSeason 
    */
-  public importList():void {
+  public importList(importSeason: string):void {
     const matchItemObj = new matchItem();
     console.log('importList: Start');
-    let tmpImportObj: any = {};
+    const tmpImportObj: any = {};
+
     this.matchListData.matches.forEach(itm => {
-    
+    tmpImportObj['season']= {season: importSeason, lastupdated: firebase.default.firestore.Timestamp.now()};
       const matchToAdd = {
         ...itm,
         'id': itm.id.toString(),
@@ -42,7 +50,7 @@ export class MatchImportComponent implements OnInit {
       tmpImportObj[matchToAdd.id] = matchToAdd;
     });
 
-    this.matchList_Col.doc('matches').set(tmpImportObj)
+    this.matchList_Col.doc(importSeason).set(tmpImportObj)
 
     }
 
@@ -53,6 +61,11 @@ export class MatchImportComponent implements OnInit {
    */
   public importDetail():void {
     console.log('importDetail: Start');
+  }
+
+
+  private getMatchList(season: string):Observable<any> {
+    return this.matchList_Col.doc(season).valueChanges();
   }
 
 }

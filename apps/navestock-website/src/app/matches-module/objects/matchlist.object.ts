@@ -46,7 +46,7 @@ constructor() {}
     /*
         Takes a string dd/mm/yyy and converts it to an ISO date
     */
-   public  toTimestap(dateStr: string, timeStr?: string): Timestamp {
+   public  toTimestap(dateStr: string, timeStr?: string): firebase.default.firestore.Timestamp {
     const tmpDate: string[] = dateStr.split('/');
     
     if (timeStr == null || timeStr === '') {
@@ -54,7 +54,7 @@ constructor() {}
     }
     const tmpTime: string[] = timeStr.split(':');
 
-    const ND: number = Date.UTC(Number(tmpDate[2]), Number(tmpDate[1]), Number(tmpDate[0]), Number(tmpTime[0]) + 1, Number(tmpTime[1]), 0);
+    const ND: number = Date.UTC(Number(tmpDate[2]), Number(tmpDate[1]), Number(tmpDate[0]), Number(tmpTime[0]), Number(tmpTime[1]), 0);
     return firebase.default.firestore.Timestamp.fromMillis(ND);
 }
 }

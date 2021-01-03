@@ -1,6 +1,16 @@
 <p>match-import works!</p>
 <br>
-<button (click)="importList()">Import List</button>
+<button (click)="importList('2019')">Import List</button>
+<br>
+<div *ngFor="let item of matchList | async | keyvalue">
+    <ng-container *ngIf="item.value; let match">
+        {{match.id}}: {{match.home_club_name}} - {{match.home_team_name}} vs {{match.away_club_name}} -
+        {{match.away_team_name}}
+        <ng-container *ngIf="match.match_date; let matchDate"><br>{{matchDate.seconds * 1000 | date: 'd MMM yyyy @ H:mm':'GMT'}}</ng-container>
+        <br><br>
+    </ng-container>
+
+</div>
 <br>
 <button (click)="importDetail()">Import Match Detail</button>
 <br>
