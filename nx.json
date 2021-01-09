@@ -29,6 +29,9 @@
     "navestock-website-e2e": {
       "tags": [],
       "implicitDependencies": ["navestock-website"]
+    },
+    "functions": {
+      "tags": []
     }
   }
 }

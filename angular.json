@@ -23,8 +23,7 @@
             "aot": true,
             "assets": [
               "apps/navestock-website/src/favicon.ico",
-              "apps/navestock-website/src/assets",
-              "apps/navestock-website/src/google67cec1e0b4652e94.html"
+              "apps/navestock-website/src/assets"
             ],
             "styles": [
               "apps/navestock-website/src/styles-scss/styles.scss",
@@ -43,6 +42,7 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
+              "aot": true,
               "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
@@ -60,6 +60,23 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "emulator": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/navestock-website/src/environments/environment.ts",
+                  "with": "apps/navestock-website/src/environments/environment.emulator.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "aot": true,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
             }
           }
         },
@@ -88,10 +105,7 @@
               "apps/navestock-website/tsconfig.spec.json",
               "apps/navestock-website/tsconfig.editor.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/navestock-website/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/navestock-website/**/*"]
           }
         },
         "test": {
@@ -128,13 +142,65 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/navestock-website-e2e/tsconfig.e2e.json"
-            ],
+            "tsConfig": ["apps/navestock-website-e2e/tsconfig.e2e.json"],
             "exclude": [
               "**/node_modules/**",
               "!apps/navestock-website-e2e/**/*"
             ]
+          }
+        }
+      }
+    },
+    "functions": {
+      "root": "apps/functions",
+      "sourceRoot": "apps/functions/src",
+      "projectType": "application",
+      "prefix": "functions",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/functions",
+            "main": "apps/functions/src/main.ts",
+            "tsConfig": "apps/functions/tsconfig.app.json",
+            "assets": ["apps/functions/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/functions/src/environments/environment.ts",
+                  "with": "apps/functions/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "functions:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/functions/tsconfig.app.json",
+              "apps/functions/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/functions/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/functions/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }
