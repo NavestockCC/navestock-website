@@ -15,6 +15,9 @@ import { environment } from '../../environments/environment';
  */
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule, SETTINGS } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AgmCoreModule } from '@agm/core';
 
 /**
@@ -26,7 +29,6 @@ import { BannerModule } from '../banner-module/banner.module';
 import { ClubInfoModule } from '../club-info-module/club-info.module';
 import { HomePageModule } from '../home-page-module/home-page.module';
 import { Navestock250Module } from '../navestock250-module/navestock250.module';
-import { GeneratedbdataComponent } from '../firebasedb/generatedbdata/generatedbdata.component';
 import { HonoursboardModule } from '../honoursboard-module/honoursboard.module';
 import { MatchModule } from '../matches-module/match.module';
 
@@ -34,8 +36,7 @@ import { MatchModule } from '../matches-module/match.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    GeneratedbdataComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +47,9 @@ import { MatchModule } from '../matches-module/match.module';
       apiKey: environment.googleMapKey.apiKey
     }),
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+    AngularFireAuthModule,
     NavestockMaterialModule,
     // Navestock Modules
     AppRoutingModule,
@@ -57,7 +61,13 @@ import { MatchModule } from '../matches-module/match.module';
     MatchModule
   ],
   providers: [
-
+    {
+      provide: SETTINGS,
+      useValue: environment.stage === 'emulator' ?{
+        host: 'localhost:8080',
+        ssl: false
+      } : undefined
+    }
   ],
   bootstrap: [AppComponent],
 })

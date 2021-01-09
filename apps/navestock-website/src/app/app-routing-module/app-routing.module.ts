@@ -5,9 +5,8 @@ import { Routes, RouterModule } from '@angular/router';
  * Navestock Routing Components
  */
 
-
 const nccRoutes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: '/home/home', pathMatch: 'full' },
   {
     path: 'home',
     loadChildren: () => import('../home-page-module/home-page-routing.module').then(mod => mod.HomePageRoutingModule)
