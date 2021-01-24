@@ -2,6 +2,10 @@
   "name": "navestock",
   "version": "0.0.0",
   "license": "MIT",
+  "main": "dist/apps/functions/main.js",
+  "engines": {
+    "node": "10"
+  },
   "scripts": {
     "ng": "nx",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points",
