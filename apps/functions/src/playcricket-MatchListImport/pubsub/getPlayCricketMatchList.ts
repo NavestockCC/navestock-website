@@ -7,9 +7,13 @@
  */
 
 import * as functions from 'firebase-functions';
-import { PlayCricketMatchListAPICall } from '../service/MatchListAPICall';
 import { PubSub } from '@google-cloud/pubsub';
-import { throwError } from 'rxjs';
+
+import { PlayCricketMatchListAPICall } from '../service/MatchListAPICall';
+import { MatchListImport } from '../service/MatchList_Services';
+import { MatchListDB } from '../service/MatchList_DB_service';
+
+
 
 /* FIXME: navestockCert
 import * as navestockCert from "../../environments/navestock-website-04b2617e4f2a";
@@ -23,33 +27,48 @@ const credentialsData ={
 */
 
 const MatchListAPICall = new PlayCricketMatchListAPICall();
+const matchListImport = new MatchListImport();
+const matchListDB = new MatchListDB();
 
 export const getPlayCricketMatchListPubSub = functions.pubsub
   .topic('Match_List_Import')
   .onPublish((msgPayload) => {
     try {
+
+      // Retrieve Season from PubSub: Match_List_Import
       if (msgPayload.json.season === undefined)
         throw new Error('E_getPCML_1: season param not found');
       const callplayCricketApi = MatchListAPICall.playCricketApiCall(
         msgPayload.json.season
       );
-      const pubSubClient = new PubSub(); //FIXME: new PubSub(credentialsData);
 
-      createTopic('PlayCricket_Match_List_Data');
-      const pubsubTopic = pubSubClient.topic('PlayCricket_Match_List_Data', {
-        batching: {
-          maxMessages: 500,
-          maxMilliseconds: 5000,
-        },
-      });
-
+      // Call PlayCricket API to import MatchList data
       callplayCricketApi.subscribe((APIResponse) => {
-        const dataBuffer = Buffer.from(APIResponse);
+        const matchlist = matchListImport.matchListTransform(
+          APIResponse,
+          msgPayload.json.season
+        );
+
+        //Add MatchList to DB
+        matchListDB.addMatchlist(matchlist);
+
+        //Add MatchList to PubSub: PlayCricket_Match_List_Data
+        const pubSubClient = new PubSub(); //FIXME: new PubSub(credentialsData);
+
+        //createTopic('PlayCricket_Match_List_Data');
+        const pubsubTopic = pubSubClient.topic('PlayCricket_Match_List_Data', {
+          batching: {
+            maxMessages: 500,
+            maxMilliseconds: 5000,
+          },
+        });
+
+        const dataBuffer = Buffer.from(JSON.stringify(matchlist));
         pubsubTopic
           .publish(dataBuffer)
           .then((pubSubPublisgResponse) => {
             console.log(
-              `PubSub Message ${pubSubPublisgResponse} published to topic PlayCricket_Match_List_Data. ${JSON.stringify(APIResponse)}`
+              `PubSub Message ${pubSubPublisgResponse} published to topic PlayCricket_Match_List_Data`
             );
           })
           .catch((err) =>

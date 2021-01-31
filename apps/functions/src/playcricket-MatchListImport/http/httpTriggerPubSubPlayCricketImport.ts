@@ -33,11 +33,11 @@ export const httpPublishPlayCricetSeasonToImport = functions.https.onRequest(
 
       // Publish {season: ??} to PubSub Topic
       const topicName = 'Match_List_Import';
-      await createTopic(topicName);
+     // await createTopic(topicName);
       const pubSubClient = new PubSub();
       const messageId = await pubSubClient.topic(topicName).publish(dataBuffer);
-      console.log(`Message ${messageId} published: ${data}`);
-      res.send(`Message ${messageId} published: ${data}`);
+      console.log(`Message ${messageId} published: ${data} to ${topicName}`);
+      res.send(`Message ${messageId} published: ${data} to ${topicName}`);
     } catch (error) {
       console.error(`Received error while publishing: ${error.message}`);
       process.exitCode = 1;

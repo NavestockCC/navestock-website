@@ -13,6 +13,11 @@ import * as ListenMessagePubSub from './add-message/listen-message-pubsub';
 import * as HttpTriggerPlayCricetImport from './playcricket-MatchListImport/http/httpTriggerPubSubPlayCricketImport'
 import * as GetPlayCricketMatchListPubSub from './playcricket-MatchListImport/pubsub/getPlayCricketMatchList';
 
+/**  
+ * Import: PlayCricket Match Detail Import Functions
+ * */
+import * as GetPlayCricketMatchDetailPubSub from './playcricke-MatchDetailImport/pubsub/playcricketmatchdetail';
+
 //  Start writing Firebase Functions
 //  https://firebase.google.com/docs/functions/typescript
 //
@@ -35,3 +40,8 @@ export const addMessagePubSub = ListenMessagePubSub.listenHelloNavestock;
  * */
 export const httpTriggerPlayCricetImport = HttpTriggerPlayCricetImport.httpPublishPlayCricetSeasonToImport;
 export const getPlayCricketMatchListPubSub = GetPlayCricketMatchListPubSub.getPlayCricketMatchListPubSub;
+
+/** 
+ * PlayCricket Match Detail Import Functions 
+ * */
+export const getPlayCricketMatchDetailPubSub = GetPlayCricketMatchDetailPubSub.getPlayCricketMatchDetailPubSub;

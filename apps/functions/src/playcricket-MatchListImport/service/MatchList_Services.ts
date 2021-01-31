@@ -2,24 +2,33 @@ import * as admin from 'firebase-admin'
 
 export class MatchListImport {
 
+/**
+ * Matchs list transform
+ * @param matchList 
+ * @param season 
+ * @returns list transform 
+ */
+public matchListTransform(matchList: any, season: string): object {
+    const ML = JSON.parse(matchList);
+    const transformedMatchList = {"season": season, "matches": []};
 
-    /** Takes a string dd/mm/yyy and converts it to an ISO date */
-    private toDate(dateStr: string, timeStr?: string): admin.firestore.Timestamp {
-        const tmpDate: string[] = dateStr.split("/");
-        let matchTime: string;
-
-        if (timeStr) {
-            matchTime = timeStr;
-        } else {
-            matchTime = '12:00';
-        }
-
-        return admin.firestore.Timestamp.fromDate(
-            new Date(tmpDate[2] + '-' + tmpDate[1] + '-' + tmpDate[0] + 'T' + matchTime + ':00+01:00')
-        );
+    try {
+        ML.matches.forEach(element => {
+            transformedMatchList.matches.push(this.updateDbFields(element));
+        });
+    } catch (error) {
+        
     }
 
-    public updateDbFields(element: any): object {
+    return transformedMatchList;
+}
+
+/**
+ * Updates matchlist fields
+ * @param element 
+ * @returns db fields 
+ */
+private updateDbFields(element: any): object {
         // set the oposition and navestock team info
         let navestock_club_id = ""
         let navestock_club_name = ""
@@ -74,7 +83,21 @@ export class MatchListImport {
         return updateFields;
     }
 
+    /** Takes a string dd/mm/yyy and converts it to an ISO date */
+    private toDate(dateStr: string, timeStr?: string): admin.firestore.Timestamp {
+        const tmpDate: string[] = dateStr.split("/");
+        let matchTime: string;
 
+        if (timeStr) {
+            matchTime = timeStr;
+        } else {
+            matchTime = '12:00';
+        }
+
+        return admin.firestore.Timestamp.fromDate(
+            new Date(tmpDate[2] + '-' + tmpDate[1] + '-' + tmpDate[0] + 'T' + matchTime + ':00+01:00')
+        );
+    }
 
     private isNavestockHomeTeam(home_club_id: string): boolean {
         let returnVal: boolean;
