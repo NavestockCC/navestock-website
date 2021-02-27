@@ -1,3 +1,4 @@
+
 /* Angular Imports */
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -32,12 +33,12 @@ export class MatchListComponent implements OnInit {
     ngOnInit(): void {
         this.route.params.subscribe(params => {
             this.tID = params['tid'];
-            this.setMatchList((new Date()).getFullYear(), this.tID);
+            this.setMatchList((new Date()).getFullYear().toString(), this.tID);
             this.seasonList = this.matchdataService.getSeasons();
         });
     }
 
-    public setMatchList(seasonYear: number, navTeamId: string): void {
+    public setMatchList(seasonYear: string, navTeamId: string): void {
         this.matchListSeason = this.matchdataService.getMatchlistPerMonth(seasonYear, navTeamId);
     }
 

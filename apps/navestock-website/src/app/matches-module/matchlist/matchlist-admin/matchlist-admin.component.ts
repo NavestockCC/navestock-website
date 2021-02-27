@@ -63,7 +63,7 @@ export class MatchListComponentAdmin implements OnInit {
     ngOnInit(): void {
         this.route.params.subscribe(params => {
             this.tID = params['tid'];
-            this.setMatchList((new Date()).getFullYear(), this.tID);
+            this.setMatchList((new Date()).getFullYear().toString(), this.tID);
             this.seasonList = this.matchdataService.getSeasons();
         });
         this.importSeason = this.getimportSeason();
@@ -79,7 +79,7 @@ export class MatchListComponentAdmin implements OnInit {
         return ret;
     }
 
-    public setMatchList(seasonYear: number, navTeamId: string): void {
+    public setMatchList(seasonYear: string, navTeamId: string): void {
         this.matchListSeason = this.matchdataService.getMatchlistPerMonth(seasonYear, navTeamId);
     }
 
