@@ -84,5 +84,16 @@
     "tslint": "~6.0.0",
     "typescript": "~4.0.3",
     "@nrwl/node": "10.4.2"
-  }
+  },
+  "description": "Website for navestock cricket club <https://navestockcc.org>",
+  "main": "decorate-angular-cli.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NavestockCC/navestock-website.git"
+  },
+  "author": "Lefras Coetzee",
+  "bugs": {
+    "url": "https://github.com/NavestockCC/navestock-website/issues"
+  },
+  "homepage": "https://github.com/NavestockCC/navestock-website#readme"
 }
